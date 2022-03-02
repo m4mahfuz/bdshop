@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #4F4F4F;
+}
+
+/* .container {
+  @apply mx-auto;
+  max-width: 1400px;
+} */
+
+.font-size-32 {
+  font-size: 32px;
+}
+.font-size-22 {
+  font-size: 22px;
+}
+.font-size-46 {
+  font-size: 46px;
+}
+
+.bs-button-bg {
+  background-color: #4f4f4f;
+}
+
+.bs-icon-box {
+  width: 60px;
+  height: 60px;
+}
+
+.bs-dark-orange-bg {
+  background-color: #FF5C00;
+}
+.bs-dark-orange-color {
+  color: #FF5C00;
+}
+.bs-dark-green-bg {
+  background-color: #26ae60;
+}
+.bs-light-green-bg {
+  background-color: #ebfaeb;
+}
+.bs-dark-green-color {
+  color: #26ae60;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-medium
+}
+
+.slide-bg {
+  background-color: #ebfaeb;
+}
+
+.bs-button {
+  @apply bs-dark-green-bg text-white rounded-full px-6 py-2 inline-block
+}
+.bs-white-btn {
+  @apply bg-white bs-dark-orange-color rounded-full px-6 py-2 inline-block
+}
+
+.hero-slide ul.slick-dots {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  margin-top: -32.5px
+}
+
+.hero-slide ul.slick-dots button {
+  text-indent: -9999px;
+  background-color: #d1ddd2;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.hero-slide ul.slick-dots li {
+  border-width: 1px;
+  height: 15px;
+  width: 15px;
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.hero-slide ul.slick-dots li.slick-active {
+  border-color: #FF5C00;
+}
+
+.hero-slide ul.slick-dots li.slick-active button {
+  @apply bs-dark-orange-bg;
+}
+
+
+.category-carousel .slick-slide > div {
+  margin-right: 35px;
+}
+
+.category-carousel .slick-list {
+  margin-right: -30px !important;
+}
+
+.category-carousel > svg {
+  height: 30px;
+  width: 30px;
+  background-color: #ddd;
+  border-radius: 50%;
+  padding: 5px;
+  position: absolute;
+  right: 50px;
+  top: -102px;
+  cursor: pointer;
+}
+
+.category-carousel > svg:last-child {
+  right: 0;
+}
+
+.promo-bg-1 {
+  background-image: url("../img/promo-bg-1.png");
+}
+.promo-bg-2 {
+  background-image: url("../img/promo-bg-2.png");
+}
+
+.category-carousel img {
+  max-height: 100%;
+}
+
+.cta-1 {background-color: #fff0dc;}
+.cta-2 {background-color: #ddf1d6;}
+.cta-3 {background-color: #ffebb7;}
+
+.product-img-hover {
+  display: none;
+}
+
+.single-bs-product:hover .product-img-hover {
+  display: flex;
+}
+
+.bs-modal-body {
+  max-width: 1000px;
+}
+
+span:last-child span.comma {
+  @apply hidden
+}
