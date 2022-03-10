@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-4">
     <div class="container">
       <div class="py-6 flex justify-between items-center ">
         <Logo/>

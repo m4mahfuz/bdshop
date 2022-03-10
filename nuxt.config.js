@@ -40,7 +40,7 @@ export default {
     '@nuxtjs/tailwindcss',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
+  // Modules: https://go.nuxtjs.dev/config-modules'@nuxtjs/axios'
   modules: [
     ["vue-toastification/nuxt", {
       timeout: 1000,
@@ -49,6 +49,43 @@ export default {
     '@nuxtjs/auth-next',
     '@nuxtjs/axios' 
   ],
+
+  auth: {
+        strategies: {
+            cookie: {
+                endpoints: {
+                    csrf: {
+                        url: '/sanctum/csrf-cookie'
+                    },
+                    login: {
+                        url: '/login'
+                    },
+                    logout: {
+                        url: '/logout'
+                    },
+                    user: {
+                        url: '/user'
+                    }
+                },
+                user: {
+                    property: 'data'
+                },
+            }
+        },
+
+        redirect: {
+            login: '/login',
+            logout: '/login',
+            home: '/'
+        },
+
+        // plugins: ['~/plugins/axios'],
+    },
+
+    axios: {
+        baseURL: 'http://localhost:81/api',
+        credentials: true,
+    },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

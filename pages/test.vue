@@ -18,6 +18,10 @@ export default {
         }        
     },
 
+    mounted() {
+        console.log(this.$auth.user)
+    },
+
     computed: {
         ...mapState('moduleOne', [
             'counter'
