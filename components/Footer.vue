@@ -94,7 +94,7 @@
 
 
     <!-- Product details modal -->
-    <div v-if="modal" class="fixed w-full h-full min-h-screen z-30 top-0 left-0">
+    <!-- <div v-if="modal" class="fixed w-full h-full min-h-screen z-30 top-0 left-0">
       <div @click.prevent="modalClose" class="absolute bg-black opacity-60 h-full w-full top-0 left-0"></div>
       <div class="bs-modal-body bg-white rounded-2xl p-8 relative mx-auto z-30 my-10 relative">
         <svg @click.prevent="modalClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute right-5 top-5 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -141,40 +141,53 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <template v-if="modal"> 
+      <!-- <ProductDetailsModal 
+        :modal="modal" 
+        :productSlug="product.slug" 
+        :product="product"
+        :quantity="quantity"
+        @cart="handleCartOperationEvent" 
+        @close="handleModal"
+      />  -->
+      <ProductDetailsModal />      
+    </template> 
+
   </div>
 </template>
 
 <script>
-import Logo from "./Logo";
+import { mapState } from "vuex";
 export default {
   name: "Footer",
-  components: {Logo},
   data() {
     return {
-      modal: false,
-      product: ''
+      // modal: false,
+      // product: ''
     }
   },
-
+  computed: {
+    ...mapState('product-details-modal', ['modal'])
+  },
   methods: {
-    modalClose() {
-      this.$store.dispatch("product-details-modal/resetModal");
-    }
+    // modalClose() {
+    //   this.$store.dispatch("product-details-modal/resetModal");
+    // }
   },
   mounted() {
-    this.$store.watch(
-      () => {
-        return this.$store.getters["product-details-modal/getModal"]
-      },
-      (val)=>{
-        this.modal = val.modal
-        this.product = val.product
-      },
-      {
-        deep:true
-      }
-    );
+    // this.$store.watch(
+    //   () => {
+    //     return this.$store.getters["product-details-modal/getModal"]
+    //   },
+    //   (val)=>{
+    //     this.modal = val.modal
+    //     this.product = val.product
+    //   },
+    //   {
+    //     deep:true
+    //   }
+    // );
   }
 }
 </script>

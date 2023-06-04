@@ -1,128 +1,35 @@
 <template>
   <div>
-    <div class="p-8">
-      <vue-slick-carousel class="hero-slide" :arrows="false" :dots="true">
-        <div class="slide-bg rounded-2xl pt-8">
-          <div class="container">
+    <Slider />
+    <!-- <div v-if="slides.length > 0" class="p-8"> -->
+      <!-- <vue-slick-carousel class="hero-slide" :arrows="false" :dots="true">
+        <div 
+          v-for="slide in slides" :key="slide.id"
+          class="rounded-2xl relative bg-green-50"
+        >
+          <img :src="url(slide.name)" class="object-cover h-full" alt="slide.title">
+          <div class="container absolute top-0 left-0">
             <div class="flex items-center">
-              <div class="w-1/2 mr-6 font-size-22">
-                <p class="bs-dark-green-color font-size-32 mb-4">Save up 30% off</p>
-                <h2 class="text-7xl font-bold mb-6 text-gray-800">Bengal Vegetable farm  Organic 100%</h2>
-                <p class="mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula faucibus massa est elit maecenas.</p>
+              <div class="w-1/2 mt-2 font-size-22">
+                <p class="bs-dark-green-color font-size-32 mb-4">Save up {{slide.discount}}% off</p>
+                <h2 class="text-6xl font-bold mb-6 text-gray-800">{{slide.title}}</h2>
+                <p class="mb-4">{{slide.description}}</p>
 
-                <nuxt-link to="/" class="bs-button text-base">Shop Now</nuxt-link>
-              </div>
-              <div class="w-1/2 flex justify-end">
-                <img width="550" src="~/assets/img/hero.png" alt="">
-              </div>
+                <nuxt-link :to="linkTo(slide.url)" class="bs-button text-base">Shop Now</nuxt-link>
+              </div>              
             </div>
           </div>
         </div>
+      </vue-slick-carousel> -->
 
-        <div class="slide-bg rounded-2xl pt-8">
-          <div class="container">
-            <div class="flex items-center">
-              <div class="w-1/2 mr-6 font-size-22">
-                <p class="bs-dark-green-color font-size-32 mb-4">Save up 40% off</p>
-                <h2 class="text-7xl font-bold mb-6 text-gray-800">Bengal Vegetable farm  Organic 100%</h2>
-                <p class="mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula faucibus massa est elit maecenas.</p>
-
-                <nuxt-link to="/" class="bs-button text-base">Shop Now</nuxt-link>
-              </div>
-              <div class="w-1/2 flex justify-end">
-                <img width="550" src="~/assets/img/hero.png" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="slide-bg rounded-2xl pt-8">
-          <div class="container">
-            <div class="flex items-center">
-              <div class="w-1/2 mr-6 font-size-22">
-                <p class="bs-dark-green-color font-size-32 mb-4">Save up 50% off</p>
-                <h2 class="text-7xl font-bold mb-6 text-gray-800">Bengal Vegetable farm  Organic 100%</h2>
-                <p class="mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula faucibus massa est elit maecenas.</p>
-
-                <nuxt-link to="/" class="bs-button text-base">Shop Now</nuxt-link>
-              </div>
-              <div class="w-1/2 flex justify-end">
-                <img width="550" src="~/assets/img/hero.png" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-      </vue-slick-carousel>
-
-      <div class="container pt-20">
+      <div class="container">
         <h3 class="text-4xl mb-6">Search by Category</h3>
         <div class="flex items-center mb-10">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
 
-        <vue-slick-carousel class="category-carousel mb-10 text-center" v-bind="categoryCarouselSettings">
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-1.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-2.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-3.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-4.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-5.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-6.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <div class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
-              <img src="~/assets/img/carousel-img-1.png" alt="">
-            </div>
-            <h4 class="text-xl">Groceries</h4>
-          </div>
-
-          <template #prevArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </template>
-
-          <template #nextArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </template>
-        </vue-slick-carousel>
+        <CarouselCategories />
 
         <div class="flex -mx-6 mb-14">
           <div class="w-1/2 px-6">
@@ -146,81 +53,36 @@
           </div>
         </div>
 
+        <!-- Daily -->
+        <h3 class="text-4xl mb-6">Deals of the Day</h3>
+        <div class="flex items-center mb-10">
+          <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
+          <div style="height: 2px" class="w-full bg-gray-200"></div>
+        </div>
+        
+        <div v-if="dailyDeals.length > 0">
+          <CarouselDeals :deals="dailyDeals" />
+        </div>
+        
+        <!-- Weekly -->
         <h3 class="text-4xl mb-6">Deals of the Week</h3>
         <div class="flex items-center mb-10">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
+        
+        <div v-if="weeklyDeals.length > 0">
+          <CarouselDeals :deals="weeklyDeals" />
+        </div>
 
-        <vue-slick-carousel v-if="dealsOfTheDayProducts.length" class="category-carousel mb-16 text-center" v-bind="productCarouselSettings">
-          <SingleProductBox v-for="product in dealsOfTheDayProducts" :key="product.id" :product="product"/>
-
-
-
-          <template #prevArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </template>
-
-          <template #nextArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </template>
-        </vue-slick-carousel>
-
-
-        <h3 class="text-4xl mb-6">Popular Brands</h3>
+        <h3 class="text-4xl mb-6">Popular Branweeks</h3>
         <div class="flex items-center mb-10">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
-
-        <vue-slick-carousel class="category-carousel mb-16 text-center" v-bind="categoryCarouselSettings">
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-1.png" alt=""></div>
-          </div>
-
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-2.png" alt=""></div>
-          </div>
-
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-3.png" alt=""></div>
-          </div>
-
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-4.png" alt=""></div>
-          </div>
-
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-5.png" alt=""></div>
-          </div>
-
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-6.png" alt=""></div>
-          </div>
-
-          <div class="">
-            <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-1.png" alt=""></div>
-          </div>
-
-
-
-          <template #prevArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </template>
-
-          <template #nextArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </template>
-        </vue-slick-carousel>
-
+    
+        <CarouselProductBrands />
+        
         <div class="flex -mx-6 mb-12">
           <div class="w-1/3 px-6">
             <div class="cta-1 flex p-6 rounded-xl">
@@ -259,36 +121,132 @@
           </div>
         </div>
 
-      </div>
-
-    </div>
+      </div>     
+      <Deal />      
+    <!-- </div> -->
   </div>
 </template>
 
 <script>
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import SingleProductBox from "../components/SingleProductBox";
-
-import dealsOfTheDayProducts from 'assets/deals-of-the-day-products.json'
+'use strict';
+// import dealsOfTheWeekProducts from 'assets/deals-of-the-weeks-products.json';
+import {mapActions, mapState} from "vuex";
+import { firebaseApp } from "~/plugins/firebase.js"
+import { getMessaging, getToken, onMessage, isSupported } from "firebase/messaging";
+// import { messaging } from '@/plugins/firebase';
 
 export default {
   name: 'IndexPage',
-  components: {SingleProductBox, Footer, Header},
   data() {
     return {
-      categoryCarouselSettings: {
-        "slidesToShow": 6
-      },
-      productCarouselSettings: {
-        "slidesToShow": 4
-      },
-      dealsOfTheDayProducts: []
+      // dealsOfTheWeekProducts: [],
+      img: require('~/assets/img/logo.png'),
+      token: ''
     }
   },
-  mounted() {
-    this.dealsOfTheDayProducts = dealsOfTheDayProducts;
-    console.log(this.dealsOfTheDayProducts)
+  async mounted() {
+    // await this.getSlides();
+    await this.getDailyDeals();
+    await this.getWeeklyDeals();
+    
+    // const firebaseConfig = {
+    //   apiKey: "AIzaSyC9sAIeBv6pKemsUasHMkiaAePjes4AWfU",
+    //   authDomain: "bengalshop-a5316.firebaseapp.com",
+    //   projectId: "bengalshop-a5316",
+    //   storageBucket: "bengalshop-a5316.appspot.com",
+    //   messagingSenderId: "741981622787",
+    //   appId: "1:741981622787:web:141e5ebc9a7efc77d83436"
+    // };
+
+    // const app = initializeApp(firebaseConfig);
+    // const isSupportedBrowser = await isSupported();
+    const messaging = getMessaging(firebaseApp);
+    
+    onMessage(messaging, (payload) => {
+         console.log('Message on client:', payload);
+         
+        Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+            console.log('Notification permission granted.');
+            let title = payload.notification.title;
+            let body = payload.notification.body;
+            
+            new Notification(title, {
+              body: body,
+              icon: this.img,              
+            });
+          } else {
+            console.log('Unable to get permission to notify.');
+          }
+        });
+
+    });
+       
+    const token = await getToken(messaging, {
+              vapidKey: 'BEUUqHbYw5eVxU68gLtaQ9aBU52nBdlFRSnrFD-e7_s4izozsIWj6NNgpUVg_GXzCy76JP-8Tciw_HkmwWl3Qew',
+    });
+
+    if (token) {
+      console.log(token);
+      this.token = token;
+      this.sendTokenToServer(token);
+        // updateUIForPushEnabled(token);
+    } else {
+      // Show permission request.
+      console.log('No registration token available. Request permission to generate one.');
+      // Show permission UI.
+      // updateUIForPushPermissionRequired();
+      // setTokenSentToServer(false);
+    }
+    
+  },
+  methods: {
+    ...mapActions('deals', ['getDailyDeals', 'getWeeklyDeals']),    
+    // ...mapActions('slides', ['getSlides']),    
+    // linkTo(url) {
+    //   return url === null ? '/#' : `/${url}`;
+    // },
+    // url(image) {
+    //   // console.log(image)
+    //   let path = `/storage/images/slides/large/`;
+    //   // let name = image.name;
+    //   return `${this.$config.baseURL}${path}${image}`;
+    // },
+     // Send the registration token your application server, so that it can:
+  // - send messages back to this app
+  // - subscribe/unsubscribe the token from topics
+    async sendTokenToServer(currentToken) {
+      
+      if (!this.isTokenSentToServer()) {
+        console.log('Sending token to server...');
+        // TODO(developer): Send the current token to your server.
+         await this.$axios.$post('/devices', { token: currentToken })
+         .then(response => {
+            console.log('device', response.data);
+            this.setTokenSentToServer(true);
+          })
+          .catch(error => {
+              console.log(error);
+          });      
+                  
+      } else {
+        console.log('Token already sent to server so won\'t send it again ' +
+            'unless it changes');
+      }
+    },
+
+    isTokenSentToServer() {
+      return window.localStorage.getItem('sentToServer') === '1';
+    },
+
+    setTokenSentToServer(sent) {
+      window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+    },
+
+  },
+  computed: {
+    ...mapState('deals', ['dailyDeals', 'weeklyDeals']),    
+    // ...mapState('slides', ['slides']),
   }
-}
+}  
 </script>

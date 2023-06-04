@@ -5,7 +5,13 @@ module.exports = {
         center: true,
         padding: '2rem',        
       },
-      extend: {},
+      extend: {
+        flexBasis: {
+          '1/7': '14.2857143%'
+        }
+      },
     },
-    plugins: [],
+    plugins: [
+      require('@tailwindcss/forms'),
+    ],
   }

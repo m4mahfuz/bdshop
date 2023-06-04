@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="app">
     <Header/>
-    <Nuxt/>
+      <Nuxt/>
     <Footer/>
   </div>
 </template>
@@ -16,5 +16,8 @@ export default {
 </script>
 
 <style scoped>
-
+  #app {
+        transition: margin-right .5s;
+        /* padding: 16px; */
+    }
 </style>

@@ -1,0 +1,81 @@
+[
+    {
+        "active": true,
+        "name": "Weight(solid)",
+        "id": 1,
+        "children": [
+            {
+            "name": "gm",
+            "id": 11
+            },
+            {
+            "name": "kg",
+            "id": 12
+            }
+        ]
+    },
+    {
+        "active": true,
+        "name": "Weight(liquid)",
+        "id": 2,
+        "children": [
+            {
+            "name": "ml",
+            "id": 22
+            },
+            {
+            "name": "ltr",
+            "id": 23
+            }
+        ]
+    },
+    {
+        "active": true,
+        "name": "Length",
+        "id": 3,
+        "children": [
+            {
+            "name": "inch",
+            "id": 33
+            },
+            {
+            "name": "feet",
+            "id": 34
+            },
+            {
+            "name": "cm",
+            "id": 35
+            },
+            {
+            "name": "mtr",
+            "id": 36
+            }
+        ]
+    },
+    {
+        "active": true,
+        "name": "Quantity",
+        "id": 4,
+        "children": [
+            {
+            "name": "pc",
+            "id": 44
+            },
+            {
+            "name": "pcs",
+            "id": 45
+            }
+        ]
+    },
+    {
+        "active": true,
+        "name": "Others",
+        "id": 5,
+        "children": [
+            {
+            "name": "each",
+            "id": 55
+            }
+        ]
+    }
+]

@@ -97,6 +97,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+.category-carousel .slick-prev:hover,
+.category-carousel .slick-prev:focus,
+.category-carousel .slick-next:hover,
+.category-carousel .slick-next:focus {
+  outline: none;
+  background-color: lightgreen;
+}
+
 .category-carousel .slick-slide > div {
   margin-right: 35px;
 }
@@ -136,13 +144,13 @@ h1, h2, h3, h4, h5, h6 {
 .cta-2 {background-color: #ddf1d6;}
 .cta-3 {background-color: #ffebb7;}
 
-.product-img-hover {
+/* .product-img-hover {
   display: none;
 }
 
 .single-bs-product:hover .product-img-hover {
   display: flex;
-}
+} */
 
 .bs-modal-body {
   max-width: 1000px;
@@ -151,3 +159,11 @@ h1, h2, h3, h4, h5, h6 {
 span:last-child span.comma {
   @apply hidden
 }
+
+/** Custom Utilities */
+
+.capitalize {
+  text-transform: capitalize;
+}
+/* @import 'overlayscrollbars/css/OverlayScrollbars.css'; */
+

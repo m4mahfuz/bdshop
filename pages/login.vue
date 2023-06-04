@@ -1,12 +1,17 @@
 <template>
-    <div class="flex w-full bg-gray-200">    
-        <div class="w-1/3 mx-auto bg-white p-5 rounded-lg my-10">
+    <div class="flex justify-center w-full bg-gray-200">    
+        <div v-if="$auth.loggedIn" class="py-20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 inline-block mb-2" fill="none" viewBox="0 0 24 24" stroke="green" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg> <span class="text-3xl text-green-600">Already Logged In!</span>
+        </div>
+        <div v-else class="w-1/3 mx-auto bg-white p-5 rounded-lg my-10">
         <!-- <Errors class="mb-5" :errors="errors"></Errors> -->
 
         <form autoComplete="off" @submit.prevent="submitForm">
             <div>
                 <Label html-for="email">Email</Label>
-
+    
                 <Input
                     id="email"
                     v-model="email"
@@ -44,15 +49,33 @@
                     />
 
                     <span class="ml-2 text-gray-600">Remember me</span>
-                </label>
+                </label>                
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <NuxtLink to="/forgot-password" class="underline text-sm text-gray-600 hover:text-gray-900">
+            <div class="text-center mt-6">
+                <button
+                class="bg-gray-600 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded-md shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                type="submit"
+                style="transition: all 0.15s ease 0s;"
+                >
+                Sign In
+                </button>
+            </div>
+
+            <div v-if="errors.length > 0" class="mt-4 text-red-500">
+                <small>*{{errors[0]}}</small>
+            </div>
+            
+            <div class="flex items-center justify-start mt-6">
+                <NuxtLink to="/forgot-password" class="text-sm text-gray-600 hover:text-gray-900">
                     Forgot your password?
                 </NuxtLink>
+            </div>
 
-                <Button class="ml-3">Login</Button>
+            <div class="flex items-center justify-start mt-4">
+                <NuxtLink to="/forgot-password" class="text-sm text-gray-600 hover:text-gray-900">
+                    Create new one
+                </NuxtLink>
             </div>
         </form>
         </div>
@@ -60,43 +83,102 @@
 </template>
 
 <script>
-export default {    
-    // middleware: 'auth',
-    auth: 'guest',
+    import { mapState, mapActions } from "vuex";
 
-    data: () => ({
-        errors: [],
-        email: '',
-        password: '',
-        remember: false
-    }),
+    export default {    
+        // middleware: 'auth',
+        auth: 'guest',
 
-    head() {
-        return {
-            title: 'Sign In — bdshop',
-        }
-    },
+        data: () => ({
+            errors: [],
+            email: '',
+            password: '',
+            remember: false,
+        }),
 
-    methods: {
-        submitForm(event) {
-            this.errors = [];
+        head() {
+            return {
+                title: 'Sign In — bdshop',
+            }
+        },      
+        
+        computed: {
+            ...mapState('cart', [
+                'cart'
+            ]),         
+        },
 
-            this.$auth.loginWith('cookie', {
-                data: {
-                    email: this.email,
-                    password: this.password,
-                    remember: this.remember
-                },
-            }).then(() => {
-                    this.$router.push('/')
-                    this.$toast.success('Logged In!')
+        methods: {
+            ...mapActions('cart', [
+                'getCart',
+            ]),
+            ...mapActions('wishlists', ['getWishlists']),
+            submitForm(event) {
+                this.errors = [];
+                // localStorage.setItem('redirect', this.$route.path);
+                this.$auth.loginWith('cookie', {
+                    data: {
+                        email: this.email,
+                        password: this.password,
+                        remember: this.remember
+                    },
+                }).then(() => {
+                        this.handleCart();        
+                        this.getWishlists();
+                        let redirectPath =  localStorage.getItem('redirect');               
+                        if (redirectPath !== null) {
+                            if (redirectPath === '/login') {
+                                this.$router.push('/');
+                                return;
+                            }
+                            this.$router.push(localStorage.getItem('redirect'));
+                        }
+                        // this.$router.push('/')
+                        // console.log('user', this.$auth.user);
+                        this.$toast.success('Logged In!')
+                    })
+                    .catch(error => {
+                        if (error.response.status !== 422) throw error
+
+                        this.errors = Object.values(error.response.data.errors).flat();
+                    })
+            },           
+            async handleCart() {
+                const cart = this.cart;
+                if (cart.length) {                    
+                    for (let element of cart) {
+                        await this.saveToDatabase(element);
+                    }
+                }
+                console.log('CartHandleDone');
+                this.getCart();
+            },            
+            saveToDatabase(product) {
+                return this.$axios.$post('/carts', {
+                    product_id: product.id,
+                    user_id: this.$auth.user.id,
+                    // name: data.product.name,
+                    // image: data.product.featured_image,
+                    // price: product.price,
+                    price: product.original_price,
+                    quantity: product.quantity,
+                    action: product.action
                 })
-                .catch(error => {
-                    if (error.response.status !== 422) throw error
-
-                    this.errors = Object.values(error.response.data.errors).flat();
-                })
+                .then(respons => {
+                    console.log('product saved in db cart')
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+            // clearCartAtLocalStorage() {
+            //     localStorage.setItem('cart', '[]');
+            //     console.log('cartAtLocalStorageCleared');
+            // }
+            // setCartAtLocalStorage() {
+            //     console.log('CLS', this.cart.length);
+            //     localStorage.setItem('cart', JSON.stringify(this.cart))
+            //     console.log('cartAtLocalStorageFilld');
+            // }
         }
     }
-}
 </script>

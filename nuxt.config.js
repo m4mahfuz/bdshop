@@ -1,3 +1,5 @@
+import path from 'path'
+import fs from 'fs'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -16,21 +18,31 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' }
-    ]
+    ],
+    // script: [
+    //   {
+    //     src: "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7),
+    //     body: true
+    //   },
+    // ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/css/style.css'
+    'overlayscrollbars/css/OverlayScrollbars.css',
+    '~/assets/css/style.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins/vue-slick-carousel', ssr: true},
+    // {src: '~/plugins/vue-slick-carousel', ssr: true},
     {src: '~/plugins/v-click-outside', ssr: false},
     {src: '~/plugins/vue-toast-notification', ssr: false},
+    {src: '~/plugins/vue-apexcharts', ssr: false},
+    '~/plugins/vue-slick-carousel',
+    '~/plugins/overlayscrollbars',
+    '~/plugins/firebase'
   ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -70,22 +82,65 @@ export default {
                 user: {
                     property: 'data'
                 },
-            }
+            },
+            //mod by me
+            admin: {
+              scheme: 'cookie',
+              endpoints: {
+                  csrf: {
+                      url: '/sanctum/csrf-cookie'
+                  },
+                  login: {
+                      url: '/admin/login'
+                  },
+                  logout: {
+                      url: '/admin/logout'
+                  },
+                  user: {
+                      url: '/admin/user'
+                  }
+              },
+              user: {
+                  property: 'data'
+              },
+          }
         },
 
         redirect: {
             login: '/login',
-            logout: '/login',
-            home: '/'
+            logout: '/', //'/login',
+            home: '/',
+            // dashboard: '/admin/dashboard'
         },
 
         // plugins: ['~/plugins/axios'],
     },
 
-    axios: {
-        baseURL: 'http://localhost:81/api',
-        credentials: true,
-    },
+  axios: {
+      // baseURL: 'http://localhost:81/api',
+      baseURL: 'https://api.bdshop.test/api',
+      credentials: true,
+      // https: false
+  },
+
+  publicRuntimeConfig: {
+    // baseURL: 'http://localhost:81'
+    baseURL: 'https://api.bdshop.test'
+  },
+  // privateRuntimeConfig: {
+  //   // apiSecret: process.env.API_SECRET
+  //   pgwUrl: process.env.SSLCOMMERZ_API_DOMAIN_URL,
+  //   pgwSroreId: process.env.SSLCOMMERZ_STORE_ID,
+  //   pgwStorePassword: process.env.SSLCOMMERZ_STORE_PASSWORD,
+  //   pgwIsLocalhost: process.env.SSLCOMMERZ_IS_LOCALHOST,
+  // },
+
+  server: {
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, 'key.pem')),
+      cert: fs.readFileSync(path.resolve(__dirname, 'cert.pem'))
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
