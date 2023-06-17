@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <!-- <div id="app"> -->
+  <div id="app" class="md:container md:mx-auto px-4">
     <Header/>
       <Nuxt/>
     <Footer/>

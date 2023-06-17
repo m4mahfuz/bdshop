@@ -3,10 +3,11 @@
         <div class="h-60 bg-green-50 mb-6 rounded-t-xl">
           <img :src="url(category.image)" class="object-cover h-full float-right" alt="category.title">
         </div>
-        <div class="flex justify-between items-center mb-8">
-          <h3 class="text-3xl capitalize">{{ category.name }}</h3>
-          <div class="min-w-max flex items-center">
-            <div class="text-sm mr-6"><b>{{ totalProducts }}</b> Products Found</div>
+        <div class="md:flex md:justify-between md:items-center mb-8">
+          <h3 class="text-3xl capitalize">{{ category.name }}
+            <span class="text-sm lg:mr-6"><b>{{ totalProducts }}</b> Products Found</span>
+          </h3>
+          <div class="min-w-max mt-4 md:mt-0">
             <select name="sorting" v-model="selectedSorting">
               <option value="default">Default sorting</option>
               <option value="price">Sort by price</option>

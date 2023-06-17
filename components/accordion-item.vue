@@ -3,7 +3,7 @@
     <div
       class="accordion__trigger cursor-pointer relative"
       :class="{'accordion__trigger_active': visible, 'bg-green-100 rounded-t-xl': roundedTop}"      
-      @click="open"
+      @click.prevent="open"
     >
       <!-- This slot will handle the title/header of the accordion and is the part you click on -->
       <div class="flex justify-between items-center">
@@ -85,20 +85,30 @@ export default {
       this.open()
     }
   },
+  watch: {
+    openByDefault(value) {
+      this.open();
+    }
+  },
   methods: {
     open() {
       // load category without children
+      console.log('1')
       if (this.category?.children.length === 0  && this.parent === false) {
         if (this.category.slug === this.$route.params.category) {
+          console.log('11')
           return;
         }
+        console.log('2')
         return this.$router.push(`/category/${this.category.slug}`);
       }
       
       if (this.visible) {
         this.Accordion.active = null;
       } else {        
+        console.log('3');
         this.Accordion.active = this.index;
+        console.log('33')
         if (this.category?.children.length > 0) {          
           this.$router.push(`/category/${this.category.slug}`);
         }
@@ -113,6 +123,9 @@ export default {
   },
   created() {
     this.index = this.Accordion.count++;
+    // if (this.openByDefault) {
+    //   this.Accordion.active = this.index;
+    // }
   }
 };
 </script>

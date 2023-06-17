@@ -1,12 +1,12 @@
 <template>
   <div v-if="modal" class="fixed w-full h-full min-h-screen z-30 top-0 left-0">
       <div @click.prevent="modalClose" class="absolute bg-black opacity-60 h-full w-full top-0 left-0"></div>
-      <div class="bs-modal-body bg-white rounded-2xl p-8 mx-auto z-30 my-10 relative">
+      <div class="lg:bs-modal-body bg-slate-100 rounded-2xl p-8 mx-4 lg:mx-10 my-10 z-30 relative h-4/5 overflow-y-auto">
         <svg @click.prevent="modalClose" xmlns="http://www.w3.org/2000/svg" class="h-4 w-5 absolute right-6 top-5 cursor-pointer hover:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
 
-        <div class="flex justify-center flex-wrap md:flex-nowrap my-2">
+        <div class="flex justify-center flex-wrap lg:flex-nowrap my-2">
           <div class="w-80 px-8">
             <ProductZoomer 
               :images="images" 
@@ -15,7 +15,7 @@
               :slides="3"
             />
           </div>
-          <div class="drift-pane relative px-8 text-left">
+          <div class="drift-pane relative px-4 md:px-8 text-left w-full">
             <p class="text-sm mb-3"><span class="uppercase text-gray-400 pr-6">Status</span> <span class="bs-dark-green-color">In Stock</span></p>
             <h3 class="text-2xl">{{product.name}}</h3>
             <p class="text-xs text-gray-400 mb-4 mt-2"><b>{{product.quantity}}</b> items available.</p>
@@ -31,12 +31,12 @@
             <div class="flex flex-col items-center justify-center border-t border-gray-200 my-4">
               <!-- <input v-model="cartProductQuantity" type="number" min="1" class="w-14 border border-gray-200 mr-5 text-center"> -->
               <!-- <button class="bs-button">Add to cart</button> -->
-              <div class="flex justify-center items-center text-4xl text-gray-600 my-4 gap-2 p-0">
+              <div class="md:flex justify-center items-center text-4xl text-gray-600 my-4 gap-2 p-0">
                 <span class="pl-2 text-lg uppercase">quantity</span>
-                <div class="flex gap-6 w-64">
-                  <button @click.prevent="emitEventForCartOperaton('decrease')" class="h-14 w-14 border rounded-full" :disabled="cartProductQuantity < 1">-</button>
+                <div class="flex gap-2 md:gap-6 md:w-64">
+                  <button @click.prevent="emitEventForCartOperaton('decrease')" class="h-14 w-14 border border-gray-200 rounded-full" :disabled="cartProductQuantity < 1">-</button>
                   <span class="flex items-center justify-center w-14 h-14 border border-gray-200 bg-gray-200 rounded-full text-xl font-semibold">{{cartProductQuantity}}</span>
-                  <button @click.prevent="emitEventForCartOperaton('increase')" class="h-14 w-14 border rounded-full">+</button>
+                  <button @click.prevent="emitEventForCartOperaton('increase')" class="h-14 w-14 border border-gray-200 rounded-full">+</button>
                 </div>
               </div>
               <div class="py-2 w-full">

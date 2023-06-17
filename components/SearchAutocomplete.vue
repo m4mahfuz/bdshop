@@ -14,7 +14,7 @@
       @keydown.enter="onEnter"
       @keydown.esc="isOpen = false"
       type="text"
-      class="rounded-md border-gray-300 px-14 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+      class="rounded-md border-gray-300 w-full px-14 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
     />
     <button 
       v-if="search !== ''"

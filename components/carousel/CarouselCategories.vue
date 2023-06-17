@@ -1,8 +1,8 @@
 <template>
   <div v-if="categories.length > 0">
     <vue-slick-carousel class="category-carousel mb-10 text-center" v-bind="categoryCarouselSettings">
-          <div v-for="category in categories" :key="category.id" class="bg-gray-100 p-4">
-            <div class="h-32 flex justify-center items-center">
+          <div v-for="category in categories" :key="category.id" class="bg-gray-50 p-4">
+            <div class="h-20 md:h-32 flex justify-center items-center">
               <nuxt-link :to="`/category/${category.slug}`">
                 <img :src="url(category.icon)" alt="">
               </nuxt-link>
@@ -11,13 +11,13 @@
           </div>
 
           <template #prevArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mt-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
           </template>
 
           <template #nextArrow="arrowOption">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mt-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </template>

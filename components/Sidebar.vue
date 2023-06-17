@@ -1,6 +1,6 @@
 <template>
   <accordion>
-    <accordion-item :openByDefault="true" :roundedTop="true" :largeArrow="true" :parent="true">
+    <accordion-item :openByDefault="open" :roundedTop="true" :largeArrow="true" :parent="true">
       <!-- This slot will handle the title/header of the accordion and is the part you click on -->
       <template slot="accordion-trigger">
         <h3 class="p-5">
@@ -50,7 +50,11 @@
 export default {
   name: "Sidebar",
   props: {
-    categories: Array
+    categories: Array,
+    open: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     load(slug) {

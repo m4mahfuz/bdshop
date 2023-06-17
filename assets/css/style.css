@@ -8,10 +8,10 @@ body {
   color: #4F4F4F;
 }
 
-/* .container {
+.container {
   @apply mx-auto;
   max-width: 1400px;
-} */
+}
 
 .font-size-32 {
   font-size: 32px;

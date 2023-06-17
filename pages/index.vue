@@ -1,37 +1,17 @@
 <template>
   <div>
     <Slider />
-    <!-- <div v-if="slides.length > 0" class="p-8"> -->
-      <!-- <vue-slick-carousel class="hero-slide" :arrows="false" :dots="true">
-        <div 
-          v-for="slide in slides" :key="slide.id"
-          class="rounded-2xl relative bg-green-50"
-        >
-          <img :src="url(slide.name)" class="object-cover h-full" alt="slide.title">
-          <div class="container absolute top-0 left-0">
-            <div class="flex items-center">
-              <div class="w-1/2 mt-2 font-size-22">
-                <p class="bs-dark-green-color font-size-32 mb-4">Save up {{slide.discount}}% off</p>
-                <h2 class="text-6xl font-bold mb-6 text-gray-800">{{slide.title}}</h2>
-                <p class="mb-4">{{slide.description}}</p>
-
-                <nuxt-link :to="linkTo(slide.url)" class="bs-button text-base">Shop Now</nuxt-link>
-              </div>              
-            </div>
-          </div>
-        </div>
-      </vue-slick-carousel> -->
 
       <div class="container">
-        <h3 class="text-4xl mb-6">Search by Category</h3>
-        <div class="flex items-center mb-10">
+        <h3 class="text-lg md:text-4xl mb-6">Shop by Category</h3>
+        <div class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
 
         <CarouselCategories />
 
-        <div class="flex -mx-6 mb-14">
+        <!-- <div class="flex -mx-6 mb-14">
           <div class="w-1/2 px-6">
             <div class="promo-bg-1 bg-cover bg-gray-500 bg-center p-12 rounded">
               <div class="w-2/3">
@@ -51,11 +31,11 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Daily -->
-        <h3 class="text-4xl mb-6">Deals of the Day</h3>
-        <div class="flex items-center mb-10">
+        <h3 class="text-xl md:text-4xl mb-6">Deals of the Day</h3>
+        <div class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
@@ -65,8 +45,8 @@
         </div>
         
         <!-- Weekly -->
-        <h3 class="text-4xl mb-6">Deals of the Week</h3>
-        <div class="flex items-center mb-10">
+        <h3 class="text-xl md:text-4xl mb-6">Deals of the Week</h3>
+        <div class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
@@ -75,19 +55,19 @@
           <CarouselDeals :deals="weeklyDeals" />
         </div>
 
-        <h3 class="text-4xl mb-6">Popular Branweeks</h3>
-        <div class="flex items-center mb-10">
+        <h3 class="text-xl md:text-4xl mb-6">Popular Branweeks</h3>
+        <div class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
     
         <CarouselProductBrands />
         
-        <div class="flex -mx-6 mb-12">
+        <!-- <div class="flex -mx-6 mb-12">
           <div class="w-1/3 px-6">
             <div class="cta-1 flex p-6 rounded-xl">
               <div class="w/1-2">
-                <h3 class="font-size-32 leading-tight font-semibold mb-10">Fresh Fruits Collection</h3>
+                <h3 class="font-size-32 leading-tight font-semibold mb-6">Fresh Fruits Collection</h3>
                 <nuxt-link to="/" class="h-12 w-12 flex justify-center items-center rounded-full bg-white inline-block"><img src="~/assets/img/arrow-right.png" alt=""></nuxt-link>
               </div>
               <div class="w-1/2 flex justify-end">
@@ -99,7 +79,7 @@
           <div class="w-1/3 px-6">
             <div class="cta-2 flex p-6 rounded-xl">
               <div class="w/1-2">
-                <h3 class="font-size-32 leading-tight font-semibold mb-10">Vegetable Collection</h3>
+                <h3 class="font-size-32 leading-tight font-semibold mb-6">Vegetable Collection</h3>
                 <nuxt-link to="/" class="h-12 w-12 flex justify-center items-center rounded-full bg-white inline-block"><img src="~/assets/img/arrow-right.png" alt=""></nuxt-link>
               </div>
               <div class="w-1/2 flex justify-end">
@@ -111,7 +91,7 @@
           <div class="w-1/3 px-6">
             <div class="cta-3 flex p-6 rounded-xl">
               <div class="w/1-2">
-                <h3 class="font-size-32 leading-tight font-semibold mb-10">Grocery Items</h3>
+                <h3 class="font-size-32 leading-tight font-semibold mb-6">Grocery Items</h3>
                 <nuxt-link to="/" class="h-12 w-12 flex justify-center items-center rounded-full bg-white inline-block"><img src="~/assets/img/arrow-right.png" alt=""></nuxt-link>
               </div>
               <div class="w-1/2 flex justify-end">
@@ -119,7 +99,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>     
       <Deal />      
