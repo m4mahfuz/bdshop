@@ -31,6 +31,7 @@
                     v-model.lazy="currentPassword"
                     @change="checkCurrentPassword"
                     auto-focus 
+                    autocomplete="off"
                     required
                     placeholder="Enter current password"
                     class="block w-full
@@ -63,6 +64,7 @@
                     v-model="newPassword"
                     :type="[activeInput === 2 ? 'text' : 'password']"                    
                     auto-focus 
+                    autocomplete="off"
                     required
                     placeholder="Enter new password"
                 />            
@@ -83,6 +85,7 @@
                     v-model="newPasswordConfirmation"
                     :type="[activeInput === 3 ? 'text' : 'password']"
                     auto-focus 
+                    autocomplete="off"
                     required
                     placeholder="Confirm password"
                 />

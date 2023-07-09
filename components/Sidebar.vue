@@ -9,7 +9,7 @@
       </template>
       <!-- This slot will handle all the content that is passed to the accordion -->
       <template slot="accordion-content">
-        <div class="border border-t-0 border-gray-100 p-6">
+        <div class="border border-t-0 border-gray-200 p-6 rounded-md">
           <ul class="leading-10">
             <li v-for="category in categories" :key="category.id">
               <accordion>

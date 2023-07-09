@@ -1,13 +1,14 @@
 <template>
   <div v-if="modal" class="fixed w-full h-full min-h-screen z-30 top-0 left-0">
       <div @click.prevent="modalClose" class="absolute bg-black opacity-60 h-full w-full top-0 left-0"></div>
+      <!-- <overlay-scrollbars :key="scroll" class="h-full">  -->
       <div class="lg:bs-modal-body bg-slate-100 rounded-2xl p-8 mx-4 lg:mx-10 my-10 z-30 relative h-4/5 overflow-y-auto">
         <svg @click.prevent="modalClose" xmlns="http://www.w3.org/2000/svg" class="h-4 w-5 absolute right-6 top-5 cursor-pointer hover:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
 
         <div class="flex justify-center flex-wrap lg:flex-nowrap my-2">
-          <div class="w-80 px-8">
+          <div class="min-w-full w-80 lg:min-w-0 px-8">
             <ProductZoomer 
               :images="images" 
               :pane="pane" 
@@ -75,6 +76,7 @@
           </div>
         </div>
       </div>
+      <!-- </overlay-scrollbars> -->
     </div>
 </template>
 
@@ -96,7 +98,8 @@ export default {
     // },
     data() {
         return {            
-            cartProductQuantity: 0,            
+            cartProductQuantity: 0,    
+            scroll: ''        
         }
     },
     async mounted() {
@@ -106,8 +109,7 @@ export default {
     this.cartProductQuantity = this.quantity;
     await this.getProductImages(this.product.slug);
     await this.getProductTags(this.product.slug);
-    // console.log('p', this.product)
-    // console.log('img', this.images.length)
+    this.$nextTick(() => { this.scroll++; }); 
   },  
   computed: {
     ...mapState('products', [

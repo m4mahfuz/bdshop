@@ -55,7 +55,7 @@
           <CarouselDeals :deals="weeklyDeals" />
         </div>
 
-        <h3 class="text-xl md:text-4xl mb-6">Popular Branweeks</h3>
+        <h3 class="text-xl md:text-4xl mb-6">Popular Brand</h3>
         <div class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
@@ -116,6 +116,7 @@ import { getMessaging, getToken, onMessage, isSupported } from "firebase/messagi
 // import { messaging } from '@/plugins/firebase';
 
 export default {
+  // layout: 'default',
   name: 'IndexPage',
   data() {
     return {

@@ -36,7 +36,6 @@
   </li>
 </template>
 
-
 <script>
 import TransitionExpand from './TransitionExpand.vue';
 export default {
@@ -84,48 +83,29 @@ export default {
     if(this.openByDefault) {
       this.open()
     }
-  },
-  watch: {
-    openByDefault(value) {
-      this.open();
-    }
-  },
+  },  
   methods: {
     open() {
       // load category without children
-      console.log('1')
       if (this.category?.children.length === 0  && this.parent === false) {
         if (this.category.slug === this.$route.params.category) {
-          console.log('11')
           return;
         }
-        console.log('2')
         return this.$router.push(`/category/${this.category.slug}`);
       }
       
       if (this.visible) {
         this.Accordion.active = null;
       } else {        
-        console.log('3');
         this.Accordion.active = this.index;
-        console.log('33')
         if (this.category?.children.length > 0) {          
           this.$router.push(`/category/${this.category.slug}`);
         }
       }
-    },
-    // start(el) {
-    //   el.style.height = el.scrollHeight + "px";
-    // },
-    // end(el) {
-    //   el.style.height = "";
-    // }
+    },  
   },
   created() {
-    this.index = this.Accordion.count++;
-    // if (this.openByDefault) {
-    //   this.Accordion.active = this.index;
-    // }
+    this.index = this.Accordion.count++;    
   }
 };
 </script>

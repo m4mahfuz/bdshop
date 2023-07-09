@@ -30,7 +30,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-8 text-gray-400 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <input type="text" class="block w-72 shadow borde-none rounded-3xl focus:outline-none bg-gray-100 text-xs font-light text-gray-600 py-2 pl-11 pr-2 pl" placeholder="search">
+          <input type="text" id="searchAuto" class="block w-72 shadow borde-none rounded-3xl focus:outline-none bg-gray-100 text-xs font-light text-gray-600 py-2 pl-11 pr-2 pl" placeholder="search">
         </div> 
 
         <nav class="items-center hidden lg:flex">

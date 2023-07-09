@@ -3,8 +3,7 @@
     <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
       <button 
         @click.prevent="toggleTabs(1, 'daily')"
-        class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center bg-transparent border-b-2 sm:text-base whitespace-nowrap focus:outline-none"
-        :class="openTab == 1 ? 'text-blue-600 border-blue-500' : 'text-gray-700 border-transparent hover:border-gray-400'"
+        class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center bg-transparent border-b-2 sm:text-base whitespace-nowrap focus:outline-none"        :class="openTab == 1 ? 'text-blue-600 border-blue-500' : 'text-gray-700 border-transparent hover:border-gray-400'"
         >
           Daily
       </button>
@@ -39,8 +38,11 @@
               <!-- deal details -->
               <div class="flex px-8 py-6 gap-4">
                 <p class="mt-1 text-sm text-gray-700">Get exciting deals everyday.<br> Grab before stock runs out.</p>
-                <div class="flex bg-sky-100">
-                  Timer
+                <div class="flex">             
+                  <CountDownTimer v-if="countDownDate !== null" 
+                    :countDownDate="countDownDate"
+                    :dealType="dealType" 
+                  />
                 </div>
               </div>
 
@@ -98,6 +100,7 @@ export default {
         return {
           action: '',
           // dealType: 'daily',
+          countDownDate: null,
           dealType: 'daily',
           loader: false,
           page: 0,
@@ -111,6 +114,7 @@ export default {
       if (this.weeklyDealsLength === 0) {
         await this.getWeeklyDeals();
       }   
+      this.setCountDownDate(this.dealType);
     },
 	  computed: {
         ...mapState('deals', [
@@ -123,8 +127,14 @@ export default {
         ]),
         deals() {
           if (this.dealType === 'daily') {
+            // if (this.dailyDealsLength > 0) {
+            //   this.countDownDate = this.dailyDeals[0].ending;
+            // }
             return this.dailyDeals;
           }
+          // if (this.weeklyDealsLength > 0) {
+          //     this.countDownDate = this.weeklyDeals[0].ending;
+          //   }
           return this.weeklyDeals;
         }
     },
@@ -135,6 +145,18 @@ export default {
         this.dealType = type;
         // this.page = 0;
         this.openTab = tabNumber;
+        this.setCountDownDate(type);
+       },
+       setCountDownDate(dealType) {
+        if (dealType === 'daily' && this.dailyDealsLength > 0) {
+          this.countDownDate = this.dailyDeals[0].ending;
+          return;
+        }
+        if (this.weeklyDealsLength > 0) {
+          this.countDownDate = this.weeklyDeals[0].ending;
+          return;
+        }
+        this.countDownDate = null;
        },
        
       url(image) {        

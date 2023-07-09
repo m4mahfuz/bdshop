@@ -42,11 +42,11 @@
         <div
           v-for="(thumb, index) in thumbs"
           :key="index"
-          class="p-2"
+          class="px-1 sm:p-2"
         >
           <img 
             :src="thumb.url"
-            class="object-fill w-24 h-24  cursor-pointer 
+            class="object-fill w-16 h-16 sm:w-24 sm:h-24 cursor-pointer 
             hover:outline
             hover:outline-teal-500"
           >

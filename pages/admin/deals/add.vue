@@ -34,9 +34,9 @@
           </div>
           
           <div>
-            <label for="discountlType" class=" text-gray-600 dark:text-gray-400 text-sm">Discount Type</label>
+            <label for="discountType" class=" text-gray-600 dark:text-gray-400 text-sm">Discount Type</label>
             <select 
-                v-model="deal.amount_type" id="discountlType" 
+                v-model="deal.amount_type" id="discountType" 
                 class="block px-4 py- text-sm mt-2 w-full text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
                 <option disabled value="">Please select one</option>
@@ -96,6 +96,7 @@
             >
             <input
                 type="text"
+                id="dealAmount"
                 v-model="deal.amount"
                 class="
                 form-control
@@ -113,8 +114,7 @@
                 ease-in-out
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                "
-                id="dealAmount"
+                " 
                 placeholder="Enter here"
             />
             </div>
@@ -162,6 +162,13 @@ export default {
     mounted() {
       this.deal.deal_type = localStorage.getItem('dealType');
     },
+    watch: {
+      'deal.starting'(value) {
+        if (this.deal.deal_type === 'daily') {
+          this.deal.ending = this.deal.starting;
+        }
+      }
+    },
     computed: {
       ...mapGetters('errors', [
         'has',
@@ -205,10 +212,10 @@ export default {
       },
       save() {
         this.loader = true;
-        if (this.deal.deal_type === 'daily') {
-          this.deal.ending = this.deal.starting;
-        }
-        this.$axios.$post(`/admin/${this.deal.deal_type}/deals`, this.deal)
+        // if (this.deal.deal_type === 'daily') {
+        //   this.deal.ending = this.deal.starting;
+        // }
+        return this.$axios.$post(`/admin/${this.deal.deal_type}/deals`, this.deal)
         .then(response => {
             this.loader = false;
             this.$toast.info('New Deal Created');

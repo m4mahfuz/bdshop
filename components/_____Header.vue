@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4">
     <!-- <div class="container bg-green-100"> -->
-      <nav v-if="isLargeScreen">
+      <nav class="hidden lg:block">
         <div class="py-6 flex justify-between items-center">
           <Logo/>
           
@@ -129,9 +129,10 @@
       </nav>
 
       <!-- Mobile Header -->
-      <nav v-else>        
+      <nav class="px-2 lg:hidden">        
         <div class="py-6 flex justify-between items-center">
-          <Logo :logoText="false" />
+          <Logo/>
+          
 
           <div class="min-w-max flex items-center">          
             
@@ -157,7 +158,7 @@
 
         <div class="flex items-center">
           <div v-click-outside="closeMenu" class="w-full relative">
-            <div @click.prevent="handleAllCategoriesMenu" class="bs-dark-green-bg relative z-20 flex rounded-full px-4 py-2 mr-5 cursor-pointer">
+            <div @click.prevent="handleAllCategoriesMenu" class="bs-dark-green-bg relative z-20 flex rounded-full px-4 py-2 cursor-pointer">
               <div class="min-w-max">
                 <img src="~/assets/img/menu-right.png" alt="">
               </div>
@@ -297,8 +298,6 @@ export default {
   // components: {Logo},
   data() {
     return {
-      isLargeScreen: true,
-      // isSmallScreen: false,
       showAllCategoriesMenu: false,
       showMiniCart: false,
       showMobileMenu: false,
@@ -313,19 +312,27 @@ export default {
     if (this.$auth.loggedIn) {
       this.getWishlists();		    
     }	    
-    
+    // console.log(this.categories);
+    //set Cart At Local Storage If Not Exist
+    // let getLocalStorageProducts = JSON.parse(localStorage.getItem('cart'));
+    // if(getLocalStorageProducts === null) {
+      //   localStorage.setItem('cart', '[]');
+    // }
     this.setCartAtLocalStorageIfNotExist();
     this.initializeCartStore();    
 
     this.cartWatcher();
-    
-   // Add event listener to update screen size properties
-    window.addEventListener('resize', this.updateScreenSize);
-    this.updateScreenSize();
-  },
-  destroyed() {
-    // Remove event listener when component is destroyed
-    window.removeEventListener('resize', this.updateScreenSize);
+    // this.$store.watch(
+    //   () => {
+    //     return this.$store.getters["cart/getCart"]
+    //   },
+    //   (val) => {
+    //     this.cartWatcher();
+    //   },
+    //   {
+    //     deep:true
+    //   }
+    // );
   },
 
   watch: {
@@ -357,10 +364,7 @@ export default {
     ]),
     ...mapActions('wishlists', ['getWishlists']),
     ...mapActions('search', ['getItems', 'emptyItems', 'setFound']),
-     updateScreenSize() {
-      this.isLargeScreen = window.innerWidth >= 1024;
-      // this.isSmallScreen = window.innerWidth < 1024;
-    },
+
     nextItems() {
       const url = this.links.next;
       this.getItems(url);
@@ -425,13 +429,24 @@ export default {
       this.emptyTheCartAtLocalStorage();
     },
     handleAllCategoriesMenu() {
-      // console.log('all cat clicked')
+      console.log('all cat clicked')
       this.showAllCategoriesMenu = !this.showAllCategoriesMenu;
+      // this.showAllCategoriesMenu = true; 
     },
     closeMenu() {
       this.showAllCategoriesMenu = false
     },
-    cartWatcher() {      
+    cartWatcher() {
+      // const getProductsLocalStorage = JSON.parse(localStorage.getItem('cart'));
+      // const getProductsStore = this.$store.getters["cart/getCart"];
+
+      // let cart = [];
+      // if(getProductsStore.length) {
+      //   cart = getProductsStore;
+      // } else {
+      //   cart = getProductsLocalStorage;
+      // }
+      // if(this.$auth.loggedIn) this.setCartAtLocalStorage();
       this.count = 0;
       const cartAtLocalStorage = this.getCartAtLocalStorage();
       const cartAtStore = this.cart;
@@ -445,9 +460,17 @@ export default {
         })
       }
     },
+
     getCartAtLocalStorage() {
       return JSON.parse(localStorage.getItem('cart'));
     },
+
+    // setCartAtLocalStorage() {
+    //     // console.log('CLS', this.cart.length);
+    //     localStorage.setItem('cart', JSON.stringify(this.cart))
+    //     console.log('cartAtLocalStorageFilld');
+    // },
+
     setCartAtLocalStorageIfNotExist() {
       let cartAtLocalStorage = this.getCartAtLocalStorage();
       if(cartAtLocalStorage === null) {
@@ -455,5 +478,6 @@ export default {
       }
     }
   },
+
 }
 </script>

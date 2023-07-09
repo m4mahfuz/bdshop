@@ -19,10 +19,10 @@
         </div>
 
         <div v-else class="relative z-10">
-          <div class="flex justify-center items-center gap-5 text-4xl text-white mb-8">
-            <button @click.prevent="cartOperation('decrease', product)" class="h-14 w-14 border border-white rounded-full">-</button>
-            <span class="flex justify-center items-center h-14 w-14 rounded-full bg-slate-50 text-green-700 text-3xl font-medium">{{ quantity }}</span>
-            <button @click.prevent="cartOperation('increase', product)" class="h-14 w-14 border border-white rounded-full disabled:opacity-50"
+          <div class="flex justify-center items-center gap-4 md:gap-5 text-4xl text-white mb-8">
+            <button @click.prevent="cartOperation('decrease', product)" class="h-10 w-10 md:h-14 md:w-14 border border-white rounded-full">-</button>
+            <span class="flex justify-center items-center h-10 w-10 md:h-14 md:w-14 rounded-full bg-slate-50 text-green-700 text-2xl md:text-3xl font-medium">{{ quantity }}</span>
+            <button @click.prevent="cartOperation('increase', product)" class="h-10 w-10 md:h-14 md:w-14 border border-white rounded-full disabled:opacity-50"
             :class="{'cursor-not-allowed': !isEnough(product.quantity)}"
             :disabled="!isEnough(product.quantity)"
             >+</button>
