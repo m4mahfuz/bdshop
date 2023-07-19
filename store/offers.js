@@ -30,10 +30,7 @@ export const actions = {
     getOffer({commit}, offer) {
         // console.log(url)
         return this.$axios.$get(`/admin/offers/${offer}`).then(response => {
-            console.log(response)
-             commit('ADD_OFFER', response.data);     
-            //  commit('ADD_LINKS', response.links);     
-            //  commit('ADD_META', response.meta);     
+             commit('ADD_OFFER', response.data);                 
          }).catch(error => {
              console.log(error);
          })
@@ -80,8 +77,7 @@ export const mutations = {
     }, 
     DELETE_FROM_OFFERS(state, index) {
         state.offers.splice(index, 1);
-    }
-    
+    }    
 }
 
 /** Getters */

@@ -1,7 +1,7 @@
 <template>
   <div class="group text-center">
     <div class="relative mb-2 h-32">
-      <div class="bg-gray-50 p-1 w-40 h-32 mx-auto absolute 
+      <div class="p-1 w-40 h-32 mx-auto absolute 
       bottom-0 top-0 left-0 right-0 flex justify-center">
       <ProductWishlist :product="product" class="absolute top-0 right-0" />        
         <img :src="url(product.featured_image)"  class="h-full" alt="Product's Image">

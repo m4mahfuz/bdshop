@@ -43,6 +43,3 @@ export const mutations = {
         state.found = status;
     }
 }
-
-// export const getters = {        
-// }

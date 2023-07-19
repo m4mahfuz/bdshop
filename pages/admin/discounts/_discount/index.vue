@@ -1,13 +1,11 @@
 <template>
     <div class="container">            
-      <!-- <div class="grid grid-cols-2 gap-2 items-start"> -->
       <Alert :show="showAlert">
        Status updated to '{{status}}' successfully!
       </Alert>
       <Loader :active="loader" />
       <div class="flex gap-4">        
         <div class="basis-1/2 flex-col">
-         <!-- <div class="bg-red-100"> -->
           <Card class="p-3 bg-white">
             <h1 class="mb-3 border-b pb-1"><span class="border-b-2 border-gray-500 pb-1">Discount Details</span></h1>
             <div class="grid grid-cols-6 text-xs">
@@ -35,12 +33,7 @@
               >{{discount.active}}</span>              
             </div>
           </Card>       
-        </div>
-        <!-- <div class="basis-1/2 flex-col">
-          <Card class="p-4 bg-cyan-50 flex justify-center">
-            <button type="button" @click.prevent="addDiscountProducts()" class="px-6 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-white text-sm">Add New Discount Products</button>
-          </Card>
-        </div>         -->
+        </div>        
       </div>  
   
       <div class="flex gap-4">        
@@ -182,9 +175,7 @@
       }
     },
     async mounted() {
-      this.loader = true
-      // this.discount = JSON.parse(localStorage.getItem('discountToView'));
-      // this.status = this.order.status;
+      this.loader = true      
       await this.getDiscount(this.$route.params.discount)      
       this.loader = false
     },
@@ -228,19 +219,9 @@
           });
       },        
       handleToggleInput(event) {
-        console.log(event)
-        // return;
         this.loader = true;
         const product = event.item;
-        // console.log(this.convertDiscountToNumber(discount.type))
-        console.log('receiving..');
-        this.$axios.$patch(`admin/discounts/${this.discount.id}/products/${product.id}`, {
-          // type: this.convertDiscountToNumber(discount.type),
-          // amount: discount.amount, 
-          // name: discount.name,         
-          // starting: discount.starting,        
-          // ending: discount.ending,                  
-          // product: product.id,
+        this.$axios.$patch(`admin/discounts/${this.discount.id}/products/${product.id}`, {          
           active: event.value
         }).then(response => {
               this.loader = false;

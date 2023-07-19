@@ -39,7 +39,6 @@
         :key="index"
       >
       <td scope="row" class="px-4 py-4 whitespace-nowrap">
-        <!-- {{index+1}} -->
         <button
           type="button"
           @click.prevent="showDetailsOf(discount)"                  
@@ -147,7 +146,6 @@ export default {
       },
       saveToLocalStorage(discount) {
         localStorage.setItem('discount', JSON.stringify(discount));
-        // localStorage.setItem('orderStatus', this.orderStatus);
     },      
       addDiscount() {        
         this.$router.push('/admin/discounts/add');
@@ -203,8 +201,6 @@ export default {
         console.log(event)
         this.loader = true;
         const discount = event.item;
-        // console.log(this.convertDiscountToNumber(discount.type))
-        console.log('receiving..');
         this.$axios.$patch(`admin/discounts/${discount.id}`, {
           type: this.convertDiscountToNumber(discount.type),
           amount: discount.amount, 
@@ -222,21 +218,7 @@ export default {
               this.errors = Object.values(error.response.data.errors).flat();
               this.loader = false;
           })                    
-      },
-     
-      // url(image) {        
-      // //    let name = image.name;
-      //   if (typeof image === 'object' && image !== null) {
-      //     let path = `/storage/images/products/small/${image.name}`;
-      //     return `${this.$config.baseURL}${path}`;
-      //   }
-      // return; 
-      // },
+      }, 
     }
-
 }
 </script>
-
-<style>
-
-</style>

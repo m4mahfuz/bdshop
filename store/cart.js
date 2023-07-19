@@ -2,18 +2,7 @@ export const state = () => ({
   cart: [],
 });
 
-export const actions = {
-  // addProductToCart({commit}, product) {
-  //   this.$axios.$post('/carts').then(respons => {
-  //     commit('ADD_PRODUCT_TO_CART', product)
-  //   }).catch(error => {
-  //       console.log(error);
-  //   });
-  // },
-  // getCartProduct({commit}, product) {
-
-  // },
-  // addToCart({commit}, product) {
+export const actions = {  
     getCart({commit}) {    
       console.log('getCart Triggered');
       this.$axios.$get('/carts').then(respons => {
@@ -23,12 +12,6 @@ export const actions = {
         console.log(error);
       })
     },  
-  //   addToCart({commit}, data) {
-  //     // console.log('cs', data)
-  //   console.log('Add to Cart Triggered');
-
-  //   commit('ADD_TO_CART', data)
-  // },
    async addToCart({commit}, data) {
     console.log('Add to Cart Triggered');
     // save in user database
@@ -125,8 +108,7 @@ export const mutations = {
         newProduct = false
       }
     })
-    
-    // let price = (data.product.isDiscountAvailable) ? data.product.price : data.product.original_price;
+        
     if(newProduct) {
       cartAtLocalStorage.push({
         id: data.product.id,
@@ -169,30 +151,12 @@ export const mutations = {
   ADD_TO_CART_FOR_LOGGED_IN_USER(state, product) {
     state.cart.push(product)
     this.$toast.success('Added to cart!');
-  },
-
-  // ADD_TO_CART_FOR_LOGGED_IN_USER(state, {data, productFromDatabase}) {
-  //   if (productFromDatabase.price === data.product.price) {
-  //     let price = (data.product.isDiscountAvailable()) ? data.product.salePrice : data.product.price;
-  //     state.cart.push({
-  //       id: productFromDatabase.id,
-  //       name: productFromDatabase.name,
-  //       image: productFromDatabase.image,
-  //       price: price, //productFromDatabase.price,
-  //       quantity: productFromDatabase.quantity,
-  //     })
-  //     this.$toast.success('Added to cart!');
-  //     return;
-  //   }
-  //   state.cart.push(product)
-  //   this.$toast.success('Added to cart!');
-  // },
-
+  },  
   UPDATE_CART(state, {data, productFromDatabase}) {    
     let index = state.cart.findIndex(
       product => product.id === data.product.id
     );
-    console.log('cart_index', index)
+    // console.log('cart_index', index)
     state.cart[index].quantity = productFromDatabase.quantity;
     
     (data.action === 'increase') ? 

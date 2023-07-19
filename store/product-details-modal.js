@@ -1,17 +1,10 @@
 export const state = () => ({
-  // modalData: {
-  //   product: [],
-  //   modal: false
-  // }  
     product: {},
     quantity: '',
     modal: false
 });
 
-export const actions = {
-  // triggerModal({commit}, product) {
-  //   commit('TRIGGER_MODAL', product)
-  // },
+export const actions = {  
   showModal({commit}, data) {
     commit('TRIGGER_MODAL', data)
   },
@@ -37,5 +30,3 @@ export const getters = {
     return state;
   }
 }
-
-

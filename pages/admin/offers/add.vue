@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <!-- <h1 class="text-2xl">
-      Add Deal
-    </h1> -->            
+  <div>               
         <div 
           class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 rounded-lg"          
         >
@@ -30,19 +27,7 @@
                 <option :value="3">Buy 1 Get 1 Free</option> 
                 <option :value="4">Buy 2 Get 1 Free</option> 
             </select>                    
-          </div>
-          
-          <!-- <div>
-            <label for="discountlType" class=" text-gray-600 dark:text-gray-400 text-sm">Discount Type</label>
-            <select 
-                v-model="offer.amount_type" id="discountlType" 
-                class="block px-4 py- text-sm mt-2 w-full text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-                <option disabled value="">Please select one</option>
-                <option :value="1">Percentage</option> 
-                <option :value="2">Fixed</option> 
-            </select>                    
-          </div> -->
+          </div>          
           <div class="col-span-2">
             <label
                 for="offerName"

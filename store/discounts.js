@@ -21,10 +21,7 @@ export const actions = {
     getDiscount({commit}, discount) {
       // console.log(url)
       return this.$axios.$get(`/admin/discounts/${discount}`).then(response => {
-          console.log(response)
-           commit('ADD_DISCOUNT', response.data);     
-          //  commit('ADD_LINKS', response.links);     
-          //  commit('ADD_META', response.meta);     
+          commit('ADD_DISCOUNT', response.data);               
        }).catch(error => {
            console.log(error);
        })

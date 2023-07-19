@@ -1,6 +1,5 @@
 <template>
   <div class="mb-4">
-    <!-- <div class="container bg-green-100"> -->
       <nav v-if="isLargeScreen">
         <div class="py-6 flex justify-between items-center">
           <Logo/>

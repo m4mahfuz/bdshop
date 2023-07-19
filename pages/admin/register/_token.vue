@@ -1,9 +1,7 @@
 <template>
   <section class="bg-white min-h-screen dark:bg-gray-900">
       <div class="container flex items-center justify-center h-screen bg-slate-300">
-        <!-- <div v-if="invitee === ''" class="w-full max-w-md   bg-slate-100 px-12 py-8 rounded-md">
-            
-        </div> -->
+        
         <loader action="loading" :active="loader" />            
         
         <form v-if="invitee !==null" class="w-full max-w-md   bg-slate-100 px-12 py-8 rounded-md" autocomplete="off">

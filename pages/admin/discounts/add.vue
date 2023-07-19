@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <!-- <h1 class="text-2xl">
-      Add Deal
-    </h1> -->            
+  <div>    
         <div 
           class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 rounded-lg"          
         >
@@ -222,8 +219,7 @@ export default {
         loader: false
       }
     },
-    mounted() {
-    //   this.discount.type = localStorage.getItem('discountType');
+    mounted() {    
     },
     computed: {
       ...mapGetters('errors', [
@@ -257,8 +253,6 @@ export default {
         this.discount.limit = null;
         this.discount.name = '';
         this.discount.description = '';
-        // this.discount.product_id = '';
-        // this.discount.price = '';
         this.discount.starting = '';           
         this.discount.ending = '';  
         this.resetErrors();          

@@ -1,13 +1,11 @@
 <template>
     <div class="container">            
-      <!-- <div class="grid grid-cols-2 gap-2 items-start"> -->
       <Alert :show="showAlert">
        Status updated to '{{status}}' successfully!
       </Alert>
       <Loader :active="loader" />
       <div class="flex gap-4 items-start">        
         <div class="basis-1/2 flex-col">
-         <!-- <div class="bg-red-100"> -->
           <Card class="p-3 bg-white">
             <h1 class="mb-3 border-b pb-1"><span class="border-b-2 border-gray-500 pb-1">Order Details</span></h1>
             <div class="grid grid-cols-6 text-xs">
@@ -110,11 +108,9 @@
             
             <h1 class="mb-3 border-b pb-1 text-blue-700"><span class="border-b-2 border-blue-500 pb-1">Update Order Status</span></h1>
             <form>
-              <!-- <div class="flex-col space-y-2"> -->
               <div class="flex gap-2"
                 :class="status==='Shipped' ? 'flex-col':''"
               >
-                <!-- <div class="flex justify-between items-center gap-4"> -->
                 <div
                   :class="status==='Shipped' ? 'flex justify-between items-center gap-4':''"
                 >
@@ -125,7 +121,6 @@
                     :class="[isAlreadyUsed(status.title) ?'text-gray-400':'']"
                     >{{ status.title }}</option>              
                   </select>                  
-                  <!-- <div v-if="status === 'Shipped'"> -->
                     <select v-model="shipper" v-if="status === 'Shipped'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 w-full">
                       <option disabled value="">Please select a shipper</option>
                       <option v-for="shipper in shippers" :key="shipper.id" :value="shipper">{{shipper.name}}</option>              
@@ -135,7 +130,6 @@
                 <span>address: {{shipper.address}}</span>
                 <span class="px-4">phone: {{shipper.phone}}</span>
               </p>
-                <!-- <div class="flex flex-row justify-center items-center gap-2 space-y-2"> -->
                 <div
                    :class="status==='Shipped' ? 'flex flex-row items-center gap-2 space-y-2':''"
                 >

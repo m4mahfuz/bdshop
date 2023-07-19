@@ -13,17 +13,13 @@
               <div class="flex px-8 py-6 gap-4">
                 <p class="mt-1 text-sm text-gray-700">Get exciting deals everyday.<br> Grab before stock runs out.</p>
                 <div class="flex bg-sky-100">
-                  Timer
+                  <!-- Timer -->
                 </div>
               </div>
 
               <!-- offer products -->
               <div class="flex gap-4 overflow-y-scroll">
-                <!-- -p-2 -->
-                <!-- <div 
-                  v-for="offer in offersWithProducts" :key="offer.id"
-                  class="p-4 rounded-lg bg-white h-32 relative flex"
-                > -->
+                
                 <div 
                   v-for="offer in offersWithProducts" :key="offer.id"                 
                   class="flex justify-center"
@@ -44,13 +40,7 @@
                             <span class="-mt-1 text-xs">off</span>
                             </div>
                       </div>
-                       <!-- <div v-else class="absolute -right-10 top-14">
-                          <div class="flex rotate-90">
-                            <span class="text-lg text-white bg-gradient-to-r from-green-700 to-green-500">
-                                {{offer.type}}
-                            </span>
-                          </div>
-                       </div>  -->
+                  
                       <div v-else class="absolute top-0">
                         <div class="pl-0 flex justify-end translate-x-28 translate-y-14 rotate-90">
                           <span 
@@ -68,9 +58,9 @@
             </div>
         </div>
         <!-- previous offers -->
-        <div class="w-full">
+        <!-- <div class="w-full">
             previous deals
-        </div>
+        </div> -->
       
     </div>   
     <loader :action="action" :active="loader" />

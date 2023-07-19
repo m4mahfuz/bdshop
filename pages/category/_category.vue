@@ -15,6 +15,23 @@ import { mapState, mapActions } from "vuex";
 export default {
   layout: 'category',
   name: "category",
+  head() {
+    return {
+      title: this.category.name,
+      meta: [
+        {
+          hid: 'category-description',
+          name: 'description',
+          content: this.metaDescription//this.category.meta.description,
+        },
+        {
+          hid: 'category-keywords',
+          name: 'keywords',
+          content: this.metaKeywords//this.category.meta['keywords'],
+        },
+      ],
+    };
+  },
   data() {
     return {
       slug: this.$route.params.category,
@@ -40,7 +57,17 @@ export default {
         'products',
         'links',
         'meta'
-    ]),        
+    ]),
+    metaDescription() {
+      if (typeof this.category.meta !== 'undefined') {
+        return this.category.meta.description;        
+      }
+    },        
+    metaKeywords() {
+      if (typeof this.category.meta !== 'undefined' ) {
+        return this.category.meta['keywords'].join(', ');
+      }
+    }        
   },
   methods: {
     ...mapActions('categories', [

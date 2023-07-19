@@ -11,8 +11,6 @@ export const actions = {
         return this.$axios.$get(url).then(response => {
              commit('ADD_WISHLISTS', response.data);  
              commit('SET_PAGINATION', response.meta);             
-            //  commit('ADD_LINKS', response.links);     
-            //  commit('ADD_META', response.meta);     
          }).catch(error => {
              console.log(error);
          })
@@ -42,11 +40,7 @@ export const mutations = {
     },
     ADD_LINKS(state, links) {
         state.links = links;
-    }, 
-    // ADD_META(state, meta) {
-    //     state.meta = meta;
-    //     state.wishlistsCount = meta.total;
-    // }, 
+    },     
     REMOVE_FROM_WISHLIST(state, id) {
         let index = state.wishlists.findIndex(
             item => item.id === id
@@ -66,15 +60,8 @@ export const mutations = {
     }
 }
 
-export const getters = {        
-    // amount: (state) => 0(coupon) => {       
-    //     if (coupon.amount_type = 1) {
-    //         return `${coupon.amount}%`;
-    //     }
-    //     return `${coupon.amount}`        
-    // }
+export const getters = {            
     getWishlistsCount(state) {
-        // return state.meta.total;
         return state.wishlistsCount;
     }
 }

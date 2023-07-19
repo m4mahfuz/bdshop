@@ -1,5 +1,4 @@
-<template>
-    <!-- <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800"> -->
+<template>    
     <section class="max-w-6xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
         <h2 
             class="pb-2 text-lg text-gray-400 capitalize dark:text-white border-b border-green-100"            
@@ -245,9 +244,7 @@ export default {
         return {
             selectedCategories: [],
             selectedTags: [],
-            isImagesSaved: false,
-            //images: [],
-            // category: '',
+            isImagesSaved: false,        
             product: {
                 // id: '',
                 name: '',
@@ -259,7 +256,6 @@ export default {
                 unit_quantity: '',
                 quantity: '',
                 discount_id: null,
-                // categories: [],
                 category: '', 
                 tags: [],
                 active: true,
@@ -275,25 +271,18 @@ export default {
             isNewKeywords: false,
             newKeywords: '',
             loader: false,
-            // errors: [],
         }
     },    
     mounted() {
       this.units = units;
       this.getCategories();
       this.getTags();
-      this.getDiscounts();
-        // if ( this.products.length < 1 ) {
-        //     this.getProducts();  
-        // }
+      this.getDiscounts();        
     },    
     computed: {
         ...mapState('categories', [
             'categories',
-        ]),
-        // ...mapState('products', [
-        //     'products',
-        // ]),
+        ]),        
         ...mapState('tags', [
             'tags',
         ]),        
@@ -308,7 +297,6 @@ export default {
         
         isValid() {            
             return (this.product.name !== '' &&
-            // this.product.slug !== '' &&
             this.product.description !== '' 
             ) ? true : false;
         },
@@ -331,32 +319,7 @@ export default {
         ]),     
         toggleNewKeywords() {
             this.isNewKeywords = !this.isNewKeywords;
-        },
-        // handleImageSelected(event) {
-        //     console.log(event)
-        //     this.product.image = event.image;
-        //     // this.product.directory = event.directory;
-        // },
-
-        // getCategoryBy(slug) {
-        //     let category = this.categoryBy(slug);
-        //     if (category === undefined) {
-        //         category = JSON.parse(localStorage.getItem('category'));
-        //     }
-        //     return category;
-        // },
-        // fillupFormByFound(category) {            
-        //     this.category.id = category.id;
-        //     this.category.name = category.name;
-        //     this.category.slug = category.slug;
-        //     this.category.description = category.description;
-        //     this.category.parent_id = category.parent_id;
-        //     this.category.active = category.active;              
-        //         this.category.meta.title = category.meta.title;
-        //         this.category.meta.description = category.meta.description;
-        //         // this.category.meta.keywords = category.meta.keywords.length > 0 ?  category.meta.keywords.toString() : ''
-        //         this.category.meta.keywords = category.meta.keywords
-        // },
+        },        
         getSelected(item) {
             let arr = [];
             if (item==='categories') {
@@ -373,40 +336,29 @@ export default {
                 return arr;
         },
         handleUploaded(image) {             
-            // this.images.push(image);
-            console.log(image)
             this.product.image = image.name;
         },
         handleRemoved(image) {
-            // let index = this.images.indexOf(image);
-            // this.images.splice(index, 1);
             this.product.image = null;
-
         },      
         save() {
             this.loader = true;
             this.isImagesSaved = false;
             this.product.slug = this.product.name;
-            // this.product.categories = this.getSelected('categories');
             this.product.tags = this.getSelected('tags');
             if (!Array.isArray(this.product.meta.keywords)) {
                 let keywordsArray = this.product.meta.keywords.split(',');
                 this.product.meta.keywords = keywordsArray;
             }
-            // console.log(this.product)
-            ////////
             
             this.$axios.$post('/products', this.product)
             .then(response => {
                 this.isImagesSaved = true;
                 this.$toast.info('New Product Created');
+                this.loader = false;
                 this.reset();
             })
-            .catch(error => {
-                // console.log(error);
-                // if (error.response.status !== 422) throw error
-
-                // this.errors = Object.values(error.response.data.errors).flat();
+            .catch(error => {                
                 this.loader = false;
                 this.setErrors(error.response.data.errors);
             })            
@@ -422,7 +374,6 @@ export default {
                 unit_quantity: '',
                 quantity: '',
                 discount_id: null,
-                // categories: [],
                 category: '',
                 tags: [],
                 active: true,
@@ -434,44 +385,7 @@ export default {
                     keywords: ''
                 } 
             }
-        }
-        // update(category) {
-        //     if (this.newKeywords !== '') {
-        //         let keywordsArray = this.mergePrevKeywordsWithNew();
-        //         this.category.meta.keywords = keywordsArray;
-        //     }
-            
-        //     this.$axios.$put(`/categories/${category.slug}`, this.category)
-        //     .then(response => {
-        //         localStorage.removeItem('category');
-        //         this.newKeywords = '';
-        //         this.$toast.info('Category Updated');
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //         if (error.response.status !== 422) throw error
-
-        //         this.errors = Object.values(error.response.data.errors).flat();
-        //     })
-
-        // },
-        // mergePrevKeywordsWithNew() {
-        //     let newKeywordsArray = this.newKeywords.split(',');
-        //     let keywordsArray = newKeywordsArray;
-
-        //     if (Array.isArray(this.category.meta.keywords) && this.category.meta.keywords.length > 0 ) {
-        //         keywordsArray = [...new Set([...this.category.meta.keywords, ...newKeywordsArray])];
-        //     }
-        //     return keywordsArray;
-        // },
-        // remove(index) {
-        //     console.log('idx', index);
-        //     this.category.meta.keywords.splice(index, 1);
-        // }
+        }        
     }
 }
 </script>
-
-<style>
-
-</style>

@@ -29,9 +29,7 @@
               </span>
               <span v-else><HelperTkSymbol /> {{ product.original_price }}</span>
             </p>
-            <div class="flex flex-col items-center justify-center border-t border-gray-200 my-4">
-              <!-- <input v-model="cartProductQuantity" type="number" min="1" class="w-14 border border-gray-200 mr-5 text-center"> -->
-              <!-- <button class="bs-button">Add to cart</button> -->
+            <div class="flex flex-col items-center justify-center border-t border-gray-200 my-4">              
               <div class="md:flex justify-center items-center text-4xl text-gray-600 my-4 gap-2 p-0">
                 <span class="pl-2 text-lg uppercase">quantity</span>
                 <div class="flex gap-2 md:gap-6 md:w-64">
@@ -48,11 +46,11 @@
               </div>
             </div>
 
-            <div class="flex border-b border-gray-200 justify-between text-sm pb-3 mb-8">
-              <!-- <p class="flex items-center"><img src="~/assets/img/heart.png" class="w-4 mr-3" alt=""> Add to favourites</p> -->
+            <div class="flex border-b border-gray-200 justify-between text-sm pb-3 mb-8">              
               <p class="relative">
                 <ProductWishlist :product="product" :text="true" class="absolute top-0 left-0" />
               </p>
+              
               <p class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />

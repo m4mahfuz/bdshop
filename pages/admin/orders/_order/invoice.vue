@@ -66,7 +66,6 @@
                         <p v-else class="text-xs font-extralight">
                             <HelperTkSymbol text="text-sm" /> {{parseInt(product.pivot.price)}}
                         </p>
-                        <!-- <p class="text-xs font-light text-gray-600">Qty: {{product.pivot.quantity}}</p> -->
                     </td>
                     <td class="py-2 px-6">
                         {{product.pivot.quantity}}                        

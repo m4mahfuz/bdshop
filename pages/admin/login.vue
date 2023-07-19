@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- <navbar-component></navbar-component> -->
+  <div>    
     <main>
       <section class="absolute w-full h-full">
         <div
@@ -118,22 +117,15 @@
             </div>
           </div>
         </div>
-        <!-- <footer-component></footer-component> -->
       </section>
     </main>
   </div>
 </template>
 <script>
-// import NavbarComponent from "../components/Navbar.vue";
-// import FooterComponent from "../components/Footer.vue";
 export default {
   auth: false,
   layout: 'blank',
   name: "login-page",
-//   components: {
-//     NavbarComponent,
-//     FooterComponent
-//   }
   data: () => ({
       errors: [],
       email: '',
@@ -147,17 +139,13 @@ export default {
     }
   },
   mounted() {
-      // console.log(this.$auth)
       this.$auth.strategies.cookie.reset();
       this.$auth.strategies.admin.reset();
   },
   methods: {
     async submitForm(event) {
       console.log('submit')
-      // console.log(this.$auth)
-      // await this.$auth.logout('cookie');
         this.errors = [];
-        // localStorage.setItem('redirect', this.$route.path);
         this.$auth.loginWith('admin', {
             data: {
                 email: this.email,
@@ -166,7 +154,6 @@ export default {
             },
         }).then(() => {
           this.$router.push('/admin/dashboard');
-                // console.log('user', this.$auth.user);
                 this.$toast.success('Logged In!')
             })
             .catch(error => {

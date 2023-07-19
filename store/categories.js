@@ -44,23 +44,8 @@ export const actions = {
          commit('ADD_CATEGORIES_FLAT', categoriesFlat);                    
     },
 
-    deleteCategory({commit, state}, category) {
-        // let index = state.categories.findIndex(element => element === category);
-        
-        return this.$axios.$delete(`/categories/${category.slug}`).then(response => {
-          console.log('p1', category)
-            // if (category.parent === '') {
-            //   found = 0;
-            //   console.log('p2', category)
-            //     state.categoriesFlat.forEach((element, index) => {
-            //         if (element.parent === category.name) {
-            //           console.log(found++);
-            //             // let index = state.categoriesFlat.indexOf(element);
-            //             commit('DELETE_FROM_CATEGORIES_FLAT', index);            
-            //         }
-            //     });
-            // }
-            // 
+    deleteCategory({commit, state}, category) {        
+        return this.$axios.$delete(`/categories/${category.slug}`).then(response => {          
             let index = state.categoriesFlat.findIndex(element => element === category);
             commit('DELETE_FROM_CATEGORIES_FLAT', index);
         })
@@ -82,14 +67,7 @@ export const actions = {
       }
       let index = state.categoriesFlat.findIndex(element => element === category);
       commit('DELETE_FROM_CATEGORIES_FLAT', index);
-    },
-    // getCategoryProducts({commit}, category) {
-    //     this.$axios.$get(`/categories/${category}/products`).then(response => {            
-    //         commit('ADD_CATEGORY_PRODUCTS', response.data);     
-    //     }).catch(error => {
-    //         console.log(error);
-    //     })
-    // },
+    },    
 }
 
 /** Mutations */
@@ -112,20 +90,11 @@ export const mutations = {
           const filtered = state.categoriesFlat.filter(ele => !itemsToBeRemovedArray.includes(ele))
         state.categoriesFlat = [];
         state.categoriesFlat.push(...filtered);
-    }
-    // ADD_CATEGORY_PRODUCTS (state, categoryProducts) {
-    //     state.categoryProducts.push (...categoryProducts);
-    // }    
-    
+    }        
 }
 
 /** Getters */
-export const getters = {    
-    // categoryBy: (state) => (slug) => {        
-    //     return state.categories.find(category =>            
-    //         category.slug === slug
-    //     );        
-    // },
+export const getters = {        
     categoryBy: (state) => (slug) => {       
         console.log('Category by slug called') 
         console.log('slug', slug) 

@@ -9,7 +9,6 @@ export const state = () => ({
 });
 
 export const actions = {
-    ////////
     fetchOrders({commit}, url='/orders') {
       return this.$axios.$get(url).then(response => {
         commit('SET_ORDERS', response.data)
@@ -25,11 +24,9 @@ export const actions = {
           console.log(error);
       })
     },
-    ///////
      saveOrder({commit, dispatch}, data) {
       commit('SET_SUCCESS', {status: false, message: ''});
       dispatch('errors/resetErrors', null, { root: true });
-
         return this.$axios.$post('/orders', data)
         .then(response => {
           commit('SET_ORDER', response.data);
@@ -38,10 +35,8 @@ export const actions = {
           localStorage.setItem('cart', '[]');
         })
         .catch(error => {
-          console.log('err', error.response.data);
           let errorMsg = {message: [error.response.data.message]};
           dispatch('errors/setErrors', errorMsg, { root: true })
-
         })
      }, 
       
@@ -52,12 +47,8 @@ export const actions = {
           commit('SET_SUCCESS', {status: true, message: 'Order has been cancelled sucessfully!'});
         })
         .catch(error => {
-          console.log('err', error.response.data)
-          
-          let errorMsg = {message: [error.response.data.message]};
-          //  [message = [error.response.data.message]];
+          let errorMsg = {message: [error.response.data.message]};          
           dispatch('errors/setErrors', errorMsg, { root: true })
-
         })
      }, 
      cancelOrderItems({commit, dispatch}, data) {

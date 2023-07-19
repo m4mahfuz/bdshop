@@ -1,7 +1,4 @@
 <template>
-    <!-- <div class="container"> -->
-    <!-- <h1> Testing Chart </h1> -->
-
     <div class="flex flex-col justify-center items-center gap-4 bg-slate-100 p-4">
       <h1 class="font-semibold text-xl text-sky-500">New Orders Received</h1>
       <client-only>
@@ -11,7 +8,6 @@
       </client-only>
       <span class="text-sm font-light">Figure: Orders received for last 24 hours</span>
     </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -37,10 +33,7 @@ export default {
               }
             },
             dataLabels: {
-              enabled: true,
-              // formatter: function (val) {
-              //   return val + "%";
-              // },
+              enabled: true,              
               offsetY: -20,
               style: {
                 fontSize: '12px',
@@ -48,8 +41,7 @@ export default {
               }
             },
             
-            xaxis: {
-              // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            xaxis: {              
               position: 'bottom',
               axisBorder: {
                 show: false
@@ -88,16 +80,7 @@ export default {
                 }
               }
             
-            },
-            // title: {
-            //   text: 'Monthly Inflation in Argentina, 2002',
-            //   floating: true,
-            //   offsetY: 330,
-            //   align: 'center',
-            //   style: {
-            //     color: '#444'
-            //   }
-            // }
+            },            
           },
           period: 24
         }

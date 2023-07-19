@@ -13,19 +13,7 @@
         :class="openTab == 2 ? 'text-blue-600 border-blue-500' : 'text-gray-700 border-transparent hover:border-gray-400'">
           Weekly
       </button>
-    </div>
-
-    <!-- <div id="tabContent" class="my-2 flex bg-red-200">
-        <div :class="{'hidden': openTab !== 1, 'block': openTab === 1}">
-          <div class="text-sm text-gray-500 dark:text-gray-400">
-            Daily            
-          </div>
-        </div>
-        <div :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-          <div class="text-sm text-gray-500 dark:text-gray-400">Weekly            
-          </div>
-        </div>
-    </div> -->
+    </div>    
     <div class="pb-2 flex flex-col justify-center items-center my-2 rounded-lg">
         <!-- deal header -->
         <div class="w-full px-8 py-8 h-min-72 bg-gradient-to-r from-sky-200 to-green-100 rounded">
@@ -82,9 +70,9 @@
             </div>
         </div>
         <!-- previous deals -->
-        <div class="w-full">
+        <!-- <div class="w-full">
             previous deals
-        </div>
+        </div> -->
       
     </div>   
     <loader :action="action" :active="loader" />
@@ -127,14 +115,8 @@ export default {
         ]),
         deals() {
           if (this.dealType === 'daily') {
-            // if (this.dailyDealsLength > 0) {
-            //   this.countDownDate = this.dailyDeals[0].ending;
-            // }
             return this.dailyDeals;
-          }
-          // if (this.weeklyDealsLength > 0) {
-          //     this.countDownDate = this.weeklyDeals[0].ending;
-          //   }
+          }         
           return this.weeklyDeals;
         }
     },
@@ -168,10 +150,5 @@ export default {
       return; 
       },
     }
-
 }
 </script>
-
-<style>
-
-</style>

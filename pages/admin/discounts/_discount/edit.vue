@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <!-- <h1 class="text-2xl">
-      Add Deal
-    </h1> -->            
+  <div>    
         <div 
           class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 rounded-lg"          
         >

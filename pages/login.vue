@@ -115,7 +115,6 @@
             ...mapActions('wishlists', ['getWishlists']),
             submitForm(event) {
                 this.errors = [];
-                // localStorage.setItem('redirect', this.$route.path);
                 this.$auth.loginWith('cookie', {
                     data: {
                         email: this.email,
@@ -133,8 +132,6 @@
                             }
                             this.$router.push(localStorage.getItem('redirect'));
                         }
-                        // this.$router.push('/')
-                        // console.log('user', this.$auth.user);
                         this.$toast.success('Logged In!')
                     })
                     .catch(error => {
@@ -157,9 +154,6 @@
                 return this.$axios.$post('/carts', {
                     product_id: product.id,
                     user_id: this.$auth.user.id,
-                    // name: data.product.name,
-                    // image: data.product.featured_image,
-                    // price: product.price,
                     price: product.original_price,
                     quantity: product.quantity,
                     action: product.action
@@ -169,16 +163,7 @@
                 }).catch(error => {
                     console.log(error);
                 });
-            },
-            // clearCartAtLocalStorage() {
-            //     localStorage.setItem('cart', '[]');
-            //     console.log('cartAtLocalStorageCleared');
-            // }
-            // setCartAtLocalStorage() {
-            //     console.log('CLS', this.cart.length);
-            //     localStorage.setItem('cart', JSON.stringify(this.cart))
-            //     console.log('cartAtLocalStorageFilld');
-            // }
+            },            
         }
     }
 </script>

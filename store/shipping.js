@@ -34,12 +34,3 @@ export const mutations = {
         state.shippingAddress = address;
     },     
 }
-
-export const getters = {        
-    // amount: (state) => (coupon) => {       
-    //     if (coupon.amount_type = 1) {
-    //         return `${coupon.amount}%`;
-    //     }
-    //     return `${coupon.amount}`        
-    // }
-}

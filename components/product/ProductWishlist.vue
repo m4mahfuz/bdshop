@@ -1,5 +1,5 @@
 <template>
-  <span v-if="show" class="z-10">
+  <span v-if="show">
       <loader :active="loader" action="loading" />
       <p v-if="wishlistCount === 0" class="flex items-center whitespace-nowrap">
         <button @click.prevent="callToToggleWishlist()" type="button" class="text-red-400">

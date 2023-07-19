@@ -100,19 +100,19 @@ import { mapState, mapActions } from "vuex";
 export default {
     data() {
         return {
-						loader: false,
+			loader: false,
             selectedCategory: '',
-						offer: {},
+			offer: {},
             products: [],
             product: '',
             productClicked: '',
-						selectedProducts: [],
-						showWarning: false,
-						warningMsg: '',            
+			selectedProducts: [],
+			showWarning: false,
+			warningMsg: '',            
         }
     },    
     mounted() {
-			this.offer = JSON.parse(localStorage.getItem('offer'));
+		this.offer = JSON.parse(localStorage.getItem('offer'));
         this.getCategories();
     },
     watch: {
@@ -121,18 +121,13 @@ export default {
                 this.product = '';
                 this.getProductsByCategory();
             }
-        },
-        // product(value) {
-        //     if (value !== '') {                
-        //         this.emitProduct(value);
-        //     }
-        // }
+        },        
     },
     computed: {
         ...mapState('categories', ['categories']),
-				isValid() {
-					return this.selectedProducts.length !== 0;
-				},
+		isValid() {
+			return this.selectedProducts.length !== 0;
+		},
     },
     methods: {
         ...mapActions('categories', [
@@ -164,13 +159,10 @@ export default {
 						this.selectedProducts.splice(index, 1);
 					}
 				},
-        // emitProduct(product) {
-        //     this.$emit('productSelected', product);
-        // },
+        
         getProductsByCategory() {            
             this.$axios.$get(`/admin/categories/${this.selectedCategory}/products`)
             .then(response => {
-                console.log(response.data)
                 this.products = [];
                 this.products.push(...response.data);
             })
@@ -179,7 +171,7 @@ export default {
             })
         },
 				back() {
-					this.$router.push('/admin/deals');
+					this.$router.go(-1);
 				},
 				save() {
 					this.loader = true;					

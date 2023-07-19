@@ -1,7 +1,6 @@
 <template>
   <section>
-    <div class="px-4 py-4 flex justify-end items-center bg-slate-50 mb-2 rounded-lg">
-	 	<!-- <span class="text-sm">Products: <span class="font-semibold text-blue-600">{{categoriesFlat.length}} </span></span> -->
+    <div class="px-4 py-4 flex justify-end items-center bg-slate-50 mb-2 rounded-lg">	 	
       <nuxt-link to="/admin/products/add" class="px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-full text-white text-sm">Add Product</nuxt-link>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -221,7 +220,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>

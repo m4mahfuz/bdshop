@@ -41,6 +41,23 @@ export default {
           default: false
         }
     },
+     head() {
+      return {
+        title: 'Product List',
+        meta: [
+          {
+            hid: 'product-list-description',
+            name: 'description',
+            content: this.metaDescription,
+          },
+          {
+            hid: 'product-list-keywords',
+            name: 'keywords',
+            content: this.metaKeywords,
+          },
+        ],
+      };
+    },
     data() {
         return {
             selectedSorting: 'default',
@@ -50,6 +67,27 @@ export default {
       ...mapState('products', [
         'meta'
       ]),
+        metaDescription() {
+        if (typeof this.category.meta !== 'undefined') {
+          return this.category.meta.description;        
+        }
+      },        
+      metaKeywords() {
+        let productNames = [];
+        let categoryKeywords = [];
+        let mergedKeywords = [];
+        if ( this.products.length > 0 ) {
+          productNames = this.products.map(product => product.name);
+        }
+        if (typeof this.category.meta !== 'undefined' ) {
+          categoryKeywords = this.category.meta['keywords'];
+        }
+        // Merge product names and category keywords
+        mergedKeywords = [...categoryKeywords, ...productNames];
+
+        // Join the keywords with commas
+        return mergedKeywords.join(', ');
+      },
       totalProducts() {
         return this.meta.totalProducts;
       }

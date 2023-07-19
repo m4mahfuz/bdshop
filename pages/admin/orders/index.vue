@@ -51,7 +51,6 @@
       </button>
     </div>    
     <div class="my-2 flex flex-col">
-        <!-- <div v-if="openTab === 1"> -->
         <div v-if="pagination.total > 0">
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -69,9 +68,7 @@
             <th scope="col" class="px-4 py-3">
             Contact
             </th>
-            <!-- <th scope="col" class="px-4 py-3">
-              Products 
-            </th>   -->
+            
             <th scope="col" class="px-4 py-3">
               Amount
             </th>  
@@ -109,12 +106,7 @@
             <td class="px-4 py-4">
               <p>{{order.user.phone}}</p>                
               <p>{{order.user.email}}</p>                
-            </td>
-            <!-- <td class="px-4 py-4">
-              <p v-for="(product, index) in order.products" :key="product.id">
-                {{index+1}}. {{product.pivot.name}} <span class="text-xs font-light">({{product.pivot.quantity}})</span>
-              </p>
-            </td> -->
+            </td>            
             <td class="px-4 py-4 font-semibold">
               <HelperTkSymbol text="text-sm" />
               {{parseInt(order.net_total)}}
@@ -198,25 +190,17 @@ export default {
       localStorage.setItem('openTabNumber', this.openTab);
       localStorage.setItem('orderStatus', this.orderStatus);
     },
-    showDetailsOf(order) {
-      // localStorage.setItem('orderToView', JSON.stringify(order));
-      // localStorage.setItem('openTabNumber', this.openTab);
-      // localStorage.setItem('orderStatus', this.orderStatus);
+    showDetailsOf(order) {      
       this.saveToLocalStorage(order);
       this.$router.push(`/admin/orders/${order.id}`);
     },
     invoice(order) {
-      // this.saveToLocalStorage(order);
       this.$router.push(`/orders/${order.uuid}/invoice`);
     },
     url(image) {        
         let path = `/storage/images/products/small/${image}`;
         return `${this.$config.baseURL}${path}`;      
-    },
-    // updateTab(tabNumber, status) {
-    //   this.openTab = tabNumber;
-    //   this.orderStatus = status;
-    // },
+    },    
     async toggleTabs(tabNumber, status){
       this.openTab = tabNumber;
       this.orderStatus = status;
@@ -229,7 +213,6 @@ export default {
       this.loader = false;
     },
     handlePagination(page) {
-      // let current_page = this.pagination.current_page;
       let current_page = page;
       let pageNumber = current_page?? 1;
       
@@ -238,7 +221,6 @@ export default {
         this.fetchOrders(url);
         return;  
       }
-      // let url = `/admin/orders?page=${pageNumber}`;
       let url = `/admin/orders/${this.orderStatus}?page=${pageNumber}`;
       this.fetchOrders(url);
     }

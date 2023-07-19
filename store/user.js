@@ -4,14 +4,6 @@ export const state = () => ({
 });
 
 export const actions = {
-    
-    // saveAddress({commit}) {          
-    //   return this.$axios.$post('/user/addresses').then(respons => {
-    //     commit('SET_ADDRESS');
-    //   }).catch(error => {
-    //     console.log(error);
-    //   })
-    // },    
     getAddresses({commit}) {          
       return this.$axios.$get('/user/addresses').then(respons => {
         commit('ADD_TO_ADDRESSES', respons.data);     
