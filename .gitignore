@@ -90,3 +90,5 @@ sw.*
 *.swp
 
 *.pem
+.vscode
+.vscode/* 
