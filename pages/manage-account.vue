@@ -3,7 +3,7 @@
   <h3 class="text-2xl font-bold mb-8 border-b border-sky-100 pb-2">
     <span class="border-b-4 border-sky-400 pb-1 pr-1">My Account</span> 
   </h3>
-  <div class="w-full flex gap-4">
+  <div class="w-full lg:flex lg:gap-4">
     <div class="basis-1/3 px-6 py-2 bg-slate-100 rounded-md">
       <span class="font-semibold">Personal Profile | 
         <nuxt-link to="/user/profile/edit" class="text-sky-500 font-normal">EDIT </nuxt-link>
@@ -14,12 +14,12 @@
         <li>{{$auth.$state.user.phone}}</li>
       </ul> 
     </div>
-    <div class="basis-2/3 px-6 py-2 bg-slate-100 rounded-md">
+    <div class="mt-2 lg:mt-0 basis-2/3 px-6 py-2 bg-slate-100 rounded-md">
       <span class="font-semibold">Address Book | 
         <nuxt-link to="/user/addressbook/edit" class="text-sky-500 font-normal">EDIT </nuxt-link>
       </span>
-      <div class="py-2 text-xs flex gap-4">
-        <div class="border-r border-slate-300 pr-4">
+      <div class="py-2 text-xs lg:flex gap-4">
+        <div class="py-2 mb-2 border-b lg:border-b-0 border-slate-300 lg:border-r lg:pr-4">
           <span class="text-gray-400 uppercase"> Default Shipping Address </span>
           <ul class="mt-2 space-y-2">
             <li class="font-semibold">{{shippingAddress.name}}</li>            

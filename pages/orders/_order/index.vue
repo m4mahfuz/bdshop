@@ -1,5 +1,5 @@
 <template>
-    <div class="container">            
+    <div class="md:container">            
       <div class="p-4 my-6 mx-auto max-w-2xl w-full bg-slate-100 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Order Details</h5>
           <div class="py-2 font-normal text-gray-700 dark:text-gray-400 flex flex-col border-b-2 border-gray-300 mb-3">
@@ -34,13 +34,12 @@
                   :disabled="!isValid"
                 >
                     Yes, I'm sure
-                </button>
-                
+                </button>                
             </div>
           </Modal>  
           <div v-if="order.status !== 'Cancelled'" class="overflow-x-auto relative shadow-md sm:rounded-lg mb-6">
               <h3 class="bg-sky-600 text-white text-xl px-4 py-1">Ordered Items</h3>
-              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <table class="w-full text-xs md:text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b">
                       <tr>
                           <th scope="col" class="p-2 text-center">
@@ -110,13 +109,11 @@
                         <td class="px-4">Subtotal</td>
                         <td class="px-4"><HelperTkSymbol /> {{order.total}}</td>
                       </tr>
-                      <tr>
                       <tr>                        
                         <td :colspan="columnSpan"></td>
                         <td class="px-4">Shipping</td>
                         <td class="px-4"><HelperTkSymbol /> {{order.shipping_charge}}</td>
                       </tr>
-                      <tr>
                       <tr>                        
                         <td :colspan="columnSpan"></td>
                         <td class="px-4">Coupon Discount (-)</td>
@@ -126,20 +123,19 @@
                         <td :colspan="columnSpan"></td>
                         <td class="pb-4 px-4 text-lg text-gray-600">Net Total</td>
                         <td class="pb-4 px-4 text-xl text-red-500"><HelperTkSymbol /> {{order.net_total}}</td>
-                      </tr>
-                      <tr v-if="order.status==='Received'">
-                        <td colspan="3" class="bg-green-100 py-3  text-center">
-                          <button @click.prevent="cancelItems" type="button" class="px-10 py-2  text-gray-700 bg-orange-300 border border-orange-400 hover:bg-orange-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-orange-200 text-sm rounded-lg uppercase">Cancel selected Items
-                          </button>
-                        </td>
-                        
-                        <td colspan="2" class="bg-green-50 text-center">
-                          <button @click="showModalAction" type="button" class="px-10 py-2 border text-gray-700 border-red-400 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-200 text-sm rounded-lg uppercase">Cancel Order</button>
-                        </td>
-                      </tr>
+                      </tr>                      
                       <tr class="my-2"></tr>
                   </tfoot>
               </table>
+              <div v-if="order.status==='Received'" class="bg-blue-100 md:flex justify-center items-center gap-4 py-3">                        
+                <div class="mx-2 md:mx-0 text-center">
+                  <button @click.prevent="cancelItems" type="button" class="w-full px-2 lg:px-10 py-2  text-gray-700 bg-orange-500 border hover:bg-orange-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-orange-200 text-sm rounded-lg uppercase disabled:bg-orange-300" :disabled="items.length < 1">Cancel selected Items
+                  </button>                          
+                </div>                        
+                <div class="mx-2 my-3 md:my-0 md:mx-0 text-center">
+                  <button @click="showModalAction" type="button" class="w-full px-2 lg:px-10 py-2 border text-gray-700 bg-red-500 border-red-500 hover:bg-red-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-200 text-sm rounded-lg uppercase">Cancel Order</button>
+                </div>
+              </div>
           </div>
 
           <div v-if="order.status === 'Cancelled' || cancelledItemsAvailable" class="mt-4 overflow-x-auto relative shadow-md sm:rounded-lg">

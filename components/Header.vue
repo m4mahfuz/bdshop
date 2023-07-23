@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4">
+  <div class="mb-4">    
       <nav v-if="isLargeScreen">
         <div class="py-6 flex justify-between items-center">
           <Logo/>
@@ -99,9 +99,7 @@
               <div class="min-w-max">
                 <img src="~/assets/img/chevron-down.png" alt="">
               </div>
-            </div>
-
-            <!-- <div v-bind:class="showAllCategoriesMenu ? 'block visible' : 'hidden invisible'" class="absolute bs-dark-green-bg z-10 w-full -mt-5 pt-6 pb-4 rounded-b-2xl"> -->
+            </div>          
             <div v-if="showAllCategoriesMenu" class="absolute bs-dark-green-bg z-10 w-full -mt-5 pt-6 pb-4 rounded-b-2xl">
               <ul>
                 <li v-for="category in categories" :key="category.id">
@@ -297,7 +295,6 @@ export default {
   data() {
     return {
       isLargeScreen: true,
-      // isSmallScreen: false,
       showAllCategoriesMenu: false,
       showMiniCart: false,
       showMobileMenu: false,
@@ -307,7 +304,7 @@ export default {
     }
   },
   mounted() {
-    console.log('Header mounted')
+    // console.log('Header mounted')
     this.getCategories();	
     if (this.$auth.loggedIn) {
       this.getWishlists();		    
@@ -330,11 +327,19 @@ export default {
   watch: {
     cart: {
       handler(value) {
-        console.log('watch triggered from Header')
+        // console.log('watch triggered from Header')
         this.cartWatcher();
       },
       deep: true
     },    
+    $route: {
+      handler(newRouteValue){
+        if (!this.isLargeScreen) {
+          this.showMobileMenu = false;
+        }
+      },
+      // deep: true
+    }
   },  
   computed: {
     ...mapState('categories', [
@@ -401,9 +406,7 @@ export default {
         .then(() => {
           this.removeRedirectPathAtLocal();
           this.resetCart();
-          this.$auth.strategies.cookie.reset();
-          // this.$router.push('/')
-                    // console.log('user', this.$auth.user);
+          this.$auth.strategies.cookie.reset();         
           this.$toast.warning('Logged Out!')
         })
     },

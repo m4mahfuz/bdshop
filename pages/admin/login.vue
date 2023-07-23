@@ -19,7 +19,7 @@
                       Sign in with
                     </h6>
                   </div>
-                  <div class="btn-wrapper text-center">
+                  <!-- <div class="btn-wrapper text-center">
                     <button
                       class="bg-white active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
                       type="button"
@@ -41,13 +41,13 @@
                         src="~/assets/img/google.svg"
                       />Google
                     </button>
-                  </div>
+                  </div> -->
                   <hr class="mt-6 border-b-1 border-gray-400" />
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                  <div class="text-gray-500 text-center mb-3 font-bold">
+                  <!-- <div class="text-gray-500 text-center mb-3 font-bold">
                     <small>Or sign in with credentials</small>
-                  </div>
+                  </div> -->
                   <form autoComplete="off" @submit.prevent="submitForm">
                     <div class="relative w-full mb-3">
                       <label
@@ -105,13 +105,13 @@
                   </div>
 
                   <div class="mt-4">
-                    <a href="#pablo" class="text-gray-600"
+                    <a href="#" class="text-gray-600"
                       ><small>Forgot password?</small></a>
                   </div>
-                  <div class="mt-1">
+                  <!-- <div class="mt-1">
                     <a href="#pablo" class="text-gray-600"
                       ><small>Create new account</small></a>
-                  </div>
+                  </div> -->
                 </div>
               </div>              
             </div>

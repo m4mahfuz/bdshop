@@ -1,6 +1,6 @@
 <template>
-  <div class="container py-5 pr-3">
-      <div class="flex gap-5">
+  <div class="lg:container py-5 lg:pr-3">
+      <div class="lg:flex gap-5">
         <div class="basis-2/3">
 			<!-- cart -->
             <h3 class="text-2xl font-semibold mb-4 border-b border-green-100 pb-2">
@@ -132,8 +132,7 @@
                 </span>
               </span>
             </div>				
-          </div>
-          <!-- {{shippingTimeUnitBy(shippingType.type)}}.  -->
+          </div>          
           <!-- payment method -->
           <h3 class="text-xl font-semibold mt-8 mb-4 border-b border-red-100 pb-2">
               <span class="border-b-4 border-red-400 pb-1 pr-1">Payment Method</span> 
@@ -161,18 +160,18 @@
               >
               <label class="form-check-label flex items-center text-gray-800 w-64" for="payment-prepaid">Prepaid
               </label>
-              <div class="ml-6 mt-2 flex items-center justify-start gap-1">
-                <img class="w-10 h-6 object-fit" src="~/assets/img/payment/gateways/visa.png" alt="">
-                <img class="w-10 h-6 object-fit" src="~/assets/img/payment/gateways/master.png" alt="">
-                <img class="w-10 h-6 object-fit" src="~/assets/img/payment/gateways/americans.png" alt="">
-                <img class="w-10 h-6 object-fit" src="~/assets/img/payment/gateways/bkash.png" alt="">
-                <img class="w-10 h-6 object-fit" src="~/assets/img/payment/gateways/nogod.png" alt="">
-                <img class="w-10 h-6 object-fit" src="~/assets/img/payment/gateways/rocket.png" alt="">
+              <div class="ml-1 md:ml-6 mt-2 flex items-center justify-start gap-1">
+                <img class="w-6 h-5 md:w-10 md:h-6 object-fit" src="~/assets/img/payment/gateways/visa.png" alt="">
+                <img class="w-6 h-5 md:w-10 md:h-6 object-fit" src="~/assets/img/payment/gateways/master.png" alt="">
+                <img class="w-6 h-5 md:w-10 md:h-6 object-fit" src="~/assets/img/payment/gateways/americans.png" alt="">
+                <img class="w-6 h-5 md:w-10 md:h-6 object-fit" src="~/assets/img/payment/gateways/bkash.png" alt="">
+                <img class="w-6 h-5 md:w-10 md:h-6 object-fit" src="~/assets/img/payment/gateways/nogod.png" alt="">
+                <img class="w-6 h-5 md:w-10 md:h-6 object-fit" src="~/assets/img/payment/gateways/rocket.png" alt="">
               </div>                        
             </div>            				
           </div>
         </div>
-        <div class="basis-1/3">
+        <div class="mt-6 lg:mt-0 basis-1/3">
           <h3 class="text-2xl font-semibold mb-4 border-b border-orange-100 pb-2">
             <span class="border-b-4 border-orange-400 pb-1">Order Summary</span> 
           </h3>
@@ -188,15 +187,15 @@
               <span v-else class="text-xs"><HelperTkSymbol text="text-sm" /> {{shippingCharge}} </span>
             </div>
             
-            <div v-if="!validDiscount" class="flex justify-between gap-4 my-2">
+            <div v-if="!validDiscount" class="md:flex justify-between gap-4 my-2">
               <input 
                 v-model="coupon.code" 
                 type="text" 
-                class="text-xs outline-none border rounded h-10 w-60 px-2"
+                class="text-xs outline-none border rounded h-10 w-full md:w-60 px-2"
                 :class="[has('code') ? 'border-pink-600 text-pink-600' : 'border-gray-200']"
                 placeholder="Enter code here" 
               >              
-              <button @click.prevent="applyCoupon" class="bg-sky-200 text-gray-900 rounded px-6 uppercase" :disabled="coupon.code ===''">Apply</button>
+              <button @click.prevent="applyCoupon" class="mt-2 md:mt-0 w-full md:w-auto md:px-6 py-1 bg-sky-200 text-gray-900 rounded px-6 uppercase" :disabled="coupon.code ===''">Apply</button>
             </div>
             <p 
               class="mb-2 text-pink-600 text-sm" 

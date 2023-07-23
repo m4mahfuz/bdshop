@@ -1,37 +1,37 @@
 <template>
     <div>
-        <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white mb-2">Add New Address</h2>
+        <h2 class="text-lg font-semibold text-gray-700 capitalize mb-2">Add New Address</h2>
         <loader :active="loader" action="loading" />
-        <section class="max-w-4xl p-6 mx-auto bg-slate-50 rounded-md shadow-md dark:bg-gray-800">
+        <section class="max-w-4xl p-2 md:p-6 mx-auto bg-slate-50 rounded-md shadow-md">
           
           <form>
               <div class="grid grid-cols-12 gap-6 mt-4">
-                  <div class="col-span-4">
-                      <label class="text-gray-700 dark:text-gray-200" for="title">Title</label>
+                  <div class="col-span-8 md:col-span-6 lg:col-span-4">
+                      <label class="text-gray-700" for="title">Title</label>
                       <input v-model="address.title" id="title" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       placeholder="Home, Office etc."
                       >
                   </div>
-                  <div class="col-start-1 col-span-8">
-                      <label class="text-gray-700 dark:text-gray-200" for="name">Full Name</label>
+                  <div class="col-start-1 col-span-10 md:col-span-8">
+                      <label class="text-gray-700" for="name">Full Name</label>
                       <input v-model="address.name" id="name" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       placeholder="Name"
                       >
                   </div>
-                  <div class="col-span-8">
-                      <label class="text-gray-700 dark:text-gray-200" for="address_line">Address</label>
+                  <div class="col-span-10 lg:col-span-8">
+                      <label class="text-gray-700" for="address_line">Address</label>
                       <input v-model="address.address_line" id="address_line" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       placeholder="Address"
                       >
                   </div>
-                  <div class="col-span-4">
-                      <label class="text-gray-700 dark:text-gray-200" for="city">City</label>
+                  <div class="col-span-8 lg:col-span-4">
+                      <label class="text-gray-700" for="city">City</label>
                       <input v-model="address.city" id="city" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       placeholder="City"
                       >
                   </div>
                   <div class="col-span-8">
-                      <label class="text-gray-700 dark:text-gray-200" for="phone">Phone</label>
+                      <label class="text-gray-700" for="phone">Phone</label>
                       <input v-model="address.phone" id="phone" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       :class="[has('phone') ? 'border-pink-600 text-pink-600' : 'border-gray-200']"
                       placeholder="Phone"
@@ -42,7 +42,7 @@
                           v-text="get('phone')"
                       ></p>
                   </div>
-                  <div class="col-span-4">
+                  <div class="col-span-6 lg:col-span-4">
                       <label class="text-gray-700" for="postal_code">Postal Code</label>
                       <input v-model="address.postal_code" id="postal_code" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                       :class="[has('postal_code') ? 'border-pink-600 text-pink-600' : 'border-gray-200']"
@@ -55,7 +55,7 @@
                       ></p>
                   </div>
 
-                  <div class="col-span-12">
+                  <div class="col-span-10 md:col-span-12">
                     <div class="flex items-center">
                         <input 
                         v-model="address.default_shipping_address"
@@ -65,11 +65,14 @@
                   </div>
               </div>
 
-              <div class="flex justify-end gap-6 mt-8">
+              <div class="md:flex md:gap-6 mt-8">
                   <button 
                     type="button" 
                     @click.prevent="reset()"
                     class="
+                    w-full
+                    mb-4                    
+                    md:w-auto
                     px-6
                     py-2.5                    
                     bg-gray-300
@@ -92,7 +95,8 @@
                   <button 
                     @click.prevent="save()"
                     type="button"
-                    class="px-12 py-2.5 
+                    class="w-full md:w-auto
+                    mb-4 px-12 py-2.5 
                     bg-blue-600
                     text-white
                     font-medium

@@ -1,25 +1,21 @@
 <template>
-  <div class="container py-5 pr-3">
-      <div class="flex gap-5">
+  <div class="lg:container py-5 lg:pr-3">
+      <div class="lg:flex gap-5">
           <div class="basis-2/3">
             <h3 class="text-2xl font-bold mb-8 border-b border-green-100 pb-2">
                 <span class="border-b-4 border-green-400 pb-1 pr-1">Cart</span> 
             </h3>
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="relative overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
               <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                   <tr>
                     <th scope="col" class="px-2 py-2">#</th>
                     <th scope="col" class="px-2 py-2">Image</th>
                     <th scope="col" class="pl-2 pr-20 py-2 text-left">Name</th>
-                    <th scope="col" class="px-4 py-2">Price</th>
-                    <!-- <th scope="col" class="px-4 py-2">Discounted Price</th> -->
+                    <th scope="col" class="px-4 py-2">Price</th>                    
                     <th scope="col" class="px-2 py-2 text-center">Qty</th>
                     <th scope="col" class="px-2 py-2">Total</th>
-                    <th scope="col" class="px-2 py-2">
-                      <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg> -->
+                    <th scope="col" class="px-2 py-2">                      
                     </th>
                   </tr>
                 </thead>
@@ -83,7 +79,7 @@
               </table>
             </div>
           </div>
-          <div class="basis-1/3">
+          <div class="mt-6 lg:mt-0 basis-1/3">
             <h3 class="text-2xl font-bold mb-8 border-b border-orange-100 pb-2">
               <span class="border-b-4 border-orange-400 pb-1">Order Summary</span> 
             </h3>
@@ -110,14 +106,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
-  middleware: 'auth',
-  // data() {
-  //   return {
-  //   }
-  // },
-  mounted() {
-    console.log('cart mounted')    
-  },  
+  middleware: 'auth',    
   computed: {
     ...mapState('cart', [
         'cart'

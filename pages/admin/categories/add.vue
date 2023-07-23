@@ -149,14 +149,7 @@ export default {
     computed: {
         ...mapState('categories', [
             'categories',
-        ]),
-        // ...mapGetters('categories', [
-        //     'categoryBy',
-        //     // 'flatCategories'
-        // ]),        
-        // isAddCategory() {
-        //     return (this.$route.params.category === 'add') ? true : false;
-        // },
+        ]),        
         isValid() {            
             return (this.category.name !== '' &&
             this.category.slug !== '' &&
@@ -183,26 +176,6 @@ export default {
         toggleNewKeywords() {
             this.isNewKeywords = !this.isNewKeywords;
         },
-
-        // getCategoryBy(slug) {
-        //     let category 4= this.categoryBy(slug);
-        //     if (category === undefined) {
-        //         category = JSON.parse(localStorage.getItem('category'));
-        //     }
-        //     return category;
-        // },
-        // fillupFormByFound(category) {            
-        //     this.category.id = category.id;
-        //     this.category.name = category.name;
-        //     this.category.slug = category.slug;
-        //     this.category.description = category.description;
-        //     this.category.parent_id = category.parent_id;
-        //     this.category.active = category.active;              
-        //         this.category.meta.title = category.meta.title;
-        //         this.category.meta.description = category.meta.description;
-        //         // this.category.meta.keywords = category.meta.keywords.length > 0 ?  category.meta.keywords.toString() : ''
-        //         this.category.meta.keywords = category.meta.keywords
-        // },
         save() {
             this.loader = true;
             this.isImageSaved = false;
@@ -240,44 +213,7 @@ export default {
             this.category.meta.keywords = '';
             this.isNewKeywords = false;
             this.newKeywords = '';            
-        }
-        // update(category) {
-        //     if (this.newKeywords !== '') {
-        //         let keywordsArray = this.mergePrevKeywordsWithNew();
-        //         this.category.meta.keywords = keywordsArray;
-        //     }
-            
-        //     this.$axios.$put(`/categories/${category.slug}`, this.category)
-        //     .then(response => {
-        //         localStorage.removeItem('category');
-        //         this.newKeywords = '';
-        //         this.$toast.info('Category Updated');
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //         if (error.response.status !== 422) throw error
-
-        //         this.errors = Object.values(error.response.data.errors).flat();
-        //     })
-
-        // },
-        // mergePrevKeywordsWithNew() {
-        //     let newKeywordsArray = this.newKeywords.split(',');
-        //     let keywordsArray = newKeywordsArray;
-
-        //     if (Array.isArray(this.category.meta.keywords) && this.category.meta.keywords.length > 0 ) {
-        //         keywordsArray = [...new Set([...this.category.meta.keywords, ...newKeywordsArray])];
-        //     }
-        //     return keywordsArray;
-        // },
-        // remove(index) {
-        //     // console.log('idx', index);
-        //     this.category.meta.keywords.splice(index, 1);
-        // }
+        }        
     }
 }
 </script>
-
-<style>
-
-</style>

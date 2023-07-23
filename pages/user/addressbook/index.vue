@@ -9,8 +9,8 @@
       <Alert :show="showAlert" @close="showAlert = false">{{alertMessage}}</Alert>
 
       <loader :active="loader" :action="action" />
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500">
+      <div class="relative overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-xs md:text-sm text-left text-gray-500">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" class="px-2 py-2">Full Name</th>

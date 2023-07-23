@@ -15,30 +15,7 @@
       </button>            
       <!-- logo -->
       <div class="px-6 pt-6 h-20">
-        <div class="flex items-center justify-between">
-          <!-- <a
-            href="#"
-            class="bg-blue-600 p-1.5 rounded flex items-center justify-center focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-            ><svg
-              class="w-5 h-5 text-white stroke-current"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M12 4.75L19.25 9L12 13.25L4.75 9L12 4.75Z"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M9.25 12L4.75 15L12 19.25L19.25 15L14.6722 12"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path></svg
-          ></a> -->
+        <div class="flex items-center justify-between">          
           <Logo :logoText="false" :linkTo="`/admin/dashboard`" />
         </div>
       </div>      
@@ -427,18 +404,9 @@ export default {
         }
     },
     mounted() {
-      this.$nextTick(() => { this.scroll++; }); 
-      // console.log(this.$route.name)
-      // console.log(this.crumbs())
+      this.$nextTick(() => { this.scroll++; });       
     },
-    methods: {
-        // start(el) {
-        //   el.style.height = el.scrollHeight + "px";
-        //   console.log(el.style.height)
-        // },
-        // end(el) {
-        //   el.style.height = "";
-        // },      
+    methods: {        
         toggle(element) {
             this.sidebar = !this.sidebar;
         },

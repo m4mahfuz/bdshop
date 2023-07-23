@@ -33,7 +33,6 @@
           
           <ul class="space-y-4">
             <li v-for="order in orders" :key="order.id">              
-              <!-- <template> -->
                 <div class="px-8 py-4 bg-slate-100 rounded shadow-md">
                   <div class="flex items-center justify-between border-b pb-2">
                       <span class="text-gray-600">
@@ -51,20 +50,23 @@
                   </div>
 
                   <div 
-                    v-for="product in order.products" :key="product.id"   class="my-2 py-1 text-gray-500 text-sm grid grid-cols-12 gap-1"
+                    v-for="product in order.products" :key="product.id"   class="my-2 py-1 text-gray-500 text-xs md:text-sm border-b last:border-b-0 grid grid-cols-12 gap-1"
                   >
-                    <div class="col-span-6 flex">
-                      <span class="w-16">
-                        <img :src="url(product.featured_image)" alt="image">   
+                    <div class="col-span-10 md:col-span-6 flex">
+                      <span class="md:w-16">
+                        <img class="w-8 md:w-auto" :src="url(product.featured_image)" alt="image">   
                       </span>
                       <span class="px-1">
                         {{product.pivot.name}}
                         <p>
                           {{product.unit_quantity}} {{product.unit}}
                         </p>
-                      </span>
+                        <p class="md:hidden">
+                          <span class="text-gray-400 text-xs">Qty:</span> {{product.pivot.quantity}}
+                        </p>
+                      </span>                      
                     </div>                   
-                    <div class="col-span-2 justify-self-center">
+                    <div class="hidden md:block col-span-2 md:justify-self-center">
                       <span class="text-gray-400">Qty:</span> {{product.pivot.quantity}}
                     </div>                   
                     <div class="col-span-2 justify-self-center">
@@ -72,10 +74,9 @@
                       :class="bgColorBy(order.status)"
                       >{{order.status}}</span>
                     </div>
-                    <div class="col-span-2 justify-self-center text-xs"><span v-if="order.status === 'Delivered'">Delivered On {{order.delivered_on}}</span></div>                   
+                    <div class="col-span-12 md:col-span-2 justify-self-center text-xs"><span v-if="order.status === 'Delivered'">Delivered On {{order.delivered_on}}</span></div>                   
                   </div>
                 </div>
-              <!-- </template> -->
             </li>
           </ul>
           <div class="my-4">
@@ -83,8 +84,8 @@
           </div>
         </div>
         
-        <div v-if="openTab === 2">Tab 2</div>
-        <div v-if="openTab === 3">Tab3</div>     
+        <div v-if="openTab === 2" class="text-red-500 font-semibold">List of orders to be shipped</div>
+        <div v-if="openTab === 3" class="text-green-600 font-semibold">List of orders to be received</div>     
 
       </div>
   </div>
@@ -97,8 +98,6 @@ export default {
   data() {
     return {
       offset: 4,
-      // orders: [],
-      // pagination: {},      
       openTab: 1
     }
   },

@@ -1,13 +1,11 @@
 <template>
-    <div class="flex justify-center w-full bg-gray-200">    
+    <div class="flex justify-center w-full md:bg-gray-200">    
         <div v-if="$auth.loggedIn" class="py-20">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 inline-block mb-2" fill="none" viewBox="0 0 24 24" stroke="green" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg> <span class="text-3xl text-green-600">Already Logged In!</span>
         </div>
-        <div v-else class="w-1/3 mx-auto bg-white p-5 rounded-lg my-10">
-        <!-- <Errors class="mb-5" :errors="errors"></Errors> -->
-
+        <div v-else class="border border-slate-200 rounded-md lg:w-1/3 mx-auto bg-white p-5 sm:my-6 lg:my-10">
         <form autoComplete="off" @submit.prevent="submitForm">
             <div>
                 <Label html-for="email">Email</Label>
