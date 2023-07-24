@@ -16,12 +16,13 @@
     </div>
     <div class="mt-2 lg:mt-0 basis-2/3 px-6 py-2 bg-slate-100 rounded-md">
       <span class="font-semibold">Address Book | 
-        <nuxt-link to="/user/addressbook/edit" class="text-sky-500 font-normal">EDIT </nuxt-link>
+        <span v-if="!isEmptyAddress" @click.prevent="goToEdit" class="text-sky-500 font-normal cursor-pointer">EDIT </span>
+        <nuxt-link v-if="isEmptyAddress" to="/user/addressbook/add" class="text-sky-500 font-normal">ADD </nuxt-link>
       </span>
       <div class="py-2 text-xs lg:flex gap-4">
         <div class="py-2 mb-2 border-b lg:border-b-0 border-slate-300 lg:border-r lg:pr-4">
           <span class="text-gray-400 uppercase"> Default Shipping Address </span>
-          <ul class="mt-2 space-y-2">
+          <ul v-if="!isEmptyAddress" class="mt-2 space-y-2">
             <li class="font-semibold">{{shippingAddress.name}}</li>            
             <li>{{shippingAddress.address_line}}</li>            
             <li>{{shippingAddress.city}}</li>            
@@ -30,7 +31,7 @@
         </div>
         <div class="pl-1">
           <span class="text-gray-400 uppercase"> Default Billing Address</span>
-          <ul class="mt-2 space-y-2">
+          <ul v-if="!isEmptyAddress" class="mt-2 space-y-2">
             <li class="font-semibold">{{shippingAddress.name}}</li>            
             <li>{{shippingAddress.address_line}}</li>            
             <li>{{shippingAddress.city}}</li>            
@@ -53,11 +54,18 @@ export default {
   },
   computed: {
     ...mapState('shipping', ['shippingAddress']),
+    isEmptyAddress() {
+      return Object.keys(this.shippingAddress).length === 0;
+    }
   },
   methods: {
     ...mapActions('shipping', [
       'getShippingAddress'
     ]),
+    goToEdit() {
+      localStorage.setItem('addressToEdit', JSON.stringify(this.shippingAddress));
+      this.$router.push('/user/addressbook/edit');
+    }
   }
 }
 </script>

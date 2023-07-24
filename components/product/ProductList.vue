@@ -1,6 +1,6 @@
 <template>
   <div>
-        <div class="h-60 bg-green-50 mb-6 rounded-t-xl">
+        <div class="h-40 lg:h-60 bg-green-50 mb-6 rounded-t-xl">
           <img :src="url(category.image)" class="object-cover h-full float-right" alt="category.title">
         </div>
         <div class="md:flex md:justify-between md:items-center mb-8">

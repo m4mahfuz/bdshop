@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="md:container md:mx-auto px-4">
-    <Header />
+    <Header @route-changed="handleRouteChanged" />
     <div class="flex justify-end lg:hidden">        
       <span @click.prevent="show = true" class="relative">
         <span class="bs-icon-box rounded-full hover:bg-slate-100 inline-block relative">
@@ -36,18 +36,12 @@
               </div>
             </offcanvas>
           </div>
-          <div class="w-full lg:w-3/4">
-              <!-- <ProductList 
-              :category="category" 
-              :products="paginatedProducts"
-              :loadMoreButtonDisabled="links.next === null ? true : false" 
-              @loadMore="handlePaginateRequest"
-              />            -->
+          <div class="w-full lg:w-3/4">              
               <Nuxt/>
           </div>  
         </div>    
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -62,7 +56,12 @@ export default {
   },  
   computed: {
     ...mapState('categories', ['categories']),        
-  },  
+  },
+  methods: {
+    handleRouteChanged(event) {      
+      this.show = false
+    }
+  }  
 }
 </script>
 

@@ -154,7 +154,7 @@
 
         <div class="flex items-center">
           <div v-click-outside="closeMenu" class="w-full relative">
-            <div @click.prevent="handleAllCategoriesMenu" class="bs-dark-green-bg relative z-20 flex rounded-full px-4 py-2 mr-5 cursor-pointer">
+            <div @click.prevent="handleAllCategoriesMenu" class="bs-dark-green-bg relative z-20 flex rounded-full px-4 py-2 cursor-pointer">
               <div class="min-w-max">
                 <img src="~/assets/img/menu-right.png" alt="">
               </div>
@@ -286,12 +286,10 @@
 </template>
 
 <script>
-// import Logo from "./Logo";
 import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Header",
-  // components: {Logo},
   data() {
     return {
       isLargeScreen: true,
@@ -304,7 +302,6 @@ export default {
     }
   },
   mounted() {
-    // console.log('Header mounted')
     this.getCategories();	
     if (this.$auth.loggedIn) {
       this.getWishlists();		    
@@ -335,6 +332,7 @@ export default {
     $route: {
       handler(newRouteValue){
         if (!this.isLargeScreen) {
+          this.$emit('route-changed', true);
           this.showMobileMenu = false;
         }
       },
@@ -370,9 +368,7 @@ export default {
       this.getItems(url);
     },
     searchItems(query) {
-      console.log('q', query);
       if (query === '') {
-        // this.items = [];
         this.emptyItems();
         this.setFound(null);
         return;

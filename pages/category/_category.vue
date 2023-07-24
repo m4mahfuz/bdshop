@@ -40,7 +40,6 @@ export default {
     }
   },
   mounted() {
-    console.log('category mounted');    
     this.getCategory(this.slug);
     this.getCategoryProducts({category: this.slug});
   },  
@@ -84,6 +83,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>
