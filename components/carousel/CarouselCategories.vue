@@ -1,6 +1,6 @@
 <template>
   <div v-if="categories.length > 0">
-    <vue-slick-carousel class="category-carousel mb-10 text-center" v-bind="categoryCarouselSettings">
+    <vue-slick-carousel class="category-carousel mb-8 text-center" v-bind="categoryCarouselSettings">
           <div v-for="category in categories" :key="category.id" class="bg-gray-50 p-4">
             <div class="h-20 md:h-32 flex justify-center items-center">
               <nuxt-link :to="`/category/${category.slug}`">

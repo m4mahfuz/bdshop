@@ -297,7 +297,13 @@ export default {
         
         isValid() {            
             return (this.product.name !== '' &&
-            this.product.description !== '' 
+            this.product.description !== '' && 
+            this.product.category !== '' &&
+            this.product.quantity !== '' &&
+            this.product.price !== '' &&
+            this.product.unit !== '' &&
+            this.product.unit_quantity !== '' && 
+            this.product.image !== ''
             ) ? true : false;
         },
         skuLength() {

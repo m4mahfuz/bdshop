@@ -24,7 +24,7 @@ export const actions = {
     }, 
     
     getDeals({commit}, url='/deals') {
-        console.log(url)
+        // console.log(url)
         return this.$axios.$get(url).then(response => {
              commit('ADD_DEALS', response.data);     
              commit('ADD_LINKS', response.links);     

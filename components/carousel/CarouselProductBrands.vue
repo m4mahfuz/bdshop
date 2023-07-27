@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-slick-carousel class="category-carousel mb-16 text-center" v-bind="productBrandsCarouselSettings">
+    <vue-slick-carousel class="category-carousel mb-8 text-center" v-bind="productBrandsCarouselSettings">
           <div class="">
             <div class="h-32 flex justify-center items-center"><img src="~/assets/img/brand-1.png" alt=""></div>
           </div>

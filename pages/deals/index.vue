@@ -1,6 +1,7 @@
 <template>
-  <section class="container">
-    <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
+  <section class="md:container">
+  <!-- <section class="bg-sky-100"> -->
+    <div class="lg:flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700">
       <button 
         @click.prevent="toggleTabs(1, 'daily')"
         class="inline-flex items-center h-10 px-4 -mb-px text-sm text-center bg-transparent border-b-2 sm:text-base whitespace-nowrap focus:outline-none"        :class="openTab == 1 ? 'text-blue-600 border-blue-500' : 'text-gray-700 border-transparent hover:border-gray-400'"
@@ -24,9 +25,10 @@
             <!-- header body -->
             <div class="flex flex-col">
               <!-- deal details -->
-              <div class="flex px-8 py-6 gap-4">
-                <p class="mt-1 text-sm text-gray-700">Get exciting deals everyday.<br> Grab before stock runs out.</p>
-                <div class="flex">             
+              <div class="md:flex px-4 md:px-8 py-6 gap-4">
+                <p v-if="dealType === 'daily'" class="mt-1 text-sm text-gray-700">Get exciting deals <span class="font-semibold text-gray-600">everyday</span>.<br> Grab before stock runs out.</p>
+                <p v-else class="mt-1 text-sm text-gray-700">Unleash the excitement with our <span class="font-semibold text-gray-600">weekly</span> deals.<br> Hurry, before stocks vanish!</p>
+                <div class="mt-2 md:mt-0 flex">             
                   <CountDownTimer v-if="countDownDate !== null" 
                     :countDownDate="countDownDate"
                     :dealType="dealType" 
@@ -35,24 +37,24 @@
               </div>
 
               <!-- deal products -->
-              <div class="flex justify-between px-8 py-6 flex-wrap gap-4 bg-yellow-100 max-h-96 overflow-y-scroll">
+              <div class="flex justify-between px-4 md:px-8 py-6 flex-wrap gap-4 max-h-96 overflow-y-scroll">
                 <!-- -p-2 -->
                 <div 
                   v-for="deal in deals" :key="deal.id"
-                  class="p-4 rounded-lg bg-white h-32 relative flex"
+                  class="p-2 md:p-4 md:rounded-lg bg-white md:h-32 relative md:flex"
                 >
                   <!-- image -->
-                  <img class="h-20 w-20 mr-4 bg-transparent" :src="url(deal.product.featured_image)" alt="">
+                  <img class="h-20 w-20 md:mr-4 bg-transparent" :src="url(deal.product.featured_image)" alt="">
                   
                   <!-- product details -->
-                  <div class="w-48 bg-red-100">
-                    <p>{{ deal.product.name }}</p>
+                  <div class="md:w-48">
+                    <p class="w-24 text-xs md:text-base">{{ deal.product.name }}</p>
                     <span class="mt-3 text-xs">{{ deal.product.unit_quantity}} {{deal.product.unit}} </span>
                   </div>
                   <!-- price -->
-                  <div class="absolute flex right-0 bottom-0 p-3 gap-4">
+                  <div class="absolute md:flex right-0 bottom-0 md:p-3 gap-4">
                     <!-- amount -->
-                    <div class="flex items-end" >
+                    <div class="hidden md:flex items-end" >
                       <span class="px-1">at</span>
                       <span class="px-1 font-medium inline text-2xl text-cyan-600">
                         <HelperTkSymbol />
@@ -61,7 +63,8 @@
                   
                     <!-- discount percent -->
                     <div class="flex flex-col justify-center text-gray-100 text-center h-12 w-12 rounded-full bg-gradient-to-r from-red-700 to-orange-500 rotate-12">
-                      <span class="text-xl">{{ deal.amount }}%</span>
+                      <span v-if="deal.amount_type === 'Percentage'" class="text-lg">{{ deal.amount }}%</span>
+                      <span v-else class="text-lg"><HelperTkSymbol />{{ deal.amount }}</span>
                       <span class=" -mt-1 text-xs">off</span>
                     </div>
                   </div>

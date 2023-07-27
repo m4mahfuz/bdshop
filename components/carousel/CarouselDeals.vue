@@ -1,8 +1,6 @@
 <template>
-  <div v-if="dealsProducts.length > 0">
-    <!-- <ProductCard v-for="deal in dealsProducts" :key="deal.id" :product="deal.product"/> -->   
-    
-     <vue-slick-carousel class="category-carousel mb-16 text-center" v-bind="productCarouselSettings">
+  <div v-if="dealsProducts.length > 0">    
+     <vue-slick-carousel class="category-carousel mb-8 text-center" v-bind="productCarouselSettings">
           <ProductCard v-for="deal in dealsProducts" :key="deal.id" :product="deal.product"/>
 
           <template #prevArrow="arrowOption">
@@ -32,7 +30,42 @@ export default {
   data() {
     return {      
         productCarouselSettings: {
-            "slidesToShow": 4
+            "slidesToShow": 6,
+            "responsive": [
+                  {
+                    "breakpoint": 1280,
+                    "settings": {
+                      "slidesToShow": 4,                      
+                    }
+                  },
+                  {
+                    "breakpoint": 1024,
+                    "settings": {
+                      "slidesToShow": 3,                      
+                    }
+                  },
+                  // {
+                  //   "breakpoint": 768,
+                  //   "settings": {
+                  //     "slidesToShow": 3,                      
+                  //   }
+                  // },
+                  {
+                    "breakpoint": 600,
+                    "settings": {
+                      "slidesToShow": 2,
+                      // "slidesToScroll": 2,
+                      // "initialSlide": 2
+                    }
+                  },
+                  {
+                    "breakpoint": 480,
+                    "settings": {
+                      "slidesToShow": 1,
+                      "slidesToScroll": 1
+                    }
+                  }
+                ]
         },
         dealsProducts: []
     }

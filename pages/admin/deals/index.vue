@@ -16,17 +16,6 @@
       </button>
     </div>
 
-    <!-- <div id="tabContent" class="my-2 flex bg-red-200">
-        <div :class="{'hidden': openTab !== 1, 'block': openTab === 1}">
-          <div class="text-sm text-gray-500 dark:text-gray-400">
-            Daily            
-          </div>
-        </div>
-        <div :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-          <div class="text-sm text-gray-500 dark:text-gray-400">Weekly            
-          </div>
-        </div>
-    </div> -->
     <div class="px-4 pt-4 pb-2 flex justify-end items-center bg-slate-50 mb-2 rounded-lg">
       <button @click.prevent="addDeal()" type="button" class="px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-full text-white text-sm">Add New Deal</button>
     </div>
@@ -98,7 +87,7 @@
         <span class="text-xs">{{deal.amount_type}}</span>
       </td>
       <td class="px-4 py-4">
-        <span v-if="deal.amount_type = 'Percentage'">
+        <span v-if="deal.amount_type === 'Percentage'">
           {{deal.amount}}%
         </span>
         <span v-else>
@@ -163,7 +152,8 @@ export default {
           loader: false,
           page: 0,
           openTab: '',
-          dealsPerPage: 10
+          dealsPerPage: 10,
+          errors: {}
       }
     },
     async mounted() {
@@ -182,12 +172,7 @@ export default {
             'deals',
             'meta',
             'links',
-        ]), // ...mapGetters('coupons', 
-        //   ['amount']
-        // )
-        // totalPages() {
-        //   return (this.meta.totalDeals >= 10) ? parseInt(this.meta.totalDeals/10) : 1;
-        // },        
+        ]),
         totalPages() {
           return (this.meta.totalDeals >= this.dealsPerPage) ? Math.ceil(this.meta.totalDeals / this.dealsPerPage) : 1;
         }       
@@ -206,12 +191,7 @@ export default {
         this.dealType = type;
         this.page = 0;
         this.openTab = tabNumber;
-        const dealUrl = `admin/${this.dealType}/deals`;
-      // if (status === 'all') {
-      //   await this.fetchOrders(`/admin/orders`);
-      // } else {
-      //   await this.fetchOrders(`/admin/orders/${status}`);
-      // }
+        const dealUrl = `admin/${this.dealType}/deals`;      
       await this.getDeals(dealUrl);
       this.page++;
       this.loader = false;
@@ -303,7 +283,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>
