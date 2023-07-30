@@ -264,10 +264,14 @@
 										></p>
                 </div>                
             </div>
-
-            <div class="flex justify-center mt-8 gap-4">
-                <button @click.prevent="reset()" type="button" class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Reset</button>
-                <button @click.prevent="update(product)" type="button" :disabled="!isValid" class="px-10 py-2 leading-5 text-white transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600 disabled:bg-orange-300">Update</button>
+            <div class="mt-10 flex justify-between">
+							<div>
+								<button @click.prevent="$router.back()" class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
+							</div>
+              <div class="flex gap-4">
+                  <button @click.prevent="reset()" type="button" class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Reset</button>
+                  <button @click.prevent="update(product)" type="button" :disabled="!isValid" class="px-10 py-2 leading-5 text-white transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600 disabled:bg-orange-300">Update</button>
+              </div>
             </div>
         </form>
         <loader action="updating" :active="loader" />            
@@ -474,7 +478,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

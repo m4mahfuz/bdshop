@@ -31,12 +31,12 @@
                             </option> 
                         </optgroup>                   
                     </select>
-                    <div v-if="selectedCategories.length > 0" class="py-4 text-xs text-red-500">
+                    <!-- <div v-if="selectedCategories.length > 0" class="py-4 text-xs text-red-500">
                         Selected:
                         <span v-for="(category, index) in selectedCategories" :key="index" class="ml-0.5 first:ml-0 after:content-[','] last:after:content-['\0020'] text-blue-700">
                             {{category.name}}
                         </span>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="grow">
@@ -51,11 +51,15 @@
                            {{ tag.name }}                      
                         </option>                  
                     </select>
-                    <div v-if="selectedTags.length > 0" class="py-4 text-xs text-red-500">
+                    <div v-if="selectedTags.length > 0" class="py-4 text-xs text-red-500 flex flex-wrap gap-2">
                         Selected:
-                        <span v-for="(tag, index) in selectedTags" :key="index" class="ml-0.5 first:ml-0 after:content-[','] last:after:content-['\0020'] text-blue-700">
+                        <span v-for="(tag, index) in selectedTags" :key="index" class="text-blue-700 border border-blue-700 rounded px-1 py-1 relative">
+                          <button @click.prevent="removeFromSelectedTags(index)" class="border border-red-600 rounded-full w-4 h-4 text-red-800 hover:text-white absolute -top-2 -right-2 z-10 bg-white hover:bg-red-500">x</button>
                             {{tag.name}}
                         </span>
+                    </div>
+                    <div v-else class="pt-2 text-xs italic text-gray-500">
+                      *Press ctrl key for multiple selection.                      
                     </div>
                 </div>
                                 
@@ -219,10 +223,14 @@
                     @removed="handleRemoved" 
                 />
             </div>
-
-            <div class="flex justify-center mt-8 gap-4">
-                <button class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Cancel</button>
-                <button @click.prevent="save" type="button" :disabled="!isValid" class="px-10 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 disabled:bg-blue-300">Save</button>
+            <div class="mt-10 flex justify-between">
+							<div>
+								<button @click.prevent="$router.back()" class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
+							</div>
+							<div class="flex gap-4">
+                <button @click.prevent="reset()" class="px-4 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Cancel</button>
+                <button @click.prevent="save()" type="button" :disabled="!isValid" class="px-12 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 disabled:bg-blue-300">Save</button>
+							</div>
             </div>
         </form>
         <loader action="saving" :active="loader" />            
@@ -243,7 +251,7 @@ export default {
     data() {
         return {
             selectedCategories: [],
-            selectedTags: [],
+            selectedTags: [],            
             isImagesSaved: false,        
             product: {
                 // id: '',
@@ -276,9 +284,16 @@ export default {
     mounted() {
       this.units = units;
       this.getCategories();
-      this.getTags();
+    //   this.getTags();
       this.getDiscounts();        
     },    
+    watch:{
+        'product.category'(value) {
+            if (value !== '') {
+                this.getTagsByCategory(`/admin/tags/categories/${value}`);
+            }
+        }
+    },
     computed: {
         ...mapState('categories', [
             'categories',
@@ -318,27 +333,30 @@ export default {
             'getProducts',           
         ]),     
         ...mapActions('tags', [
-            'getTags',           
+            // 'getTags',           
+            'getTagsByCategory',           
         ]),     
         ...mapActions('discounts', [
             'getDiscounts',           
         ]),     
+        removeFromSelectedTags(index) {
+          this.selectedTags.splice(index, 1);
+        },
         toggleNewKeywords() {
             this.isNewKeywords = !this.isNewKeywords;
         },        
         getSelected(item) {
             let arr = [];
-            if (item==='categories') {
-                this.selectedCategories.forEach(element => {
-                        arr.push(element.id);
-                });
-                console.log('CatIDs', arr);
-                return arr;
-            }
+            // if (item==='categories') {
+            //     this.selectedCategories.forEach(element => {
+            //             arr.push(element.id);
+            //     });
+            //     console.log('CatIDs', arr);
+            //     return arr;
+            // }
             this.selectedTags.forEach(element => {
                         arr.push(element.id);
                 });
-                console.log('TagIDs', arr);
                 return arr;
         },
         handleUploaded(image) {             

@@ -143,7 +143,6 @@ export default {
               this.action = 'deleting';
               this.loader = true;					
               // await this.deleteCategory(category);
-              // 
                 this.$axios.$delete(`/categories/${category.slug}`)
                 .then(response => {
                   this.deleteFromStoreCategories(category)
@@ -151,7 +150,6 @@ export default {
                 .catch(error => {
                   console.log(error)
                 });
-              // 
 
               this.loader = false;
               // this.$toast.success('updated');

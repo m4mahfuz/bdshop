@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="px-4 py-4 flex justify-end items-center bg-slate-50 mb-2 rounded-lg">	 	
-      <nuxt-link to="/admin/products/add" class="px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-full text-white text-sm">Add Product</nuxt-link>
+      <nuxt-link to="/admin/tags/add" class="px-6 py-2 bg-blue-700 hover:bg-blue-600 rounded-full text-white text-sm">Add Tag</nuxt-link>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -11,14 +11,8 @@
       Name
       </th>
       <th scope="col" class="px-4 py-3">
-      Description
-      </th>
-      <th scope="col" class="px-4 py-3">
-      Image
-      </th>
-      <th scope="col" class="px-4 py-3">
-        Category
-      </th>  
+      Category
+      </th>      
       <th scope="col" class="px-4 py-3">
         Active
       </th>  
@@ -29,71 +23,45 @@
       </thead>
       <tbody>
       <tr 
-        v-for="(product, index) in products" class="border-b odd:bg-white even:bg-gray-50"
+        v-for="(tag, index) in tags" class="border-b odd:bg-white even:bg-gray-50"
         :key="index"
       >
       <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-          <nuxt-link
-            :to="`/admin/products/${product.slug}`"
-          >{{product.name}}
-          </nuxt-link>
-      </td>
-      <td class="px-4 py-4">
-        {{product.description}}
-      </td>
-      <td class="px-4 py-4">
-        <div v-if="product.featured_image !== null">
-          <a :href="imageLink(product.featured_image)" target="_blank" rel="noopener noreferrer"> 
-            <img :src="url(product.featured_image)"  class="h-full" alt="Product's Image">
-          </a>
-        </div>
-      </td>
-      <td class="px-4 py-4">
-        <span v-if="product.category"  class="text-lg font-semibold">
-            {{product.category.name}}
-            <div class="text-xs">
-              <p v-if="product.category.parent_id === null">
-                <span class="text-red-500 uppercase">(Parent)</span>
-              </p>  
-              <p v-else>
-                <span class=" text-green-500 uppercase">(Child)</span>
-              </p>
-            </div>
+          {{ tag.name }}
+      </td>      
+      <td class="px-4 py-4">        
+        <span v-if="tag.category">
+          {{tag.category.name}}
         </span>
       </td>
       <td class="px-4 py-4">
           <ToggleInput 
-            :item="product" 
-            :status="product.active" 
+            :item="tag" 
+            :status="tag.active" 
             @toggleInput="handleToggleInput"
           />
-      </td>  
+      </td>
       <td class="px-4 py-2">
-        <button type="button" @click.prevent="uploadImages(product)"> 
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-sky-500">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-          </svg>
-        </button>
-
-        <button type="button" @click.prevent="edit(product)"> 
+        
+        <button type="button" @click.prevent="edit(tag)"> 
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
         </button>
         
-        <button type="button" @click.prevent="remove(product)"> 
+        <button type="button" @click.prevent="remove(tag)"> 
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
           </svg>
         </button>        
-      </td>
+      </td>              
       </tr>
       </tbody>
       </table>
-    </div>
+    </div>    
     <div class="my-6 flex justify-between items-center">
       <div>
-        <span class="pl-2 text-xl font-semibold"> {{ meta.totalProducts }} </span> products.
+        <span class="pl-2 text-xl font-semibold"> {{ meta.totalTags }} </span> tags.
       </div>
       <div class="flex justify-end items-center gap-4">
           {{page}} of {{totalPages}}
@@ -117,56 +85,53 @@ export default {
           action: '',
           loader: false,
           page: 0,
-          productsPerPage: 10
+          tagsPerPage: 10
         }
     },
     async mounted() {
       this.loader = true;
-      await this.getProducts();
+      await this.getTags();
       this.page++;
       this.loader = false;
       
     },
 	  computed: {
-        ...mapState('products', [
-            'products',
+        ...mapState('tags', [
+            'tags',
             'meta',
             'links',
         ]),
         totalPages() {
-          return (this.meta.totalProducts >= this.productsPerPage) ? Math.ceil(this.meta.totalProducts / this.productsPerPage) : 1;
+          return (this.meta.totalTags >= this.tagsPerPage) ? Math.ceil(this.meta.totalTags / this.tagsPerPage) : 1;
         }
     },
     methods: {
-        ...mapActions('products', [
-            'getProducts',
-            'deleteProduct',            
+        ...mapActions('tags', [
+            'getTags',
+            'deleteTag'		
         ]),
         async previous() {
             this.loader = true;
-            await this.getProducts(this.links.prev);
+            await this.getTags(this.links.prev);
             this.page--;
             this.loader = false;
         },
         async next() {
             this.loader = true;
-            await this.getProducts(this.links.next);
+            await this.getTags(this.links.next);
             this.page++;
             this.loader = false;
         },
-      edit(product) {
+      edit(tag) {
         this.action = 'updating';
-        localStorage.setItem('product', JSON.stringify(product))
-        this.$router.push(`/admin/products/${product.slug}/edit`)
+        localStorage.setItem('tag', JSON.stringify(tag))
+        this.$router.push(`/admin/tags/${tag.slug}/edit`)
       },
-      uploadImages(product) {
-        localStorage.setItem('product', JSON.stringify(product))
-        this.$router.push(`/admin/products/${product.slug}/images`)
-      },
-      remove(product) {
+      
+      remove(tag) {
         swal({
             title: "Are you sure?",
-            text: `This '${product.name}' product will be deleted!`,
+            text: `This '${tag.name}' tag will be deleted!`,
             icon: "error",                 
             dangerMode: true,
             buttons: {
@@ -181,9 +146,10 @@ export default {
             if (value) {
               this.action = 'deleting';
               this.loader = true;					
-              await this.deleteProduct(product);
+              await this.deleteTag(tag);
+
               this.loader = false;
-              swal("Product has been deleted!", {
+              swal("Tag has been deleted!", {
                 icon: 'success',
                 // buttons: false,
                 timer: 3000,
@@ -194,17 +160,12 @@ export default {
       handleToggleInput(event) {
         // console.log(event)
         this.loader = true;
-        const product = event.item;
-        console.log('receiving..');
-        this.$axios.$patch(`/products/${product.slug}`, {
-          name: product.name,
-          slug: product.slug,
-          price: product.price?? product.original_price,
-        unit: product.unit,
-          unit_quantity: product.unit_quantity,
-          quantity: product.quantity,
-          category: product.category.id,
-          description: product.description,
+        const tag = event.item;
+        // console.log('receiving..');
+        this.$axios.$patch(`/admin/tags/${tag.slug}`, {
+          name: tag.name,
+          slug: tag.slug,          
+          category: tag.category.id,
           active: event.value
         }).then(response => {
               this.loader = false;
@@ -216,19 +177,7 @@ export default {
               this.errors = Object.values(error.response.data.errors).flat();
               this.loader = false;
           })                    
-      },
-      imageLink(image) {
-          let path = `/storage/images/products/medium/${image.name}`;
-          return `${this.$config.baseURL}${path}`;
-      },
-      url(image) {        
-      //    let name = image.name;
-        if (typeof image === 'object' && image !== null) {
-          let path = `/storage/images/products/small/${image.name}`;
-          return `${this.$config.baseURL}${path}`;
-        }
-      return; 
-      },
+      },      
     }
 
 }

@@ -26,6 +26,15 @@ export const actions = {
             console.log(error);
         })
     },
+    deleteProduct({commit, state}, product) {
+        return this.$axios.$delete(`/products/${product.slug}`)
+                .then(response => {
+                  commit('DELETE_FROM_PRODUCTS', product);
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    },
     getProductImages({commit}, product) {
         return this.$axios.$get(`/products/${product}/images`).then(response => {
             commit('ADD_IMAGES', response.data.images);     
@@ -55,7 +64,7 @@ export const actions = {
         }).catch(error => {
             console.log(error);
         })
-    },
+    },    
     updateStoreImages({commit}, images) {
         commit('UPDATE_IMAGES', images);
     },
@@ -86,6 +95,10 @@ export const mutations = {
         state.product = product;
         // console.log(state.product)
     }, 
+    DELETE_FROM_PRODUCTS(state, product) {
+        let index = state.products.indexOf(product);
+        state.products.splice(index, 1);
+    },
     ADD_IMAGES(state, images) {     
         state.images = images;        
     },

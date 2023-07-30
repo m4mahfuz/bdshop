@@ -50,6 +50,7 @@
                   >Dashboard</nuxt-link
                 >
               </li>
+              <!-- Content -->
               <li>
                 <div
                   @click.prevent="toggleActive(content.position, false)"
@@ -371,6 +372,10 @@ export default {
                     {
                         title: "slides",
                         to: "/admin/slides",
+                    },
+                    {
+                        title: "tags",
+                        to: "/admin/tags",
                     },
                     
                 ],
