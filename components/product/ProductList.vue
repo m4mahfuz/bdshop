@@ -1,7 +1,7 @@
 <template>
   <div>
-        <div class="h-40 lg:h-60 bg-green-50 mb-6 rounded-t-xl">
-          <img :src="url(category.image)" class="object-cover h-full float-right" alt="category.title">
+        <div class="h-20 md:h-40 lg:h-60 mb-6 rounded-t-xl">
+          <img :src="url(category.image)" class=" object-contain lg:object-cover h-full float-right" alt="category.title">
         </div>
         <div class="md:flex md:justify-between md:items-center mb-8">
           <h3 class="text-3xl capitalize">{{ category.name }}
