@@ -65,6 +65,16 @@ export const actions = {
             console.log(error);
         })
     },    
+    // getTagProducts({commit}, {tag, link = false}) {
+    getTagProducts({commit}, url = '') {        
+        return this.$axios.$get(url).then(response => {            
+            commit('ADD_PRODUCTS', response.data);   
+            commit('ADD_LINKS', response.links);   
+            commit('ADD_META', response.meta);         
+        }).catch(error => {
+            console.log(error);
+        })
+    },    
     updateStoreImages({commit}, images) {
         commit('UPDATE_IMAGES', images);
     },

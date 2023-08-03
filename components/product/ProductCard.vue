@@ -46,8 +46,6 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-// import Product from '../../utilities/Product';
-// import Product from '~/assets/mylib/utilities/Product';
 
 export default {
   name: "ProductCard",
@@ -64,21 +62,6 @@ export default {
     console.log('product card mounted');
     // this.Product = new Product(this.product);      
      this.productChecker();
-     /*
-
-    this.$store.watch(
-      () => {
-        return this.$store.getters["cart/getCart"]
-      },
-      (val) => {
-        this.productChecker();
-      },
-      {
-        deep:true
-      }
-    );
- */
-    //console.log(this.$store.getters["cart/getCart"]);
   },
 
   watch: {

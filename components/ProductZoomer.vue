@@ -1,5 +1,6 @@
 <template>
-  <div class="p-30">
+  <!-- <div class="p-30"> -->
+  <div class="p-1">
     <div class="rounded mb-4">
     <!-- {{normalLength}} -->
       <vue-slick-carousel

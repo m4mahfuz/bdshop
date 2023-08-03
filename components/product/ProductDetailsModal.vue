@@ -9,7 +9,7 @@
         </svg>
 
         <div class="lg:flex justify-center my-4 lg:mx-4">
-          <div class="w-full md:px-8">
+          <div class="w-full lg:w-1/2 md:px-8">
             <ProductZoomer 
               :images="images" 
               :pane="pane" 
@@ -17,7 +17,7 @@
               :slides="3"
             />
           </div>
-          <div class="drift-pane relative md:px-8 text-left w-full">
+          <div class="drift-pane relative md:px-8 text-left w-full lg:w-1/2">
             <p class="text-sm mb-3"><span class="uppercase text-gray-400 pr-6">Status</span> <span class="bs-dark-green-color">In Stock</span></p>
             <h3 class="text-lg md:text-2xl">{{product.name}}</h3>
             <p class="text-xs text-gray-400 mb-4 mt-2"><b>{{product.quantity}}</b> items available.</p>
@@ -31,18 +31,18 @@
               <span v-else><HelperTkSymbol /> {{ product.original_price }}</span>
             </p>
             <div class="flex flex-col items-start justify-center border-t border-gray-200 my-4">              
-              <div class="md:flex justify-center items-center text-4xl text-gray-600 my-4 gap-2 p-0">
-                <span class="pl-2 text-lg uppercase">quantity</span>
-                <div class="flex gap-2 md:gap-6 md:w-64">
-                  <button @click.prevent="emitEventForCartOperaton('decrease')" class="h-7 w-7 md:h-14 md:w-14 border border-gray-200 rounded-full" :disabled="cartProductQuantity < 1">-</button>
-                  <span class="flex items-center justify-center w-14 h-14 border border-gray-200 bg-gray-200 rounded-full text-xl font-semibold">{{cartProductQuantity}}</span>
-                  <button @click.prevent="emitEventForCartOperaton('increase')" class="h-7 w-7 md:h-14 md:w-14 border border-gray-200 rounded-full">+</button>
+              <div class="md:flex items-center text-4xl text-gray-600 my-4 gap-2 p-0 w-full xl:w-3/4">
+                <span class="text-lg xl:text-xl uppercase">quantity</span>
+                <div class="mt-2 md:mt-0 flex gap-2 2xl:gap-6 md:w-64">
+                  <button @click.prevent="emitEventForCartOperaton('decrease')" class="h-10 w-10 md:h-12 md:w-12 xl:h-14 xl:w-14 border border-gray-200 rounded-full" :disabled="cartProductQuantity < 1">-</button>
+                  <span class="flex items-center justify-center h-10 w-10 md:h-12 md:w-12 xl:w-14 xl:h-14 border border-gray-200 bg-gray-200 rounded-full text-xl font-semibold">{{cartProductQuantity}}</span>
+                  <button @click.prevent="emitEventForCartOperaton('increase')" class="h-10 w-10 md:h-12 md:w-12 xl:h-14 xl:w-14 border border-gray-200 rounded-full">+</button>
                 </div>
               </div>
-              <div class="py-2 w-full xl:w-3/4">
+              <div class="py-2 w-full xl:w-3/4 2xl:w-2/4">
                 <button class="bg-green-500 text-white hover:bg-green-600 hover:text-gray-200 rounded-full w-full px-2 py-2 font-medium">View Cart</button>
               </div>
-              <div class="py-2 w-full xl:w-3/4">
+              <div class="py-2 w-full xl:w-3/4 2xl:w-2/4">
                 <button class="bg-orange-500 text-gray-800 hover:bg-orange-600 hover:text-gray-900 rounded-full w-full px-2 py-2 font-medium">Checkout</button>
               </div>
             </div>
@@ -63,13 +63,13 @@
             <div class="text-xs leading-loose">
               <p><span class="uppercase text-gray-400 w-28 inline-block">Sku:</span> {{ product.sku }}</p>
               
-              <p><span class="uppercase text-gray-400 w-28 inline-block">category:</span>
-              <nuxt-link class="bs-dark-green-color" :to="`/category/${product.category.name}`">{{product.category.name}}</nuxt-link>
+              <p><span class="uppercase text-gray-400 w-28 inline-block">category:</span>              
+              <button class="bs-dark-green-color" @click="goTo(`/category/${product.category.slug}`)">{{product.category.name}}</button>
               </p>
 
               <p><span class="uppercase text-gray-400 w-28 inline-block">tags:</span>
 
-                <span v-for="tag in tags" :key="tag.id"><nuxt-link class="bs-dark-green-color capitalize" :to="`/tag/${tag.name}`">{{tag.name}}</nuxt-link><span class="comma">, </span></span>
+                <span v-for="tag in tags" :key="tag.id"><button class="bs-dark-green-color uppercase" @click="goTo(`/tags/${tag.slug}`, tag)">{{tag.name}}</button><span class="comma">, </span></span>
               </p>
             </div>
           </div>
@@ -102,8 +102,8 @@ export default {
         }
     },
     async mounted() {
-    console.log('product details modal mounted');
-    console.log(this.product.slug);
+    // console.log('product details modal mounted');
+    // console.log(this.product.slug);
     this.productSlug = this.quantity;
     this.cartProductQuantity = this.quantity;
     await this.getProductImages(this.product.slug);
@@ -136,6 +136,11 @@ export default {
       'clearImages'	      
     ]),
     ...mapActions('product-details-modal', ['hideModal']),
+    goTo(url, tag='') {
+      localStorage.setItem('tagName', tag.name);
+      this.modalClose();
+      this.$router.push(url);
+    },
     modalClose() {
       // this.$emit('close', false);
       this.clearImages();
