@@ -10,7 +10,6 @@
           </span>
 
       </h2>
-      
       <form autoComplete="off" class="mt-8">
           <div class="flex justify-center gap-4">
             <div class="basis-1/2">
@@ -94,7 +93,7 @@ export default {
   },
   data() {
       return {            
-          prevTagName: '',
+          prevTag: '',
           tag: {
               id: '',
               name: '',    
@@ -129,7 +128,8 @@ export default {
       
       isValid() {            
           return (this.tag.name !== '' &&
-          this.tag.category !== '' 
+          this.tag.category !== '',
+          this.tag.name !== this.prevTag.name 
           ) ? true : false;
       },
   },
@@ -143,8 +143,8 @@ export default {
       ]),   
       ...mapActions('errors', ['setErrors']),
       setTag() {        
-        const tag = JSON.parse(localStorage.getItem('tag'));
-        this.prevTagName = tag.name;
+        const tag = JSON.parse(localStorage.getItem('tag'));        
+        this.prevTag = tag;
         this.fillupFormByFound(tag);
       },
       fillupFormByFound(tag) {
@@ -157,15 +157,15 @@ export default {
         this.$router.back();
       },
       update(tag) {
-          // this.loader = true;
+          this.loader = true;
           this.tag.slug = tag.name;            
-          this.replaceTag({old: this.prevTagName, new: this.tag.name} )
           
-          this.$axios.$patch(`/admin/tags/${tag.slug}`, tag)
+          this.$axios.$patch(`/admin/tags/${this.prevTag.slug}`, tag)
           .then(response => {
-              this.replaceTag(this.prevTagName, this.tag.name )
-              this.$toast.info('Tag Updated');
+            this.replaceTag({old: this.prevTag.name, new: this.tag.name} )
               this.loader = false;
+              this.$toast.info('Tag Updated');
+              this.updateRoute(response.data);              
               // this.reset();
               // this.tag.name = '';
               // this.tag.slug = '';
@@ -175,8 +175,14 @@ export default {
               this.setErrors(error.response.data.errors);
           })            
       },
+      updateRoute(tag) {
+        this.prevTag.name = tag.name;
+        this.prevTag.slug = tag.slug;
+        localStorage.setItem('tag', JSON.stringify(this.prevTag));
+        this.$router.push(`/admin/tags/${tag.slug}/edit`)              
+      },
       reset() {
-         this.tag.name = this.prevTagName;
+         this.tag.name = this.prevTag.name;
       }        
   }
 }
