@@ -202,18 +202,21 @@ export default {
             })            
         },
         reset() {
-            this.shipping = {
-                // city: '',
+          const city = this.shipping.city;
+            this.shipping = {                    					
+                active: true,                 
+                city: city,
                 shipping_types: {
+                  active: true,
                   type: '',
                   delivery_time_min: '',
                   delivery_time_max: '',
                   shipping_charge: {
+                    active: true,
                     charge: ''
                   }
-                }    					
+                }
             };
-            // this.selectedDivision = ''; 
             this.resetErrors()
         }        
     }
