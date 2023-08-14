@@ -26,9 +26,15 @@
                   </div>
                   <div class="col-span-4">
                       <label class="text-gray-700 dark:text-gray-200" for="city">City</label>
-                      <input v-model="address.city" id="city" type="text" class="block w-full px-4 py-1.5 mt-2 text-sm text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-                      placeholder="City"
-                      >
+                      <select
+                        v-model="address.city"
+                        class="form-select block px-4 py- text-sm mt-2 w-full text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" id="city"        
+                    >
+                        <option value="" :disabled="true">Please select one</option>         
+                        <option v-for="city in cities" :value="city.city" :key="city.id">
+                            {{ city.city }}
+                        </option>                             
+                    </select>
                   </div>
                   <div class="col-span-8">
                       <label class="text-gray-700 dark:text-gray-200" for="phone">Phone</label>
@@ -139,6 +145,7 @@ export default {
         }
     },
     mounted() {
+      this.getShippingCities();
       let address = JSON.parse(localStorage.getItem('addressToEdit'));
       this.fillupFormBy(address);
     },
@@ -155,6 +162,7 @@ export default {
       }
     },
     computed: {
+        ...mapState('cities', ['cities']),
         ...mapGetters('errors', [
             'has',
             'get',
@@ -171,7 +179,8 @@ export default {
             true : false;
         },
     },
-    methods: {        
+    methods: { 
+        ...mapActions('cities', ['getShippingCities']),       
         ...mapActions('errors', [
             'setErrors',      
             'resetErrors'

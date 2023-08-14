@@ -1,16 +1,4 @@
 <template>
-    <!-- <div>
-        <label class="relative flex justify-between items-center p-2 text-xl cursor-pointer">
-        <input 
-            type="checkbox" 
-            class="absolute left-1/2 -translate-x-1/2 w-full h-full peer appearance-none rounded-md cursor-pointer" 
-            v-model="toggleInputValue" 
-            :checked="status" 
-            @change="emitToggleInputValue"
-        />
-        <span class="w-14 h-8 flex items-center flex-shrink-0 p-1 bg-gray-300 rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-6 after:h-6 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6"></span>
-        </label>
-    </div>   -->
     <div>
         <label :for="toggleInputId" class="inline-flex relative items-center cursor-pointer">
         <input 
@@ -35,6 +23,10 @@ export default {
         label: {
             type: String,
             default: ''
+        },
+        name: {
+            type: String,
+            default: null
         },
         status: {
             type: Boolean,
@@ -90,6 +82,9 @@ export default {
     computed: {
         toggleInputId() {
             if (this.item !== null && this.item !== undefined) {
+                if (this.name !== null) {
+                    return `toggle-input-${this.name}-${this.item.id}`;
+                }
                 return `toggle-input-${this.item.id}`;
             }
             return `toggle-input-1`;

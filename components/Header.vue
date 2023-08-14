@@ -331,6 +331,9 @@ export default {
     },    
     $route: {
       handler(newRouteValue){
+        if (this.showMiniCart) {
+          this.showMiniCart = false;
+        }
         if (!this.isLargeScreen) {
           this.$emit('route-changed', true);
           this.showMobileMenu = false;

@@ -49,10 +49,14 @@
                     </div>
                   </div>
                   <div class="py-2 w-full xl:w-3/4 2xl:w-2/4">
-                    <button class="bg-green-500 text-white hover:bg-green-600 hover:text-gray-200 rounded-full w-full px-2 py-2 font-medium">View Cart</button>
+                    <button 
+                    @click.prevent="goto('cart')"
+                    type="button" class="bg-green-500 text-white hover:bg-green-600 hover:text-gray-200 rounded-full w-full px-2 py-2 font-medium">View Cart</button>
                   </div>
                   <div class="py-2 w-full xl:w-3/4 2xl:w-2/4">
-                    <button class="bg-orange-500 text-gray-800 hover:bg-orange-600 hover:text-gray-900 rounded-full w-full px-2 py-2 font-medium">Checkout</button>
+                    <button 
+                    @click.prevent="goto('checkout')"
+                    type="button" class="bg-orange-500 text-gray-800 hover:bg-orange-600 hover:text-gray-900 rounded-full w-full px-2 py-2 font-medium">Checkout</button>
                   </div>
                 </div>
 
@@ -93,28 +97,14 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import Product from '~/assets/mylib/utilities/Product';
-export default {
-    // props: {
-    //     productSlug: String,
-    //     product: Object,
-    //     modal: {
-    //       type: Boolean,
-    //       default: false
-    //     },
-    //     quantity: {
-    //       type: Number,
-    //       default: 0
-    //     }
-    // },
+export default {    
     data() {
         return {            
             cartProductQuantity: 0,    
             scroll: ''        
         }
     },
-    async mounted() {
-    // console.log('product details modal mounted');
-    // console.log(this.product.slug);
+    async mounted() {    
     this.productSlug = this.quantity;
     this.cartProductQuantity = this.quantity;
     await this.getProductImages(this.product.slug);
@@ -147,6 +137,13 @@ export default {
       'clearImages'	      
     ]),
     ...mapActions('product-details-modal', ['hideModal']),
+    goto(page) {
+      if (page === 'cart') {
+          this.$router.push('/cart')
+          return;
+      }
+      this.$router.push('/checkout')
+    },
     goTo(url, tag='') {
       localStorage.setItem('tagName', tag.name);
       this.modalClose();

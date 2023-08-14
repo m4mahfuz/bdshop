@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <!-- <h1 class="text-2xl">
-      Add Deal
-    </h1> -->
+  <div>    
       <CategoryProducts @productSelected="handleProductSelected" class="bg-slate-100 rounded-lg p-4" />
       <h1 class="my-4 text-xl text-gray-600">Details</h1>
         <div 

@@ -374,8 +374,8 @@ export default {
                         to: "/admin/slides",
                     },
                     {
-                        title: "tags",
-                        to: "/admin/tags",
+                        title: "shipping cities",
+                        to: "/admin/cities",
                     },
                     
                 ],
