@@ -39,9 +39,10 @@ export default {
     {src: '~/plugins/v-click-outside', ssr: false},
     {src: '~/plugins/vue-toast-notification', ssr: false},
     {src: '~/plugins/vue-apexcharts', ssr: false},
+    { src: '~/plugins/ga4.js', ssr: false },
     '~/plugins/vue-slick-carousel',
     '~/plugins/overlayscrollbars',
-    '~/plugins/firebase'
+    '~/plugins/firebase',
   ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
