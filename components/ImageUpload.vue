@@ -149,7 +149,7 @@ export default {
                 /*
                     Ensure the file is an image file.
                 */
-                if ( /\.(jpe?g|png|gif)$/i.test(this.formData.image.name) ) {
+                if ( /\.(jpe?g|png|gif|webp)$/i.test(this.formData.image.name) ) {
                     console.log("here");
                     /*
                     Fire the readAsDataURL method which will read the file in and

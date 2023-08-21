@@ -10,17 +10,17 @@
             <form @submit.prevent="handleSubmit" class="border p-5 lg:p-10 rounded-md max-w-md mx-auto bg-slate-100">
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-semibold mb-2">Your Name</label>
-                    <input v-model="name" type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500">
+                    <input v-model="contact.name" type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500">
                 </div>
 
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address</label>
-                    <input v-model="email" type="email" id="email" name="email" required placeholder="johndoe@example.com" class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500">
+                    <input v-model="contact.email" type="email" id="email" name="email" required placeholder="johndoe@example.com" class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500">
                 </div>
 
                 <div class="mb-4">
                     <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
-                    <textarea v-model="message" id="message" name="message" rows="5" required placeholder="Write your message here" class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500"></textarea>
+                    <textarea v-model="contact.message" id="message" name="message" rows="5" required placeholder="Write your message here" class="w-full px-4 py-2 rounded-lg border focus:outline-none focus:border-blue-500"></textarea>
                 </div>
 
                 <!-- Google reCAPTCHA widget -->
@@ -35,6 +35,7 @@
                 </div>
             </form>
         </div>
+        <loader action="submitting" :active="loader" />            
     </section>    
   </template>
   
@@ -47,9 +48,12 @@
     },
     data() {
       return {
-        name: "",
-        email: "",
-        message: "",
+        loader: false,
+        contact: {
+          name: "",
+          email: "",
+          message: "",
+        },
         response: null,
         show: false,
         showMessage: "Thank you for contacting with us.",
@@ -59,22 +63,35 @@
     },    
     computed: {
         isValid() {
-            return true;
             return (
-                this.name !== '' &&
-                this.email !== '' &&
-                this.message !== '' &&
+                this.contact.name !== '' &&
+                this.contact.email !== '' &&
+                this.contact.message !== '' &&
                 this.response !== null
             ) ? true : false;
         }
     },
     methods: {
       handleSubmit() {
-        this.reset();
-        this.show = true;
+        // this.show = true;
         //submit code to server
-        this.startTimer();
+        this.save();        
       },
+      save() {
+            this.loader = true;            
+            this.$axios.$post('/contacts', this.contact)
+            .then(response => {
+								// this.reset();
+                this.loader = false;
+                this.show = true;
+                this.startTimer();
+            })
+            .catch(error => {                
+                this.loader = false;
+                console.log(error.response);
+            })            
+        },
+
       onCaptchaVerified(response) {
         // Handle the form submission after successful reCAPTCHA verification
         this.response = response;
@@ -91,9 +108,9 @@
             this.show = false;
       },
       reset() {
-        this.name = '' ;
-        this.email = '' ;
-        this.message = '';
+        this.contact.name = '';
+        this.contact.email = '';
+        this.contact.message = '';
         this.response = null;
       }
     },
