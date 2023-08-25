@@ -35,6 +35,14 @@ export const actions = {
              console.log(error);
          })
      },
+    getOfferProducts({commit}, offer) {
+        // console.log(url)
+        return this.$axios.$get(`/offers/${offer}`).then(response => {
+             commit('ADD_OFFER', response.data);                 
+         }).catch(error => {
+             console.log(error);
+         })
+     },
 
      deleteDeal({commit, state}, deal) {
         return this.$axios.$delete(`admin/${deal.deal_type}/deals/${deal.id}`).then(response => {

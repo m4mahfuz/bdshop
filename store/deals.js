@@ -4,10 +4,26 @@ export const state = () => ({
     deals: [],
     links: {},
     meta: {},
+    countDownDate: null,
+    dealType: 'daily',
 });
 
 /** Actiions */
 export const actions = {
+    setCountDownDate({commit, state, getters}, dealType) {
+        if (dealType === 'daily' && getters.dailyDealsLength > 0) {
+            commit('SET_COUNTDOWN', state.dailyDeals);
+            return;
+        }
+        if (getters.weeklyDealsLength > 0) {
+            commit('SET_COUNTDOWN', state.weeklyDeals);
+            return;
+          }
+        commit('SET_COUNTDOWN', null);
+    },
+    setDealType({commit}, dealType) {
+        commit('SET_DEAL_TYPE', dealType);
+    },
     getDailyDeals({commit}, url='/daily/deals') {
        return this.$axios.$get(url).then(response => {
             commit('ADD_DAILY_DEALS', response.data);     
@@ -47,6 +63,16 @@ export const actions = {
 
 /** Mutations */
 export const mutations = {
+    SET_COUNTDOWN(state, deals) {
+        if (deals === null) {
+            state.countDownDate  = null;
+            return;
+        }
+        state.countDownDate = deals[0].ending;
+    },
+    SET_DEAL_TYPE(state, type) {
+        state.dealType = type; 
+    },
     ADD_DAILY_DEALS(state, dailyDeals) {
         state.dailyDeals = [];
         state.dailyDeals.push(...dailyDeals);        

@@ -390,6 +390,10 @@ export default {
                         to: "/admin/offers",
                     },
                     {
+                        title: "banners",
+                        to: "/admin/banners",
+                    },                    
+                    {
                         title: "slides",
                         to: "/admin/slides",
                     },                    

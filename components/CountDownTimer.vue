@@ -1,35 +1,35 @@
 <template>
   <div>
-    <div class="flex gap-3 text-center">
+    <div class="flex gap-3 text-center md:text-xl text-white">
       <div v-if="dealType === 'weekly'">
-        <div class="h-12 w-12 flex justify-center items-center font-semibold rounded-md bg-white">
-          {{ days }}
+        <div class="h-8 w-8 md:h-14 md:w-14 flex justify-center items-center font-semibold rounded-md bg-red-500">
+          {{ prependZeroIfNeeded(days) }}
         </div>
-        <div class="my-2 text-sm font-medium">
+        <div class="my-2 text-sm md:text-lg text-gray-500 font-medium uppercase">
           Days
         </div>
       </div>
       <div>
-        <div class="h-12 w-12 flex justify-center items-center font-semibold rounded-md bg-white">
-          {{ hours }}
+        <div class="h-8 w-8 md:h-14 md:w-14 flex justify-center items-center font-semibold rounded-md bg-red-500">
+          {{ prependZeroIfNeeded(hours) }}
         </div>
-        <div class="my-2 text-sm font-medium">
+        <div class="my-2 text-sm md:text-lg text-gray-500 font-medium uppercase">
           Hours
         </div>
       </div>
       <div>
-        <div class="h-12 w-12 flex justify-center items-center font-semibold rounded-md bg-white">
-          {{ minutes }}
+        <div class="h-8 w-8 md:h-14 md:w-14 flex justify-center items-center font-semibold rounded-md bg-red-500">
+          {{ prependZeroIfNeeded(minutes) }}
         </div>
-        <div class="my-2 text-sm font-medium">
+        <div class="my-2 text-sm md:text-lg text-gray-500 font-medium uppercase">
           Mins
         </div>
       </div>
       <div>
-        <div class="h-12 w-12 flex justify-center items-center font-semibold rounded-md bg-white">
-          {{ seconds }}
+        <div class="h-8 w-8 md:h-14 md:w-14 flex justify-center items-center font-semibold rounded-md bg-red-500">
+          {{ prependZeroIfNeeded(seconds) }}
         </div>
-        <div class="my-2 text-sm font-medium">
+        <div class="my-2 text-sm md:text-lg text-gray-500 font-medium uppercase">
           Secs
         </div>
       </div>
@@ -54,16 +54,27 @@ export default {
       minutes: 0,
       seconds: 0,
       countdownInterval: null,
-      // targetDate: new Date("2023-12-31T23:59:59"), // Set your target date and time here
       targetDate: null,
     };
   },
   mounted() {
     this.targetDate = this.stringToDate(this.countDownDate)
-    // console.log('td', this.targetDate);
     this.startCountdown();
   },
+  watch: {
+    dealType(value) {
+      clearInterval(this.countdownInterval);  
+      this.targetDate = this.stringToDate(this.countDownDate)
+      this.startCountdown();
+    }
+  },
   methods: {
+    prependZeroIfNeeded(number) {
+      if (number < 10 ) {
+        return `0${number}`;
+      }
+      return number;
+    },
     stringToDate(dateString) {
       // console.log(dateString);
       // var dateString = "2023-06-24, 11:59 PM";

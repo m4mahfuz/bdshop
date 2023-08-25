@@ -50,7 +50,7 @@
           <div class="w-full lg:w-3/5">
             <Logo/>
 
-            <p class="my-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla diam ornare nam est gravida. Netus viverra rhoncus sit magna sapien ac eget parturient id. Est luctus dapibus quam aliquam in nisl turpis. Elit et dictum lacus morbi nec accumsan a in.</p>
+            <p class="my-8">Our mission 🚀 is to provide you with a diverse range of high-quality products that showcase the rich culture and craftsmanship of Bengal. Whether you're looking 🔎 for exquisite traditional attire, unique handicrafts, or delicious culinary delights, we have something special 🎁 for everyone.</p>
 
             <div class="flex">
               <a class="mr-4" href="" target="_blank"><img src="~/assets/img/playstore.png" alt=""></a>

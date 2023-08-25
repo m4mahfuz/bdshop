@@ -34,7 +34,7 @@
                             v-if="offer.type === 'Percentage' || offer.type === 'Fixed Amount'" 
                             class="absolute flex right-0 bottom-0 p-3 gap-4"
                         >
-                            <!-- discount percent -->
+                            
                             <div class="flex flex-col justify-center text-gray-100 text-center h-12 w-12 rounded-full bg-gradient-to-r from-red-700 to-orange-500 rotate-12">
                             <span class="text-xl">{{ offer.amount }}%</span>
                             <span class="-mt-1 text-xs">off</span>
@@ -55,6 +55,7 @@
                     </div>
                 </div>
               </div>              
+              <!-- <OfferProducts :offers="offersWithProducts" /> -->
             </div>
         </div>
         <!-- previous offers -->

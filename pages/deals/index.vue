@@ -20,15 +20,17 @@
         <div class="w-full px-8 py-8 h-min-72 bg-gradient-to-r from-sky-200 to-green-100 rounded">
             <!-- title -->
             <div class="mb-2 text-2xl text-cyan-700 capitalize">
-              {{dealType}} deals
+              {{dealType}} deals ⏳
             </div>
             <!-- header body -->
             <div class="flex flex-col">
               <!-- deal details -->
-              <div class="md:flex px-4 md:px-8 py-6 gap-4">
-                <p v-if="dealType === 'daily'" class="mt-1 text-sm text-gray-700">Get exciting deals <span class="font-semibold text-gray-600">everyday</span>.<br> Grab before stock runs out.</p>
-                <p v-else class="mt-1 text-sm text-gray-700">Unleash the excitement with our <span class="font-semibold text-gray-600">weekly</span> deals.<br> Hurry, before stocks vanish!</p>
-                <div class="mt-2 md:mt-0 flex">             
+              <div class="lg:flex px-4 lg:px-8 py-6 gap-4">
+                <p v-if="dealType === 'daily'" class="mt-1 text-sm text-gray-700">Get exciting deals <span class="font-semibold text-gray-600">everyday</span>.<br> Grab before stock runs out.
+                </p>
+                <p v-else class="mt-1 text-sm text-gray-700">Unleash the excitement with our <span class="font-semibold text-gray-600">weekly</span> deals.<br> Hurry, before stocks vanish!
+                </p>
+                <div class="mt-4 lg:mt-0 flex">             
                   <CountDownTimer v-if="countDownDate !== null" 
                     :countDownDate="countDownDate"
                     :dealType="dealType" 
@@ -83,16 +85,11 @@
 </template>
 
 <script>
-// import swal from 'sweetalert';
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
-    // layout: 'dashboard',
     data() {
         return {
           action: '',
-          // dealType: 'daily',
-          countDownDate: null,
-          dealType: 'daily',
           loader: false,
           page: 0,
           openTab: 1
@@ -110,7 +107,9 @@ export default {
 	  computed: {
         ...mapState('deals', [
             'dailyDeals',
-            'weeklyDeals',            
+            'weeklyDeals',
+            'countDownDate',
+            'dealType'            
         ]),
         ...mapGetters('deals', [
           'dailyDealsLength',
@@ -124,26 +123,15 @@ export default {
         }
     },
     methods: {   
-      ...mapActions('deals', ['getDailyDeals', 'getWeeklyDeals']),
+      ...mapActions('deals', ['getDailyDeals', 'getWeeklyDeals', 'setCountDownDate', 'setDealType']),
        toggleTabs(tabNumber, type){
         // this.loader = true;      
-        this.dealType = type;
+        // this.dealType = type;
+        this.setDealType(type);
         // this.page = 0;
         this.openTab = tabNumber;
         this.setCountDownDate(type);
        },
-       setCountDownDate(dealType) {
-        if (dealType === 'daily' && this.dailyDealsLength > 0) {
-          this.countDownDate = this.dailyDeals[0].ending;
-          return;
-        }
-        if (this.weeklyDealsLength > 0) {
-          this.countDownDate = this.weeklyDeals[0].ending;
-          return;
-        }
-        this.countDownDate = null;
-       },
-       
       url(image) {        
       //    let name = image.name;
         if (typeof image === 'object' && image !== null) {
