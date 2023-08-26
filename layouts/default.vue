@@ -12,9 +12,9 @@ export default {
   name: "default",
   head() {
     return {
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
-      ],
+      // link: [
+      //   { rel: 'icon', type: 'image/x-png', href: '/favicon.png' }
+      // ],
       meta: [
         { property: 'og:title', content: 'BengalShop- Online Grocery Store' },
         { property: 'og:description', content: 'Browse a wide selection of fresh fruits, vegetables, dairy, and more at BengalShop, your reliable online grocery store.'
