@@ -22,11 +22,11 @@
                 
                 <div 
                   v-for="offer in offersWithProducts" :key="offer.id"                 
-                  class="flex flex-wrap justify-center"
+                  class="flex flex-wrap justify-center gap-4"
                 >
                     <div 
                     v-for="product in offer.products" :key="product.id"
-                    class="relative p-2 my-2 rounded-lg w-48 bg-white"
+                    class="relative p-2 rounded-lg w-48 bg-white"
                     >
                       <ProductCard :product="product"/>
 

@@ -1,10 +1,10 @@
 <template>
-    <section class="container">
+    <section class="md:container">
       <div class="pb-2 flex flex-col justify-center items-center my-2 rounded-lg">
           <!-- deal header -->
           <div class="w-full px-8 py-8 h-min-72 bg-gradient-to-r from-sky-200 to-green-100 rounded">
               <!-- title -->
-              <div class="mb-2 font-semibold text-2xl text-cyan-700 capitalize">
+              <div class="mb-2 font-semibold text-2xl text-cyan-700 uppercase">
                 Offers                 
               </div>
               <!-- header body -->
@@ -13,13 +13,13 @@
                     {{ offer.name }}
                 </div> -->
                 <!-- offer products -->
-                <div class="flex gap-4 overflow-y-scroll">
+                <div class="flex flex-col md:flex-row gap-4 overflow-x-hidden overflow-y-scroll">
                   
-                  <div class="flex justify-center"
+                  <div class="flex flex-wrap justify-center gap-4"
                   >
                       <div 
                       v-for="product in offer.products" :key="product.id"
-                      class="relative p-2 rounded-lg w-48"
+                      class="relative my-2 p-2 rounded-lg w-48 bg-white"
                       >
                         <ProductCard :product="product"/>
   
