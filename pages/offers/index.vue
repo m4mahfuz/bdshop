@@ -1,10 +1,10 @@
 <template>
-  <section class="container">
+  <section class="md:container">
     <div class="pb-2 flex flex-col justify-center items-center my-2 rounded-lg">
         <!-- deal header -->
         <div class="w-full px-8 py-8 h-min-72 bg-gradient-to-r from-sky-200 to-green-100 rounded">
             <!-- title -->
-            <div class="mb-2 text-2xl text-cyan-700 capitalize">
+            <div class="mb-2 text-3xl text-cyan-700 uppercase">
               Offers
             </div>
             <!-- header body -->
@@ -12,21 +12,21 @@
               <!-- deal details -->
               <div class="flex px-8 py-6 gap-4">
                 <p class="mt-1 text-sm text-gray-700">Get exciting deals everyday.<br> Grab before stock runs out.</p>
-                <div class="flex bg-sky-100">
+                <div class="flex">
                   <!-- Timer -->
                 </div>
               </div>
 
               <!-- offer products -->
-              <div class="flex gap-4 overflow-y-scroll">
+              <div class="flex flex-col md:flex-row gap-4 overflow-x-hidden overflow-y-scroll">
                 
                 <div 
                   v-for="offer in offersWithProducts" :key="offer.id"                 
-                  class="flex justify-center"
+                  class="flex flex-wrap justify-center"
                 >
                     <div 
                     v-for="product in offer.products" :key="product.id"
-                    class="relative p-2 rounded-lg w-48"
+                    class="relative p-2 my-2 rounded-lg w-48 bg-white"
                     >
                       <ProductCard :product="product"/>
 

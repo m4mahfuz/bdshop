@@ -134,9 +134,7 @@
           return matchedLargeImg.url;
         },
         handleDrift() {
-          // console.log('handling drift');
           const driftImgs = document.querySelectorAll('.drift-img');
-          console.log(driftImgs)
           this.driftImgs.push(...driftImgs);       
           this.driftImgs.map(img => {
             new Drift(img, {
@@ -149,8 +147,6 @@
           });
         },
         arrange(images) {
-          // console.log('handling images')
-          // console.log(images.length)
           const baseURL = this.$config.baseURL;
           if (images.length > 0) {
               images.forEach(image => {

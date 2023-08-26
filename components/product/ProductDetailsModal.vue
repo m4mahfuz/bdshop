@@ -4,11 +4,11 @@
       <!-- <overlay-scrollbars :key="scroll" class="h-full">  -->
       <!-- <div class="lg:bs-modal-body bg-slate-100 rounded-2xl p-8 mx-4 lg:mx-10 my-10 z-30 relative h-4/5 overflow-y-auto"> -->
         <div class="flex justify-center items-center h-full w-full">        
-          <div class="bg-slate-100 rounded-2xl p-8 mx-4 lg:mx-10 my-10 z-30 relative h-4/5 lg:min-h-max overflow-y-auto">
+          <div class="bg-slate-100 rounded-2xl p-8 mx-4 lg:mx-10 my-10 z-30 relative h-4/5 lg:min-h-max overflow-y-scroll">
             <svg @click.prevent="modalClose" xmlns="http://www.w3.org/2000/svg" class="h-4 w-5 absolute right-6 top-5 cursor-pointer hover:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
-            <overlay-scrollbars 
+            <!-- <overlay-scrollbars 
               :key="scroll" 
               class="h-full"
               :options = "{                
@@ -16,7 +16,7 @@
                   visibility: 'hidden',                  
                 },  
               }"
-            > 
+            >  -->
             <div class="lg:flex justify-center my-4 lg:mx-4">
               <div class="w-full lg:w-1/2 md:px-8">
                 <ProductZoomer 
@@ -87,7 +87,7 @@
                 </div>
               </div>
             </div>
-            </overlay-scrollbars>
+            <!-- </overlay-scrollbars> -->
           </div>
         </div>
       <!-- </overlay-scrollbars> -->
@@ -207,4 +207,16 @@ export default {
   /* margin-left: 5%; */
   /* float: left; */
   /*} */
+  /*Scroll bar nav*/
+
+  /* Works on Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  width: auto; 
+}
+
 </style>
