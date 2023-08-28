@@ -82,7 +82,7 @@
                 >Amount(%)</label
             >
             <input
-                type="text"
+                type="number"
                 v-model="discount.amount"
                 class="
                 form-control
@@ -112,7 +112,7 @@
                 >Amount Limit(Tk)</label
             >
             <input
-                type="text"
+                type="number"
                 v-model="discount.limit"
                 class="
                 form-control
@@ -230,7 +230,7 @@ export default {
       isValid() {                        
             return (this.discount.active !== '' &&
             this.discount.amount !== ''  &&
-            this.discount.limit !== ''  &&
+            // this.discount.limit !== ''  &&
             this.discount.name !== '' &&
             this.discount.description !== '' &&
             this.discount.starting !== '' &&           

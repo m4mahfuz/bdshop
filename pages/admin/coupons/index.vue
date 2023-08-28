@@ -57,7 +57,7 @@
         categories
       </td>
       <td class="px-4 py-4">
-        usage
+        {{ usage(coupon) }}
       </td>      
       <td class="px-4 py-4">
           <ToggleInput 
@@ -132,6 +132,9 @@ export default {
         ...mapActions('coupons', [
             'getCoupons',
         ]),
+        usage(coupon) {
+          return (coupon.usage === 1 ) ? 'Single' : 'Multiple';
+        },
         async previous() {
             this.loader = true;
             await this.getCoupons(this.links.prev);

@@ -77,7 +77,7 @@
                   <p><span class="uppercase text-gray-400 w-28 inline-block">Sku:</span> {{ product.sku }}</p>
                   
                   <p><span class="uppercase text-gray-400 w-28 inline-block">category:</span>              
-                  <button class="bs-dark-green-color" @click="goTo(`/category/${product.category.slug}`)">{{product.category.name}}</button>
+                  <button class="bs-dark-green-color" @click.prevent="goTo(`/category/${product.category.slug}`)">{{product.category.name}}</button>
                   </p>
 
                   <p><span class="uppercase text-gray-400 w-28 inline-block">tags:</span>
@@ -138,6 +138,7 @@ export default {
     ]),
     ...mapActions('product-details-modal', ['hideModal']),
     goto(page) {
+      this.modalClose();
       if (page === 'cart') {
           this.$router.push('/cart')
           return;
