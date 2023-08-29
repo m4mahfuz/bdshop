@@ -40,7 +40,7 @@
                         <li @click.stop.prevent="toggleActive(13)"  class="block px-4 py-1 rounded hover:bg-gray-100 hover:text-gray-700">Payment Options</li>                        
                         <li @click.stop.prevent="toggleActive(14)">
                             <nuxt-link
-                                to="/user/addressbook"
+                                to="/user/balance"
                                 class="block px-4 py-1 rounded hover:bg-gray-100 hover:text-gray-700"
                                 :class="{'text-sky-500': navItem === 14}"
                             >

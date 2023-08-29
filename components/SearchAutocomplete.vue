@@ -83,7 +83,6 @@ export default {
   },
   mounted() {
     document.addEventListener('click', this.handleClickOutside);
-    console.log('rNamee', this.$route.name);
   },
   destroyed() {
     document.removeEventListener('click', this.handleClickOutside);

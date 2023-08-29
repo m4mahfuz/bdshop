@@ -59,8 +59,6 @@ export default {
     }
   },    
   mounted() {
-    console.log('product card mounted');
-    // this.Product = new Product(this.product);      
      this.productChecker();
   },
 

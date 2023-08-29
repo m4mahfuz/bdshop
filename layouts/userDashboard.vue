@@ -125,7 +125,6 @@ export default {
       this.isLargeScreen = window.innerWidth >= 1024;
     },
     hideDropdown() {
-        console.log('outside clicked')
         this.dropdown = false;        
     },
     toggle(element) {

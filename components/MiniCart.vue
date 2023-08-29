@@ -77,23 +77,6 @@ import Offcanvas from './Offcanvas.vue';
             },
             count: Number
         },
-        data() {
-            return {
-                // 'sidenav-extend': this.show,
-            }
-        },
-        mounted() {
-            console.log('Mini Cart Mounted');           
-        },
-        watch: {
-            // show(value) {
-            //     if(value===true) {
-            //         document.getElementById("app").style.marginRight = "320px";
-            //         return;
-            //     }
-            //         document.getElementById("app").style.marginRight = "0";
-            // }            
-        },
         computed: {
             ...mapState('cart', [
                 'cart'
@@ -128,7 +111,6 @@ import Offcanvas from './Offcanvas.vue';
             },
             url(image) {        
                 let path = `/storage/images/products/small/${image}`;
-                // return `${this.$config.baseURL}${path}`;
                 if (typeof image === 'object' && image !== null) {
                     path = `/storage/images/products/small/${image.name}`;                    
                 }
@@ -137,4 +119,3 @@ import Offcanvas from './Offcanvas.vue';
         }    
     }
 </script>
-

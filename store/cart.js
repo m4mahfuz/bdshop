@@ -4,7 +4,6 @@ export const state = () => ({
 
 export const actions = {  
     getCart({commit}) {    
-      console.log('getCart Triggered');
       this.$axios.$get('/carts').then(respons => {
         commit('SET_TO_CART', respons.data);     
         commit('SAVE_CART_TO_LOCAL_STOAGE');        
@@ -16,41 +15,27 @@ export const actions = {
     console.log('Add to Cart Triggered');
     // save in user database
     if(this.$auth.loggedIn) {
-      // console.log('dt', data)
       let addToCartSucceed = false;
       let productFromDatabase; 
       await this.$axios.$post('/carts', {
         product_id: data.product.id,
         user_id: this.$auth.user.id,
-        // name: data.product.name,
-        // image: data.product.featured_image,
         action: data.action,
-        // price: data.product.price,
-        // price: data.product?.original_price ?? data.product.price,
         price: data.product?.original_price,
         quantity: data.quantity
       })
       .then(respons => {
         addToCartSucceed = true;
         productFromDatabase = respons.data;
-        // console.log('RD', productFromDatabase);        
       }).catch(error => {
           console.log(error);
       });
 
       // save in cart at store
       if(addToCartSucceed) {
-        // console.log('addCartSucced', addToCartSucceed)
         if(data.action === 'add') {
-          // let len = state.cart.length;
-          // console.log('add action')          
           commit('ADD_TO_CART_FOR_LOGGED_IN_USER', productFromDatabase)
         } else {          
-          // console.log('data', data)
-        //   if(data.action === 'increase') {
-        //     console.log('RDATA', productFromDatabase)
-        //     commit('UPDATE_CART', {data, productFromDatabase })
-        //  }
             commit('UPDATE_CART', {data, productFromDatabase })
         }
         // save to local storage
@@ -73,7 +58,6 @@ export const actions = {
       let removeFromCartSucceed = false;      
        await this.$axios.$delete(`/carts/${product.id}`).then(respons => {
         removeFromCartSucceed = true;
-        // commit('REMOVE_FROM_CART', index);
       }).catch(error => {
           console.log(error);
       });        
@@ -138,14 +122,10 @@ export const mutations = {
         }
       })
     }
-    // console.log('CLS mmmmm', cartAtLocalStorage);
     localStorage.setItem('cart', JSON.stringify(cartAtLocalStorage))
 
     // save in store
     state.cart = cartAtLocalStorage;      
-    
-    // this.$toast('Added to cart!');
-    // this.$toast.success('Added to cart!');
   },
 
   ADD_TO_CART_FOR_LOGGED_IN_USER(state, product) {
@@ -166,7 +146,6 @@ export const mutations = {
   SAVE_CART_TO_LOCAL_STOAGE(state) {
     // console.log('ls=', JSON.stringify(state.cart))
     localStorage.setItem('cart', JSON.stringify(state.cart))
-    console.log('cartAtLocalStorageFilld');
   },
 
   REMOVE_FROM_CART(state, product) {    
@@ -198,7 +177,6 @@ export const mutations = {
   },
   
   SET_TO_CART(state, cart) {
-    console.log('set2Cart', cart)
     state.cart = cart;
   },
     

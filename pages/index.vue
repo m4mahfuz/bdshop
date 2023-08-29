@@ -107,11 +107,11 @@ export default {
     const messaging = getMessaging(firebaseApp);
     
     onMessage(messaging, (payload) => {
-         console.log('Message on client:', payload);
+        //  console.log('Message on client:', payload);
          
         Notification.requestPermission().then((permission) => {
           if (permission === 'granted') {
-            console.log('Notification permission granted.');
+            // console.log('Notification permission granted.');
             let title = payload.notification.title;
             let body = payload.notification.body;
             
@@ -120,7 +120,7 @@ export default {
               icon: this.img,              
             });
           } else {
-            console.log('Unable to get permission to notify.');
+            // console.log('Unable to get permission to notify.');
           }
         });
 
@@ -131,11 +131,11 @@ export default {
     });
 
     if (token) {
-      console.log(token);
+      // console.log(token);
       this.token = token;
       this.sendTokenToServer(token);
     } else {
-      console.log('No registration token available. Request permission to generate one.');
+      // console.log('No registration token available. Request permission to generate one.');
     }
     
   }, 
@@ -155,7 +155,7 @@ export default {
     },
     async sendTokenToServer(currentToken) {      
       if (!this.isTokenSentToServer()) {
-        console.log('Sending token to server...');
+        // console.log('Sending token to server...');
          await this.$axios.$post('/devices', { token: currentToken })
          .then(response => {
             // console.log('device', response.data);
@@ -166,8 +166,8 @@ export default {
           });      
                   
       } else {
-        console.log('Token already sent to server so won\'t send it again ' +
-            'unless it changes');
+        // console.log('Token already sent to server so won\'t send it again ' +
+        //     'unless it changes');
       }
     },
 

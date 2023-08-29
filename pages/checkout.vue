@@ -252,7 +252,6 @@ export default {
     }
   },
   async mounted() {
-    console.log('checkout mounted')    
     await this.getActiveAddresses();
     this.shippingAddress = this.shippingAddressBy(this.$auth.$state.user.default_shipping_address);    
   },

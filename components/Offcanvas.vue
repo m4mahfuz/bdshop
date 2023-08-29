@@ -23,15 +23,7 @@
                 type: String,
                 default: 'left'
             },                       
-        },
-        // data() {
-        //     return {
-        //         // 'sidenav-extend': this.show,
-        //     }
-        // },
-        mounted() {
-            console.log('Offcanvas Mounted');           
-        },
+        },        
         computed: {
           sidenavExtra() {
             return {
@@ -42,26 +34,16 @@
             }
           }
         },
-        
-        // methods: {        
-        // }    
     }
 </script>
 
 <style scoped>
     .sidenav {
-        /* height: 100%; */
-        /* height: calc(100vh - 10px); */
         width: 0;
         position: fixed;
         z-index: 40;
         top: 0;
-        /* left: 0; */
-        /* right: 0; */
-        /* background-color: rgb(174, 158, 158); */
         overflow-x: hidden;
-        /* transition: width 2s; */
-        /* padding-top: 60px; */        
     }    
     .sidenav-left {
       left: 0;

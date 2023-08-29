@@ -118,8 +118,6 @@ export default {
         if (typeof image === 'object' && image !== null) {
           path = `/storage/images/products/small/${image.name}`;
         }
-          console.log(path)
-
         return `${this.$config.baseURL}${path}`;      
     },
     toggleTabs(tabNumber){
