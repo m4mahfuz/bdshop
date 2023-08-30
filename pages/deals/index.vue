@@ -33,7 +33,8 @@
                 <div class="mt-4 lg:mt-0 flex">             
                   <CountDownTimer v-if="countDownDate !== null" 
                     :countDownDate="countDownDate"
-                    :dealType="dealType" 
+                    :dealType="dealType"
+                    :show="showCountDown" 
                   />
                 </div>
               </div>
@@ -120,6 +121,12 @@ export default {
             return this.dailyDeals;
           }         
           return this.weeklyDeals;
+        },
+        showCountDown() {
+          if (this.dealType === 'daily') {
+            return (this.dailyDealsLength > 0) ? true: false;
+          }
+          return (this.weeklyDealsLength > 0) ? true: false;
         }
     },
     methods: {   

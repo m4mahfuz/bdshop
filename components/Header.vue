@@ -419,7 +419,6 @@ export default {
     },
     emptyTheCartAtLocalStorage() {
         localStorage.setItem('cart', '[]');
-        console.log('cartAtLocalStorageCleared');
     },
     resetCart() {
       if(this.cart.length) this.emptyTheCart();

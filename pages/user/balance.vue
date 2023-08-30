@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    layout: 'userDashboard',
+    layout: 'userdashboard',
 }
 </script>
 

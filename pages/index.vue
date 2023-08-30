@@ -30,8 +30,8 @@
 
         </div>
         <!-- Daily -->
-        <h3 class="text-xl md:text-4xl mb-6">Deals of the Day</h3>
-        <div class="flex items-center mb-6">
+        <h3 v-if="dailyDeals.length > 0" class="text-xl md:text-4xl mb-6">Deals of the Day</h3>
+        <div v-if="dailyDeals.length > 0" class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>
@@ -41,8 +41,8 @@
         </div>
         
         <!-- Weekly -->
-        <h3 class="text-xl md:text-4xl mb-6">Deals of the Week</h3>
-        <div class="flex items-center mb-6">
+        <h3 v-if="weeklyDeals.length > 0" class="text-xl md:text-4xl mb-6">Deals of the Week</h3>
+        <div v-if="weeklyDeals.length > 0" class="flex items-center mb-6">
           <div style="height: 3px" class="w-32 bs-dark-green-bg"></div>
           <div style="height: 2px" class="w-full bg-gray-200"></div>
         </div>

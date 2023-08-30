@@ -45,7 +45,6 @@ export const actions = {
     },
     getProductTags({commit}, product) {
         return this.$axios.$get(`/products/${product}/tags`).then(response => {
-            console.log(response)
             commit('ADD_TAGS', response.data);     
         }).catch(error => {
             console.log(error);

@@ -35,7 +35,7 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   // middleware: 'auth',
-  layout: 'userDashboard',
+  layout: 'userdashboard',
   data() {
     return {
       slug: this.$route.params.order,

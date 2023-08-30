@@ -49,7 +49,7 @@
 import { mapState, mapGetters, mapActions} from "vuex";
 import swal from 'sweetalert';
 export default {
-  layout: 'userDashboard',
+  layout: 'userdashboard',
   data() {
     return {
       loader: false,

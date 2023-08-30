@@ -94,7 +94,7 @@
 <script>
 import { mapState, mapGetters, mapActions} from "vuex";
 export default {
-  layout: 'userDashboard',
+  layout: 'userdashboard',
   data() {
     return {
       offset: 4,

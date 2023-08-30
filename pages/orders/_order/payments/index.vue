@@ -19,7 +19,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  layout: 'userDashboard',
+  layout: 'userdashboard',
   data() {
     return {      
     }

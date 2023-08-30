@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="flex gap-3 text-center md:text-xl text-white">
+  <!-- <div> -->
+    <div v-if="show" class="flex gap-3 text-center md:text-xl text-white">
       <div v-if="dealType === 'weekly'">
         <div class="h-8 w-8 md:h-14 md:w-14 flex justify-center items-center font-semibold rounded-md bg-red-500">
           {{ prependZeroIfNeeded(days) }}
@@ -33,7 +33,7 @@
           Secs
         </div>
       </div>
-    </div>    
+    <!-- </div>     -->
   </div>
 </template>
 
@@ -45,7 +45,8 @@ export default {
         },
         dealType: {
             type: String
-        }
+        },
+        show: Boolean
     },
   data() {
     return {

@@ -40,28 +40,14 @@ export default {
     },        
     computed: {
       show() {
-        return this.$auth.loggedIn && this.product?.deal !== true;
+        return this.$auth.loggedIn && this.product?.deal !== true && !this.offerProducts();
       }
     },
     methods: {
       ...mapActions('wishlists', ['toggleWishlist']),
-        // toggleWishlist() {
-        //   this.loader = true;
-        //   return this.$axios.$post('/products/toggle-wishlist', { product_id: this.product.id })
-        //   .then(response => {
-        //     this.loader = false;
-        //     this.wishlistCount = response.data.count;
-        //     if (response.data.count === 1) {
-        //       this.$toast.success(response.data.message);
-        //     } else {
-        //       this.$toast.error(response.data.message);
-        //     }
-        //   })
-        //   .catch(error => {
-        //     console.log(error.response)
-        //     this.loader = false;
-        //   })
-        // }
+      offerProducts() {
+        return (this.$route.name === 'offers' || this.$route.name === 'offers-offer') ? true : false; 
+      },        
         async callToToggleWishlist() {
           this.loader = true;
           let data = await this.toggleWishlist({ product_id: this.product.id })          
