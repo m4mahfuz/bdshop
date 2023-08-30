@@ -76,16 +76,10 @@ export default {
       return number;
     },
     stringToDate(dateString) {
-      // console.log(dateString);
-      // var dateString = "2023-06-24, 11:59 PM";
-
-      // Parse the date string and convert it to a Unix timestamp
-      var timestamp = Date.parse(dateString);
-
-      // Create a new Date object using the timestamp
-      var date = new Date(timestamp);
-
-      // console.log(date);
+      // to avoid ff 'nan'
+      const standardizedDateString = dateString.replace(/-/g, '/');
+      const timestamp = Date.parse(standardizedDateString);
+      const date = new Date(timestamp);
       return date;
     },
     startCountdown() {
