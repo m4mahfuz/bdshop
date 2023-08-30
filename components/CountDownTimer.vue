@@ -46,7 +46,10 @@ export default {
         dealType: {
             type: String
         },
-        show: Boolean
+        show: {
+          type: Boolean,
+          default: true
+        }
     },
   data() {
     return {
