@@ -34,6 +34,9 @@ export const actions = {
     },
     replaceTag({commit, state}, tag) {
         commit('REPLACE_TAG', tag);
+    },
+    addTagsInStore({commit, state}, tag) {
+        commit('ADD_TAG', tag)
     }
 }
 
@@ -56,5 +59,8 @@ export const mutations = {
     REPLACE_TAG(state, tag) { 
         let index = state.tags.findIndex(item => item.name === tag.old)
         state.tags[index].name = tag.new;
+    },
+    ADD_TAG(state, tag) {
+        state.tags.push(tag);
     }
 }

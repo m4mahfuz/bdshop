@@ -41,7 +41,7 @@
                         type="text" 
                         class="block w-full px-4 py-2 mt-2 text-sm text-gray-900 bg-white border rounded-md focus:ring-opacity-40 focus:outline-none focus:ring"
 												:class="[has('name') ? 'border-pink-600 text-pink-600 focus:border-red-400 focus:ring-red-300' : 'border-gray-200 focus:border-blue-400 focus:ring-blue-300']"
-                        placeholder="Enter product name"
+                        placeholder="Enter tag name"
                     >
 										<p 
 											class="mb-2 text-pink-600 text-sm" 
@@ -51,18 +51,20 @@
                 </div>
 							</div>
 							<div class="basis-1/2 border rounded-md p-2">
-								<h1 v-show="tags.length < 1" class="text-gray-400 font-semibold">Available Tags</h1>
-								<span 
+                <div v-if="tag.category !== ''">
+                  <h1 v-show="tags.length < 1 && tag.category !==''" class="text-gray-400 font-semibold">Available Tags</h1>
+                  <span 
 									v-for="(tag, index) in tags" 
 									:key="index" 
 									class="
-										ml-1 first:ml-0 
-										after:content-[','] 
-										last:after:content-['\0020']
+                  ml-1 first:ml-0 
+                  after:content-[','] 
+                  last:after:content-['\0020']
 									"
-								>
+                  >
 									{{tag.name}}
-								</span>
+                  </span>
+                </div>
 							</div>
                 
             </div>
@@ -136,6 +138,7 @@ export default {
         ]),   
         ...mapActions('tags', [
             'getTagsByCategory',
+            'addTagsInStore'
         ]),   
 				...mapActions('errors', ['setErrors']),
 
@@ -148,7 +151,8 @@ export default {
             
             this.$axios.$post('/admin/tags', this.tag)
             .then(response => {
-                this.$toast.info('New Tag Created');
+              this.$toast.info('New Tag Created');
+              this.addTagsInStore(response.data);
                 this.loader = false;
                 // this.reset();
 								this.tag.name = '';
