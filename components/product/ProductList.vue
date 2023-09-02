@@ -1,9 +1,9 @@
 <template>
   <div>
-        <div class="h-20 md:h-40 lg:h-60 mb-6 rounded-t-xl">
-          <img :src="url(category.image)" class=" object-contain lg:object-cover h-full float-right" alt="category.title">
+        <div class="flex mb-4 md:mb-6">
+          <img :src="url(category.image)" class="max-w-full h-full rounded-md" alt="category.title">
         </div>
-        <div class="md:flex md:justify-between md:items-center mb-8">
+        <div class="md:flex md:justify-between md:items-center mb-4 md:mb-8">
           <h3 class="text-3xl capitalize">{{ category.name }}
             <span class="text-sm lg:mr-6"><b>{{ totalProducts }}</b> Products Found</span>
           </h3>
