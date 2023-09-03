@@ -36,7 +36,7 @@
 									placeholder="Description here"
 									></textarea>
 									<p class="text-xs py-2">*Keep very short</p>
-									<p class="text-xs pb-2">*Separate sentence using '/b' at the end.</p>
+									<!-- <p class="text-xs pb-2">*Separate sentence using '/b' at the end.</p> -->
 								</div>
 			
 								<div class="col-span-7">

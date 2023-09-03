@@ -14,14 +14,10 @@
         <div v-if="banners.length > 0" class="flex flex-col md:flex-row gap-6 mb-14">
           <div v-for="(banner, bannerIndex) in banners" :key="banner.id" class="w-full md:w-1/2">
             <BackgroundImage :image-url="url(banner.image)">
-              <div class="w-full md:w-2/3 p-3 lg:p-6 absolute top-0 left-0 ">
+              <div class="w-2/3 p-3 lg:p-6 absolute top-0 left-0 ">
                 <p class="bs-dark-orange-color text-xl lg:text-2xl mb-2 lg:mb-6">{{banner.title}}</p>                
-                <!-- Splitting the description -->
-                <div class="mb-4 lg:mb-8 leading-tight">
-                  <template v-for="(part, index) in banner.description.split('/b')">
-                    <h3 v-if="index === 0" :key="`h3-${bannerIndex}-${index}`" class="font-medium text-lg md:text-xl text-red-400">{{ part }}</h3>
-                    <p v-else :key="`p-${bannerIndex}-${index}`" class="font-semibold  xl:text-4xl  text-gray-600">{{ part }}</p>
-                  </template>
+                <div class="mb-4 lg:mb-8 leading-tight">                  
+                  <h3 class="font-semibold  xl:text-4xl  text-gray-600">{{ banner.description }}</h3>
                 </div>
               </div>
               <button @click.prevent="goTo(banner)" class="absolute left-6 bottom-4 lg:bottom-6 text-sm lg:text-lg px-2 lg:px-4 py-1 lg:py-2 text-white transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Shop Now</button>
