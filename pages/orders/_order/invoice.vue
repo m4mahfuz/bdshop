@@ -6,7 +6,7 @@
             <p><img id="barcode"/></p>
         </div>
         <div class="grow flex flex-col items-end">
-            <img class="w-12" src="~/assets/img/logo.png" alt="">
+            <img class="w-12 h-14" src="~/assets/img/logo.svg" alt="">
             <p class="text-gray-800 font-semibold pt-1">Bengal Shop</p>
             <p class="text-gray-600 font-light">Dhanmondi, Dhaka</p>
             <p class="text-gray-400 pt-2 font-light">{{order.today}}</p>            
@@ -124,7 +124,6 @@
         },
         async mounted() {
             this.loader = true
-            // this.order = JSON.parse(localStorage.getItem('orderToView'));            
             await this.getOrderByUUID(this.$route.params.order);
             this.setBarCode(this.order.id);
             this.setQrCode();

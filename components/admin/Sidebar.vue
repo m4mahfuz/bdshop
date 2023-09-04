@@ -14,9 +14,9 @@
           </svg>            
       </button>            
       <!-- logo -->
-      <div class="px-6 pt-6 h-20">
-        <div class="flex items-center justify-between">          
-          <Logo :logoText="false" :linkTo="`/admin/dashboard`" />
+      <div class="px-6 py-2 h-20">
+        <div class="flex justify-start items-center ">          
+          <Logo class="w-14 h-16" :logoText="false" :linkTo="`/admin/dashboard`" />
         </div>
       </div>      
       <!-- separator -->
