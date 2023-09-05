@@ -1,8 +1,8 @@
 <template>
   <div class="container px-0 mt-4 h-screen">
     
-    <header v-if="isLargeScreen" class="h-16 w-full bg-white shadow-sm px-4 flex items-center justify-between">
-      <Logo/>
+    <header v-if="isLargeScreen" class="h-20 w-full bg-white shadow-sm px-4 flex items-center justify-between">
+      <Logo class="w-14 h-16" :logo-text="false" />
       <nav class="flex items-center">
         <!-- Notifications -->
         <div>

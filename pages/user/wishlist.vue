@@ -70,9 +70,12 @@ export default {
   methods: {
     ...mapActions('cart', ['addToCart']),
     ...mapActions('wishlists', ['getWishlists', 'removeWishlist']),
-    url(image) {        
-        let path = `/storage/images/products/small/${image}`;
-        return `${this.$config.baseURL}${path}`;      
+    url(image) {   
+      if (typeof image === 'object' && image !== null) {     
+        let path = `/storage/images/products/small/${image.name}`;
+        return `${this.$config.baseURL}${path}`;  
+      }
+      return;    
     },    
     handlePagination(page) {
       let current_page = page;

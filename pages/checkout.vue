@@ -14,7 +14,6 @@
                     <th scope="col" class="px-2 py-2">Image</th>
                     <th scope="col" class="pl-2 pr-20 py-2 text-left">Name</th>
                     <th scope="col" class="px-4 py-2">Price</th>
-                    <!-- <th scope="col" class="px-4 py-2">Discounted Price</th> -->
                     <th scope="col" class="px-2 py-2">Qty</th>
                     <th scope="col" class="px-2 py-2">Total</th>
                     <th scope="col" class="px-2 py-2">                      
@@ -28,7 +27,7 @@
                   >
                   <!-- <tr> -->
                     <td class="text-center border-b">{{index+1}}</td>
-                    <td class="border-b p-2">
+                    <td class="w-16 border-b p-2">
                       <img :src="url(product.image)" :alt="product.name">
                     </td>
                     <td class="border-b p-2">
